@@ -1,10 +1,104 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tortoise Time</title>
+    <style>
+      :root {
+        --sage: #8a9a7b;
+        --sage-deep: #5f6f52;
+        --cream: #f4f1ea;
+        --warm-text: #3a3a32;
+        --soft: #6b6b5e;
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      body {
+        font-family: Georgia, 'Times New Roman', serif;
+        background: var(--cream);
+        color: var(--warm-text);
+        line-height: 1.7;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+      header {
+        background: var(--sage-deep);
+        color: var(--cream);
+        padding: 1.4rem 2rem;
+        text-align: center;
+        letter-spacing: 0.05em;
+      }
+      header span {
+        font-size: 1.1rem;
+        text-transform: uppercase;
+        letter-spacing: 0.18em;
+      }
+      main {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 4rem 1.5rem;
+        max-width: 620px;
+        margin: 0 auto;
+      }
+      .leaf {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+      }
+      h1 {
+        font-size: 2.8rem;
+        color: var(--sage-deep);
+        font-weight: normal;
+        margin-bottom: 1rem;
+      }
+      .tagline {
+        font-size: 1.25rem;
+        color: var(--soft);
+        font-style: italic;
+        margin-bottom: 2rem;
+      }
+      p.body {
+        font-size: 1.1rem;
+        color: var(--warm-text);
+        max-width: 500px;
+      }
+      .divider {
+        width: 60px;
+        height: 2px;
+        background: var(--sage);
+        margin: 2rem auto;
+        opacity: 0.6;
+      }
+      footer {
+        text-align: center;
+        padding: 1.5rem;
+        font-size: 0.85rem;
+        color: var(--soft);
+        background: rgba(138, 154, 123, 0.12);
+      }
+    </style>
   </head>
   <body>
-    <h1>Tortoise Time</h1>
-    <p>Everyday fitness and longevity. Launching this year.</p>
+    <header>
+      <span>Tortoise Time</span>
+    </header>
+    <main>
+      <div class="leaf">&#127807;</div>
+      <h1>Slow and steady.</h1>
+      <p class="tagline">Everyday fitness and the science of longevity.</p>
+      <div class="divider"></div>
+      <p class="body">
+        A place for practical, evidence-based thinking about movement,
+        measurement, and aging well &mdash; written by a physician, built
+        for everyday life.
+      </p>
+    </main>
+    <footer>
+      &copy; 2026 Tortoise Time &middot; Launching this year
+    </footer>
   </body>
 </html>
