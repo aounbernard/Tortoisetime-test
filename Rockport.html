@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rockport Walk Test &middot; Tortoise Time</title>
+    <style>
+      :root {
+        --sage: #8a9a7b;
+        --sage-deep: #5f6f52;
+        --cream: #f4f1ea;
+        --warm-text: #3a3a32;
+        --soft: #6b6b5e;
+        --card: #ffffff;
+        --border: #d9d6cc;
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      body {
+        font-family: Georgia, 'Times New Roman', serif;
+        background: var(--cream);
+        color: var(--warm-text);
+        line-height: 1.7;
+        min-height: 100vh;
+      }
+      header {
+        background: var(--sage-deep);
+        color: var(--cream);
+        padding: 1.4rem 2rem;
+        text-align: center;
+      }
+      header span {
+        font-size: 1.1rem;
+        text-transform: uppercase;
+        letter-spacing: 0.18em;
+      }
+      main {
+        max-width: 640px;
+        margin: 0 auto;
+        padding: 3rem 1.5rem 4rem;
+      }
+      .leaf { font-size: 2rem; text-align: center; margin-bottom: 0.5rem; }
+      h1 {
+        font-size: 2.2rem;
+        color: var(--sage-deep);
+        font-weight: normal;
+        text-align: center;
+        margin-bottom: 0.5rem;
+      }
+      .intro {
+        text-align: center;
+        color: var(--soft);
+        font-style: italic;
+        margin-bottom: 2.5rem;
+      }
+      .card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 2rem;
+        margin-bottom: 2rem;
+      }
+      .field { margin-bottom: 1.3rem; }
+      label {
+        display: block;
+        font-size: 0.95rem;
+        color: var(--sage-deep);
+        margin-bottom: 0.4rem;
+        font-family: Georgia, serif;
+      }
+      .hint { color: var(--soft); font-style: italic; font-size: 0.85rem; }
+      input, select {
+        width: 100%;
+        padding: 0.7rem 0.8rem;
+        font-size: 1rem;
+        font-family: Georgia, serif;
+        color: var(--warm-text);
+        background: var(--cream);
+        border: 1px solid var(--border);
+        border-radius: 6px;
+      }
+      input:focus, select:focus {
+        outline: none;
+        border-color: var(--sage);
+        background: #fff;
+      }
+      .time-row { display: flex; gap: 0.6rem; }
+      .time-row input { text-align: center; }
+      button {
+        width: 100%;
+        padding: 0.9rem;
+        font-size: 1.05rem;
+        font-family: Georgia, serif;
+        color: var(--cream);
+        background: var(--sage-deep);
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        letter-spacing: 0.04em;
+        transition: background 0.2s;
+      }
+      button:hover { background: var(--sage); }
+      .result {
+        display: none;
+        margin-top: 1.8rem;
+        text-align: center;
+        padding-top: 1.8rem;
+        border-top: 1px solid var(--border);
+      }
+      .result.show { display: block; }
+      .vo2 {
+        font-size: 3rem;
+        color: var(--sage-deep);
+        line-height: 1.1;
+      }
+      .vo2 small { font-size: 1.1rem; color: var(--soft); }
+      .category {
+        font-size: 1.3rem;
+        font-style: italic;
+        margin: 0.6rem 0 0.3rem;
+      }
+      .category-note { color: var(--soft); font-size: 0.95rem; }
+      .error {
+        display: none;
+        color: #a6452f;
+        background: #f6e3dc;
+        border: 1px solid #e0b8a8;
+        border-radius: 6px;
+        padding: 0.8rem;
+        margin-top: 1rem;
+        font-size: 0.95rem;
+        text-align: center;
+      }
+      .error.show { display: block; }
+      .notes {
+        font-size: 0.85rem;
+        color: var(--soft);
+        background: rgba(138, 154, 123, 0.1);
+        border-radius: 8px;
+        padding: 1.2rem 1.4rem;
+      }
+      .notes h3 {
+        font-size: 0.9rem;
+        color: var(--sage-deep);
+        margin-bottom: 0.5rem;
+        font-weight: normal;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+      }
+      .notes p { margin-bottom: 0.6rem; }
+      .notes p:last-child { margin-bottom: 0; }
+      .disclaimer { font-weight: bold; }
+    </style>
+  </head>
+  <body>
+    <header><span>Tortoise Time</span></header>
+    <main>
+      <div class="leaf">&#127807;</div>
+      <h1>Rockport Walk Test</h1>
+      <p class="intro">Estimate your cardiorespiratory fitness (VO&#8322;max) from a one-mile walk.</p>
+
+      <div class="card">
+        <div class="field">
+          <label for="sex">Sex</label>
+          <select id="sex">
+            <option value="">Select&hellip;</option>
+            <option value="1">Male</option>
+            <option value="0">Female</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="age">Age <span class="hint">(years)</span></label>
+          <input type="number" id="age" min="18" max="100" placeholder="e.g. 62" />
+        </div>
+
+        <div class="field">
+          <label for="weight">Weight <span class="hint">(pounds)</span></label>
+          <input type="number" id="weight" min="60" max="500" placeholder="e.g. 175" />
+        </div>
+
+        <div class="field">
+          <label>Time to walk 1 mile <span class="hint">(minutes &amp; seconds)</span></label>
+          <div class="time-row">
+            <input type="number" id="minutes" min="5" max="40" placeholder="min" />
+            <input type="number" id="seconds" min="0" max="59" placeholder="sec" />
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="hr">Heart rate at the end of the walk <span class="hint">(beats per minute)</span></label>
+          <input type="number" id="hr" min="50" max="220" placeholder="e.g. 130" />
+        </div>
+
+        <button onclick="calculate()">Calculate VO&#8322;max</button>
+
+        <div class="error" id="error"></div>
+
+        <div class="result" id="result">
+          <div class="vo2"><span id="vo2val"></span> <small>mL/kg/min</small></div>
+          <div class="category" id="catname"></div>
+          <div class="category-note" id="catnote"></div>
+        </div>
+      </div>
+
+      <div class="notes">
+        <h3>About this estimate</h3>
+        <p>This calculator uses the Rockport Fitness Walking Test equation (Kline et al., 1987), which estimates VO&#8322;max from a brisk one-mile walk on level ground. Walk as fast as you comfortably can, record your finishing time, and take your heart rate immediately upon finishing.</p>
+        <p>Like all submaximal field tests, it provides an estimate rather than a laboratory-measured value, and is most accurate for healthy adults walking at a genuine effort. Fitness categories shown are general references and vary by source.</p>
+        <p class="disclaimer">This tool is for general information and is not a substitute for individualized medical advice. Talk with your physician before beginning or intensifying any exercise program.</p>
+      </div>
+    </main>
+
+    <script>
+      function calculate() {
+        var errorEl = document.getElementById('error');
+        var resultEl = document.getElementById('result');
+        errorEl.classList.remove('show');
+        resultEl.classList.remove('show');
+
+        var sexRaw = document.getElementById('sex').value;
+        var age = parseFloat(document.getElementById('age').value);
+        var weight = parseFloat(document.getElementById('weight').value);
+        var min = parseFloat(document.getElementById('minutes').value);
+        var sec = parseFloat(document.getElementById('seconds').value);
+        var hr = parseFloat(document.getElementById('hr').value);
+
+        if (isNaN(sec)) sec = 0;
+
+        function fail(msg) {
+          errorEl.textContent = msg;
+          errorEl.classList.add('show');
+        }
+
+        if (sexRaw === '') return fail('Please select a sex.');
+        if (isNaN(age) || age < 18 || age > 100) return fail('Please enter a valid age (18\u2013100).');
+        if (isNaN(weight) || weight < 60 || weight > 500) return fail('Please enter a valid weight in pounds.');
+        if (isNaN(min) || min < 5 || min > 40) return fail('Please enter a valid walk time in minutes.');
+        if (sec < 0 || sec > 59) return fail('Seconds must be between 0 and 59.');
+        if (isNaN(hr) || hr < 50 || hr > 220) return fail('Please enter a valid ending heart rate.');
+
+        var sex = parseFloat(sexRaw);
+        var time = min + sec / 60;
+
+        var vo2 = 132.853
+          - (0.0769 * weight)
+          - (0.3877 * age)
+          + (6.315 * sex)
+          - (3.2649 * time)
+          - (0.1565 * hr);
+
+        vo2 = Math.round(vo2 * 10) / 10;
+
+        document.getElementById('vo2val').textContent = vo2;
+
+        var cat = categorize(vo2, age, sex);
+        document.getElementById('catname').textContent = cat.name;
+        document.getElementById('catnote').textContent = cat.note;
+        resultEl.classList.add('show');
+      }
+
+      // General reference ranges (mL/kg/min) by age band and sex.
+      function categorize(vo2, age, sex) {
+        var male = sex === 1;
+        var bands;
+        if (age < 30)      bands = male ? [38,44,51] : [33,38,44];
+        else if (age < 40) bands = male ? [36,42,48] : [31,36,41];
+        else if (age < 50) bands = male ? [33,39,45] : [28,33,38];
+        else if (age < 60) bands = male ? [30,36,42] : [25,30,35];
+        else               bands = male ? [26,32,38] : [22,27,32];
+
+        if (vo2 < bands[0]) return { name: 'Below average', note: 'Lower than typical for your age group \u2014 a starting point with room to grow.' };
+        if (vo2 < bands[1]) return { name: 'Fair', note: 'Within a typical range for your age group.' };
+        if (vo2 < bands[2]) return { name: 'Good', note: 'Above the typical range for your age group.' };
+        return { name: 'Excellent', note: 'Well above the typical range for your age group.' };
+      }
+    </script>
+  </body>
+</html>
