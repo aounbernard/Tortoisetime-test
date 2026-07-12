@@ -1,1842 +1,1740 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#243428">
-
-  <title>Tortoise Time | Move Daily. Live Longer.</title>
-  <meta name="description" content="A physician-led public health platform helping people build fitness, function, and longevity through sustainable, evidence-informed daily habits.">
-  <meta property="og:title" content="Tortoise Time | Move Daily. Live Longer.">
-  <meta property="og:description" content="Measure what matters. Build sustainable habits. Compound your health.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://tortoisetime.com/">
-  <link rel="canonical" href="https://tortoisetime.com/">
-
-  <style>
-    :root {
-      --cream: #f7f3e9;
-      --paper: #fffdf8;
-      --pine: #243428;
-      --pine-2: #354a39;
-      --sage: #74856c;
-      --sage-soft: #e7ebdf;
-      --amber: #bd8732;
-      --amber-dark: #8c5f1e;
-      --ink: #243428;
-      --muted: #5d685d;
-      --border: #d8decf;
-      --danger: #a2462b;
-      --success: #39713c;
-      --shadow: 0 18px 50px rgba(36, 52, 40, .09);
-      --radius: 16px;
-      --max: 1120px;
-      --serif: Georgia, "Times New Roman", serif;
-      --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-    }
-
-    * { box-sizing: border-box; }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      margin: 0;
-      background: var(--cream);
-      color: var(--ink);
-      font-family: var(--serif);
-      font-size: 17px;
-      line-height: 1.65;
-      text-rendering: optimizeLegibility;
-    }
-
-    body.menu-open { overflow: hidden; }
-
-    a { color: inherit; }
-    img, svg { max-width: 100%; }
-    button, input, select { font: inherit; }
-    [hidden] { display: none !important; }
-
-    .skip-link {
-      position: fixed;
-      left: 16px;
-      top: -80px;
-      z-index: 100;
-      padding: 12px 16px;
-      border-radius: 8px;
-      background: var(--pine);
-      color: white;
-      font-family: var(--sans);
-      text-decoration: none;
-    }
-
-    .skip-link:focus { top: 16px; }
-
-    :focus-visible {
-      outline: 3px solid var(--amber);
-      outline-offset: 3px;
-      border-radius: 4px;
-    }
-
-    .wrap {
-      width: min(var(--max), calc(100% - 40px));
-      margin-inline: auto;
-    }
-
-    .page { display: none; }
-    .page.active {
-      display: block;
-      animation: fade .22s ease-out;
-    }
-
-    @keyframes fade {
-      from { opacity: .4; transform: translateY(4px); }
-    }
-
-    .eyebrow {
-      margin: 0;
-      color: var(--amber-dark);
-      font-family: var(--sans);
-      font-size: .75rem;
-      font-weight: 800;
-      letter-spacing: .17em;
-      text-transform: uppercase;
-    }
-
-    /* =========================
-       Header + Logo
-       ========================= */
-
-    .site-header {
-      position: sticky;
-      top: 0;
-      z-index: 30;
-      border-bottom: 1px solid rgba(216, 222, 207, .88);
-      background: rgba(247, 243, 233, .94);
-      backdrop-filter: blur(14px);
-    }
-
-    .nav-inner {
-      min-height: 76px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 24px;
-    }
-
-    .brand {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      color: var(--pine);
-      text-decoration: none;
-    }
-
-    .brand-logo {
-      width: 48px;
-      height: 48px;
-      flex: 0 0 48px;
-    }
-
-    .brand-wordmark {
-      display: flex;
-      flex-direction: column;
-      line-height: 1;
-    }
-
-    .brand-title {
-      font-family: var(--serif);
-      font-size: 1.34rem;
-      font-weight: 800;
-      letter-spacing: -.02em;
-    }
-
-    .brand-title span { color: var(--sage); }
-
-    .brand-subtitle {
-      margin-top: 5px;
-      color: var(--muted);
-      font-family: var(--sans);
-      font-size: .66rem;
-      font-weight: 800;
-      letter-spacing: .13em;
-      text-transform: uppercase;
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 25px;
-      font-family: var(--sans);
-    }
-
-    .nav-links a {
-      padding: 24px 0 20px;
-      border-bottom: 3px solid transparent;
-      color: var(--muted);
-      font-size: .88rem;
-      font-weight: 700;
-      text-decoration: none;
-    }
-
-    .nav-links a:hover,
-    .nav-links a.active {
-      color: var(--pine);
-      border-bottom-color: var(--amber);
-    }
-
-    .menu-button {
-      display: none;
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      background: var(--paper);
-      color: var(--pine);
-      padding: 9px 12px;
-      font-family: var(--sans);
-      font-weight: 800;
-      cursor: pointer;
-    }
-
-    /* =========================
-       Buttons
-       ========================= */
-
-    .cta-row {
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-      margin-top: 34px;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      min-height: 50px;
-      padding: 12px 22px;
-      border: 1px solid transparent;
-      border-radius: 10px;
-      font-family: var(--sans);
-      font-size: .92rem;
-      font-weight: 800;
-      text-decoration: none;
-      cursor: pointer;
-      transition: transform .16s ease, background .16s ease, box-shadow .16s ease;
-    }
-
-    .btn:hover { transform: translateY(-1px); }
-
-    .btn-primary {
-      background: var(--pine);
-      color: #fff;
-      box-shadow: 0 10px 22px rgba(36, 52, 40, .16);
-    }
-
-    .btn-primary:hover { background: var(--pine-2); }
-
-    .btn-secondary {
-      border-color: var(--sage);
-      background: transparent;
-      color: var(--pine);
-    }
-
-    .btn-secondary:hover { background: var(--sage-soft); }
-
-    /* =========================
-       Hero
-       ========================= */
-
-    .hero {
-      padding: clamp(72px, 11vw, 126px) 0 82px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero::after {
-      content: "";
-      position: absolute;
-      width: 480px;
-      height: 480px;
-      right: -210px;
-      top: -210px;
-      border: 1px solid rgba(116, 133, 108, .28);
-      border-radius: 50%;
-      box-shadow: 0 0 0 60px rgba(116, 133, 108, .035),
-                  0 0 0 130px rgba(116, 133, 108, .025);
-      pointer-events: none;
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1.35fr) minmax(280px, .65fr);
-      gap: 72px;
-      align-items: center;
-    }
-
-    .hero h1 {
-      max-width: 760px;
-      margin: 18px 0 24px;
-      font-size: clamp(3rem, 7vw, 5.6rem);
-      line-height: .98;
-      letter-spacing: -.045em;
-    }
-
-    .hero h1 em {
-      color: var(--sage);
-      font-weight: 500;
-    }
-
-    .hero .lede {
-      max-width: 680px;
-      margin: 0;
-      color: var(--muted);
-      font-size: clamp(1.1rem, 2vw, 1.28rem);
-    }
-
-    .hero-card {
-      position: relative;
-      padding: 32px;
-      border: 1px solid var(--border);
-      border-radius: 28px;
-      background: rgba(255, 253, 248, .82);
-      box-shadow: var(--shadow);
-    }
-
-    .hero-card strong {
-      display: block;
-      font-size: 1.4rem;
-      margin-bottom: 8px;
-    }
-
-    .hero-card p {
-      color: var(--muted);
-      margin: 0 0 22px;
-    }
-
-    .metric {
-      display: flex;
-      justify-content: space-between;
-      gap: 14px;
-      padding: 14px 0;
-      border-top: 1px solid var(--border);
-      font-family: var(--sans);
-      font-size: .88rem;
-    }
-
-    .metric span:first-child { color: var(--muted); }
-    .metric span:last-child { font-weight: 800; }
-
-    /* =========================
-       Sections
-       ========================= */
-
-    .section { padding: 92px 0; }
-    .section.tinted { background: var(--sage-soft); }
-
-    .section h2,
-    .page-head h1 {
-      margin: 14px 0 24px;
-      line-height: 1.12;
-      letter-spacing: -.025em;
-    }
-
-    .section h2 {
-      font-size: clamp(2rem, 4vw, 3.2rem);
-    }
-
-    .section-intro {
-      max-width: 680px;
-      color: var(--muted);
-      font-size: 1.08rem;
-    }
-
-    .philosophy {
-      padding: 94px 0;
-      background: var(--pine);
-      color: var(--cream);
-    }
-
-    .philosophy .eyebrow { color: #e4b565; }
-
-    .philosophy-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 72px;
-      align-items: center;
-    }
-
-    .philosophy h2 {
-      margin: 14px 0 22px;
-      font-size: clamp(2rem, 4vw, 3.25rem);
-      line-height: 1.08;
-    }
-
-    .philosophy p { color: #cad3c7; }
-
-    .philosophy blockquote {
-      margin: 28px 0 0;
-      color: #edbd6c;
-      font-size: 1.3rem;
-      font-style: italic;
-    }
-
-    .curve-box {
-      padding: 24px;
-      border: 1px solid rgba(255,255,255,.1);
-      border-radius: 22px;
-      background: rgba(255,255,255,.035);
-    }
-
-    .curve-path {
-      fill: none;
-      stroke: #dca650;
-      stroke-width: 4;
-      stroke-linecap: round;
-      stroke-dasharray: 900;
-      stroke-dashoffset: 900;
-      animation: draw 2.8s ease-out .25s forwards;
-    }
-
-    .curve-base {
-      stroke: #617164;
-      stroke-dasharray: 5 7;
-    }
-
-    .curve-label {
-      fill: #aebbac;
-      font: 700 12px var(--sans);
-      letter-spacing: .09em;
-    }
-
-    @keyframes draw { to { stroke-dashoffset: 0; } }
-
-    .principles {
-      list-style: none;
-      max-width: 760px;
-      padding: 0;
-      margin: 44px 0 0;
-    }
-
-    .principles li {
-      display: grid;
-      grid-template-columns: minmax(190px, 1fr) auto minmax(190px, 1fr);
-      align-items: baseline;
-      gap: 18px;
-      padding: 20px 0;
-      border-top: 1px solid var(--border);
-    }
-
-    .principles li:last-child { border-bottom: 1px solid var(--border); }
-    .principles strong { font-size: 1.18rem; }
-
-    .principles small {
-      color: var(--amber-dark);
-      font: 800 .68rem var(--sans);
-      letter-spacing: .13em;
-      text-transform: uppercase;
-    }
-
-    .principles em { color: var(--muted); }
-
-    /* =========================
-       Cards
-       ========================= */
-
-    .card-grid {
-      display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap: 22px;
-      margin-top: 40px;
-    }
-
-    .card,
-    .card-link {
-      grid-column: span 4;
-      min-height: 240px;
-      padding: 30px;
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      background: var(--paper);
-      box-shadow: 0 1px 0 rgba(36,52,40,.02);
-    }
-
-    .card-link {
-      display: flex;
-      flex-direction: column;
-      color: var(--pine);
-      text-decoration: none;
-      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
-    }
-
-    .card-link:hover {
-      transform: translateY(-4px);
-      border-color: var(--sage);
-      box-shadow: var(--shadow);
-    }
-
-    .card h3,
-    .card-link h3 {
-      margin: 8px 0 10px;
-      font-size: 1.28rem;
-      line-height: 1.2;
-    }
-
-    .card p,
-    .card-link p {
-      color: var(--muted);
-      font-size: .96rem;
-    }
-
-    .card-link .go {
-      margin-top: auto;
-      padding-top: 16px;
-      color: var(--amber-dark);
-      font: 800 .78rem var(--sans);
-      letter-spacing: .05em;
-    }
-
-    .tag {
-      color: var(--sage);
-      font: 800 .68rem var(--sans);
-      letter-spacing: .12em;
-      text-transform: uppercase;
-    }
-
-    .pillars .card:nth-child(4),
-    .pillars .card:nth-child(5) {
-      grid-column: span 6;
-    }
-
-    /* =========================
-       Walking challenge
-       ========================= */
-
-    .challenge-band {
-      padding: 72px 0;
-      background: #e8d8b7;
-    }
-
-    .challenge-grid {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 40px;
-      align-items: center;
-    }
-
-    .challenge-band h2 {
-      margin: 8px 0 10px;
-      font-size: clamp(1.8rem, 4vw, 2.8rem);
-    }
-
-    .challenge-band p {
-      max-width: 700px;
-      margin: 0;
-      color: #5c4d36;
-    }
-
-    /* =========================
-       Newsletter
-       ========================= */
-
-    .newsletter {
-      padding: 90px 0;
-      background: var(--paper);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .newsletter-box {
-      display: grid;
-      grid-template-columns: 1.05fr .95fr;
-      gap: 46px;
-      align-items: center;
-      padding: 44px;
-      border: 1px solid var(--border);
-      border-radius: 26px;
-      background:
-        radial-gradient(circle at top left, rgba(189,135,50,.12), transparent 34%),
-        linear-gradient(135deg, var(--cream), #fffaf0);
-      box-shadow: var(--shadow);
-    }
-
-    .newsletter h2 {
-      margin: 12px 0 16px;
-      font-size: clamp(2rem, 4vw, 3rem);
-      line-height: 1.08;
-      letter-spacing: -.025em;
-    }
-
-    .newsletter p {
-      color: var(--muted);
-      margin: 0 0 18px;
-    }
-
-    .newsletter-points {
-      list-style: none;
-      padding: 0;
-      margin: 24px 0 0;
-      font-family: var(--sans);
-      font-size: .92rem;
-      color: var(--muted);
-    }
-
-    .newsletter-points li {
-      padding: 9px 0;
-      border-top: 1px solid rgba(216, 222, 207, .85);
-    }
-
-    .newsletter-points li::before {
-      content: "â";
-      color: var(--amber-dark);
-      font-weight: 900;
-      margin-right: 9px;
-    }
-
-    .newsletter-form {
-      padding: 30px;
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      background: var(--paper);
-      box-shadow: 0 10px 28px rgba(36, 52, 40, .06);
-    }
-
-    .newsletter-form h3 {
-      margin: 0 0 10px;
-      font-size: 1.35rem;
-    }
-
-    .newsletter-form p {
-      font-size: .92rem;
-      margin-bottom: 20px;
-    }
-
-    .newsletter-form .field {
-      margin-bottom: 14px;
-    }
-
-    .newsletter-form .btn {
-      width: 100%;
-      margin-top: 4px;
-    }
-
-    .newsletter-privacy {
-      margin-top: 14px !important;
-      font: .74rem/1.5 var(--sans);
-      color: var(--sage) !important;
-    }
-
-    /* =========================
-       Inner pages and calculators
-       ========================= */
-
-    .page-head { padding: 74px 0 44px; }
-
-    .page-head h1 {
-      font-size: clamp(2.5rem, 6vw, 4.5rem);
-    }
-
-    .page-head .lede {
-      max-width: 730px;
-      color: var(--muted);
-      font-size: 1.14rem;
-    }
-
-    .calc-layout {
-      display: grid;
-      grid-template-columns: minmax(0, .92fr) minmax(0, 1.08fr);
-      gap: 54px;
-      align-items: start;
-      padding-bottom: 92px;
-    }
-
-    .calc-form {
-      padding: 32px;
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      background: var(--paper);
-      box-shadow: var(--shadow);
-    }
-
-    .calc-form h2,
-    .calc-info h2 {
-      margin: 0 0 22px;
-      font-size: 1.5rem;
-    }
-
-    .field { margin-bottom: 18px; }
-
-    .field-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-    }
-
-    label {
-      display: block;
-      margin-bottom: 6px;
-      color: #4f5b50;
-      font: 750 .8rem var(--sans);
-      letter-spacing: .025em;
-    }
-
-    input,
-    select {
-      width: 100%;
-      min-height: 48px;
-      padding: 10px 12px;
-      border: 1.5px solid var(--border);
-      border-radius: 9px;
-      background: #fff;
-      color: var(--pine);
-      font-family: var(--sans);
-      font-size: 1rem;
-    }
-
-    input:focus,
-    select:focus {
-      border-color: var(--sage);
-      outline: 3px solid rgba(116,133,108,.18);
-    }
-
-    .hint {
-      margin: 5px 0 0;
-      color: var(--sage);
-      font: .75rem/1.45 var(--sans);
-    }
-
-    .calc-form .btn { width: 100%; margin-top: 6px; }
-
-    .error-msg {
-      display: none;
-      margin: 12px 0 0;
-      color: var(--danger);
-      font: 750 .85rem var(--sans);
-    }
-
-    .error-msg.show { display: block; }
-
-    .result {
-      display: none;
-      margin-top: 24px;
-      padding: 24px;
-      border: 1px solid var(--border);
-      border-radius: 13px;
-      background: var(--sage-soft);
-    }
-
-    .result.show { display: block; }
-
-    .result .big {
-      font-size: 2.4rem;
-      font-weight: 800;
-      line-height: 1.05;
-    }
-
-    .result .big small {
-      color: var(--muted);
-      font-size: .95rem;
-      font-weight: 400;
-    }
-
-    .result .category {
-      margin-top: 8px;
-      font: 850 .75rem var(--sans);
-      letter-spacing: .08em;
-      text-transform: uppercase;
-    }
-
-    .result .interpretation {
-      margin: 12px 0 0;
-      color: var(--muted);
-      font-size: .95rem;
-    }
-
-    .cat-strong { color: var(--success); }
-    .cat-average { color: var(--amber-dark); }
-    .cat-low { color: var(--danger); }
-
-    .calc-info h3 {
-      margin: 28px 0 8px;
-      font-size: 1.12rem;
-    }
-
-    .calc-info p,
-    .calc-info li {
-      color: var(--muted);
-      font-size: .96rem;
-    }
-
-    .calc-info li { margin-bottom: 7px; }
-    .calc-info ol,
-    .calc-info ul { padding-left: 22px; }
-
-    .safety-note,
-    .evidence-note {
-      margin-top: 26px;
-      padding: 18px 20px;
-      border-left: 4px solid var(--amber);
-      background: var(--paper);
-      color: var(--muted);
-      font: .84rem/1.6 var(--sans);
-    }
-
-    .safety-note { border-left-color: var(--danger); }
-    .evidence-note a { color: var(--pine); font-weight: 750; }
-
-    .prose {
-      max-width: 760px;
-      padding-bottom: 90px;
-    }
-
-    .prose h2 {
-      margin: 42px 0 12px;
-      font-size: 1.65rem;
-    }
-
-    .prose p { color: var(--muted); }
-    .prose .lead { color: var(--pine); font-size: 1.18rem; }
-    .prose .closing { color: var(--pine); font-size: 1.18rem; font-style: italic; }
-
-    .vision {
-      padding: 92px 0;
-      text-align: center;
-      border-top: 1px solid var(--border);
-    }
-
-    .vision p {
-      max-width: 700px;
-      margin: 16px auto 0;
-      color: var(--muted);
-    }
-
-    .vision .closing {
-      color: var(--pine);
-      font-size: clamp(1.35rem, 3vw, 1.9rem);
-      font-style: italic;
-    }
-
-    footer {
-      padding: 52px 0;
-      background: var(--pine);
-      color: #c9d2c6;
-      text-align: center;
-    }
-
-    footer .motto {
-      margin: 0 0 12px;
-      color: #e5b463;
-      font-size: 1.18rem;
-      font-style: italic;
-    }
-
-    footer nav {
-      position: static;
-      border: 0;
-      background: transparent;
-      backdrop-filter: none;
-    }
-
-    .foot-links {
-      margin: 15px 0;
-      font: .8rem var(--sans);
-    }
-
-    .foot-links a {
-      margin: 0 9px;
-      text-decoration: none;
-    }
-
-    .foot-links a:hover { text-decoration: underline; }
-
-    .disclaimer {
-      max-width: 680px;
-      margin: 20px auto 0;
-      color: #93a08f;
-      font: .74rem/1.55 var(--sans);
-    }
-
-    /* =========================
-       Responsive
-       ========================= */
-
-    @media (max-width: 900px) {
-      .hero-grid,
-      .philosophy-grid,
-      .calc-layout,
-      .newsletter-box {
-        grid-template-columns: 1fr;
-        gap: 42px;
-      }
-
-      .hero-card { max-width: 580px; }
-
-      .card,
-      .card-link,
-      .pillars .card:nth-child(4),
-      .pillars .card:nth-child(5) {
-        grid-column: span 6;
-      }
-    }
-
-    @media (max-width: 700px) {
-      .wrap { width: min(100% - 28px, var(--max)); }
-
-      .brand-logo {
-        width: 42px;
-        height: 42px;
-        flex-basis: 42px;
-      }
-
-      .brand-title { font-size: 1.14rem; }
-      .brand-subtitle { display: none; }
-
-      .menu-button { display: inline-flex; }
-
-      .nav-links {
-        display: none;
-        position: fixed;
-        inset: 76px 0 auto;
-        flex-direction: column;
-        align-items: stretch;
-        gap: 0;
-        padding: 12px 20px 24px;
-        border-bottom: 1px solid var(--border);
-        background: var(--cream);
-        box-shadow: 0 20px 30px rgba(36,52,40,.1);
-      }
-
-      .nav-links.open { display: flex; }
-      .nav-links a { padding: 14px 4px; }
-
-      .hero { padding-top: 64px; }
-      .hero h1 { font-size: clamp(3.2rem, 16vw, 4.7rem); }
-
-      .card,
-      .card-link,
-      .pillars .card:nth-child(4),
-      .pillars .card:nth-child(5) {
-        grid-column: 1 / -1;
-      }
-
-      .principles li { grid-template-columns: 1fr; gap: 3px; }
-      .field-row { grid-template-columns: 1fr; }
-      .challenge-grid { grid-template-columns: 1fr; }
-      .challenge-grid .btn { justify-self: start; }
-      .calc-form,
-      .newsletter-form { padding: 24px 18px; }
-      .newsletter-box { padding: 30px 22px; }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-
-      *,
-      *::before,
-      *::after {
-        animation-duration: .01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: .01ms !important;
-      }
-
-      .curve-path { stroke-dashoffset: 0; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tortoise Time — Move Daily. Live Longer.</title>
+<meta name="description" content="A physician-led longevity platform. Daily trivia, validated fitness tests, and a community leaderboard — built on habits that compound.">
+<style>
+/* ============================================================
+   TORTOISE TIME — Interactive single-file site, v2
+   Pages (hash routing): #home #assessments #vo2max #sixminwalk
+   #grip #chairstand #leaderboard #about
+   ============================================================ */
+
+:root {
+  --cream: #F7F4EC;
+  --cream-panel: #FFFFFF;
+  --pine: #2C3A2E;
+  --pine-light: #3D4F3E;
+  --sage: #7D8F72;
+  --sage-tint: #E7EAE0;
+  --shell: #B98A3E;
+  --shell-soft: #F2E3C4;
+  --ink-soft: #55604F;
+  --border: #DDE2D4;
+  --max-width: 1120px;
+  --sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+  --shadow-lift: 0 12px 32px rgba(44, 58, 46, 0.12);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: Georgia, 'Times New Roman', serif;
+  background: var(--cream);
+  color: var(--pine);
+  line-height: 1.65;
+  font-size: 17px;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap { max-width: var(--max-width); margin: 0 auto; padding: 0 24px; }
+
+.eyebrow {
+  font-family: var(--sans);
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--shell);
+  font-weight: 700;
+}
+
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible {
+  outline: 2px solid var(--shell);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+.page { display: none; }
+.page.active { display: block; animation: pageIn 0.45s ease both; }
+
+@keyframes pageIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: none; }
+}
+
+/* ---------- Scroll reveal ---------- */
+.reveal { opacity: 0; transform: translateY(26px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal.in { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .page.active { animation: none; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+}
+
+/* ---------- Navigation (glass) ---------- */
+nav {
+  background: rgba(247, 244, 236, 0.82);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--sage-tint);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+
+.nav-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 14px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.brand { display: flex; align-items: center; gap: 10px; font-size: 20px; font-weight: 700; color: var(--pine); text-decoration: none; }
+.brand svg { width: 44px; height: 30px; display: block; }
+.brand span { color: var(--sage); }
+
+.nav-links { display: flex; gap: 26px; font-family: var(--sans); font-size: 14px; flex-wrap: wrap; }
+
+.nav-links a {
+  color: var(--ink-soft);
+  text-decoration: none;
+  padding-bottom: 2px;
+  border-bottom: 2px solid transparent;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.nav-links a:hover, .nav-links a:focus-visible, .nav-links a.active {
+  color: var(--pine);
+  border-bottom-color: var(--shell);
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+  font-family: var(--sans);
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  padding: 14px 30px;
+  border-radius: 999px;
+  transition: transform 0.18s ease, background 0.2s, box-shadow 0.2s;
+  display: inline-block;
+  border: none;
+  cursor: pointer;
+}
+
+.btn:active { transform: scale(0.97); }
+
+.btn-primary { background: var(--pine); color: var(--cream); }
+.btn-primary:hover { background: var(--pine-light); box-shadow: var(--shadow-lift); transform: translateY(-2px); }
+
+.btn-secondary { color: var(--pine); border: 1.5px solid var(--sage); background: transparent; }
+.btn-secondary:hover { background: var(--sage-tint); transform: translateY(-2px); }
+
+.btn-amber { background: var(--shell); color: #FFFFFF; }
+.btn-amber:hover { background: #A87C33; box-shadow: var(--shadow-lift); transform: translateY(-2px); }
+
+/* ---------- Hero ---------- */
+.hero { padding: 110px 0 84px; text-align: center; overflow: hidden; }
+
+.hero h1 {
+  font-size: clamp(44px, 7vw, 76px);
+  line-height: 1.06;
+  font-weight: 700;
+  margin: 22px 0 24px;
+  letter-spacing: -0.015em;
+}
+
+.hero h1 em { font-style: italic; color: var(--sage); }
+
+.hero .clarifier {
+  max-width: 580px;
+  margin: 0 auto 42px;
+  font-size: 20px;
+  color: var(--ink-soft);
+  font-style: italic;
+}
+
+.cta-row { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+/* ---------- Stats band ---------- */
+.stats-band { padding: 20px 0 70px; }
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 20px;
+}
+
+.stat {
+  background: var(--cream-panel);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 28px 24px;
+  text-align: center;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.stat:hover { transform: translateY(-4px); box-shadow: var(--shadow-lift); }
+
+.stat .num { font-size: 42px; font-weight: 700; color: var(--pine); line-height: 1.1; }
+.stat .num small { font-size: 20px; color: var(--shell); }
+.stat .lab { font-family: var(--sans); font-size: 13px; color: var(--ink-soft); margin-top: 6px; }
+
+/* ---------- Philosophy band ---------- */
+.philosophy { background: var(--pine); color: var(--cream); padding: 96px 0; }
+.philosophy .eyebrow { color: var(--shell); }
+
+.phil-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+
+.philosophy h2 { font-size: clamp(28px, 4vw, 40px); line-height: 1.22; margin: 16px 0 20px; font-weight: 700; }
+.philosophy p { color: #C9D2C4; margin-bottom: 16px; }
+.philosophy .motto { font-style: italic; color: var(--shell); font-size: 21px; margin-top: 24px; }
+
+.curve-figure svg { width: 100%; height: auto; display: block; }
+
+.curve-path {
+  fill: none; stroke: var(--shell); stroke-width: 3; stroke-linecap: round;
+  stroke-dasharray: 900; stroke-dashoffset: 900;
+}
+
+.curve-figure.in .curve-path { animation: draw 2.6s ease-out 0.2s forwards; }
+
+.curve-baseline { stroke: #4A5A4B; stroke-width: 1.5; stroke-dasharray: 4 6; }
+.curve-label { font-family: var(--sans); font-size: 12px; fill: #9BAA93; letter-spacing: 0.08em; }
+
+@keyframes draw { to { stroke-dashoffset: 0; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .curve-path { animation: none !important; stroke-dashoffset: 0; }
+}
+
+/* ---------- Sections ---------- */
+.section { padding: 96px 0; }
+.section.tinted { background: var(--sage-tint); }
+.section h2 { font-size: clamp(28px, 4vw, 40px); margin: 14px 0 18px; font-weight: 700; letter-spacing: -0.01em; }
+.section .sub { max-width: 620px; color: var(--ink-soft); font-size: 18px; margin-bottom: 44px; }
+
+/* ---------- Trivia ---------- */
+.trivia-card {
+  max-width: 720px;
+  margin: 0 auto;
+  background: var(--cream-panel);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 44px 40px;
+  box-shadow: 0 6px 24px rgba(44,58,46,0.07);
+}
+
+.trivia-top {
+  display: flex; justify-content: space-between; align-items: center;
+  font-family: var(--sans); font-size: 13px; color: var(--ink-soft); margin-bottom: 20px; flex-wrap: wrap; gap: 8px;
+}
+
+.streak { font-weight: 700; color: var(--shell); }
+
+.trivia-q { font-size: 23px; font-weight: 700; line-height: 1.4; margin-bottom: 26px; }
+
+.trivia-opts { display: grid; gap: 12px; }
+
+.trivia-opt {
+  font-family: var(--sans);
+  font-size: 16px;
+  text-align: left;
+  padding: 16px 20px;
+  border-radius: 12px;
+  border: 1.5px solid var(--border);
+  background: var(--cream);
+  color: var(--pine);
+  cursor: pointer;
+  transition: border-color 0.18s, background 0.18s, transform 0.18s;
+}
+
+.trivia-opt:hover:not(:disabled) { border-color: var(--sage); transform: translateX(4px); }
+.trivia-opt:disabled { cursor: default; opacity: 0.75; }
+.trivia-opt.correct { background: #E6EFDD; border-color: #4E7B3A; color: #2E4A20; opacity: 1; font-weight: 700; }
+.trivia-opt.wrong { background: #F6E4DA; border-color: #A8552F; color: #7A3A1E; opacity: 1; }
+
+.trivia-explain {
+  margin-top: 22px;
+  padding: 18px 20px;
+  border-left: 3px solid var(--shell);
+  background: var(--shell-soft);
+  border-radius: 0 10px 10px 0;
+  font-size: 16px;
+  color: #5C4A22;
+  display: none;
+}
+
+.trivia-explain.show { display: block; animation: pageIn 0.4s ease both; }
+
+.trivia-verdict { font-family: var(--sans); font-weight: 800; font-size: 18px; margin-top: 22px; display: none; }
+.trivia-verdict.show { display: block; }
+.trivia-verdict.good { color: #4E7B3A; }
+.trivia-verdict.bad { color: #A8552F; }
+
+/* ---------- Newsletter ---------- */
+.newsletter { background: var(--pine); color: var(--cream); padding: 96px 0; text-align: center; }
+.newsletter .eyebrow { color: var(--shell); }
+.newsletter h2 { font-size: clamp(28px, 4vw, 40px); margin: 14px 0 14px; }
+.newsletter p { color: #C9D2C4; max-width: 540px; margin: 0 auto 34px; }
+
+.nl-row {
+  display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; max-width: 520px; margin: 0 auto;
+}
+
+.nl-row input {
+  flex: 1; min-width: 240px;
+  padding: 15px 20px;
+  font-size: 16px;
+  font-family: var(--sans);
+  border-radius: 999px;
+  border: 1.5px solid #4A5A4B;
+  background: #24301F;
+  color: var(--cream);
+}
+
+.nl-row input::placeholder { color: #8FA087; }
+.nl-row input:focus { border-color: var(--shell); outline: none; }
+
+.nl-note { font-family: var(--sans); font-size: 13px; color: #8FA087; margin-top: 16px; }
+.nl-done { font-family: var(--sans); font-size: 16px; color: var(--shell); font-weight: 700; margin-top: 18px; display: none; }
+.nl-done.show { display: block; }
+
+/* ---------- Card grids ---------- */
+.card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
+
+.card {
+  background: var(--cream-panel);
+  border-radius: 16px;
+  padding: 32px 28px;
+  border: 1px solid var(--border);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lift); }
+.card h3 { font-size: 21px; margin-bottom: 10px; }
+.card p { font-size: 16px; color: var(--ink-soft); }
+
+a.card-link {
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 32px 28px;
+  text-decoration: none;
+  color: var(--pine);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s;
+  display: block;
+  background: var(--cream-panel);
+}
+
+a.card-link:hover { transform: translateY(-5px); box-shadow: var(--shadow-lift); border-color: var(--sage); }
+a.card-link h3 { font-size: 21px; margin-bottom: 8px; }
+a.card-link p { font-size: 16px; color: var(--ink-soft); margin-bottom: 14px; }
+
+.go { font-family: var(--sans); font-size: 13px; font-weight: 700; color: var(--shell); letter-spacing: 0.06em; }
+
+.tag {
+  font-family: var(--sans); font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--sage); display: inline-block; margin-bottom: 10px;
+}
+
+/* ---------- Principle ledger ---------- */
+.principle-list { list-style: none; max-width: 640px; }
+
+.principle-list li {
+  display: flex; align-items: baseline; gap: 18px;
+  padding: 20px 0; border-bottom: 1px solid var(--sage-tint); font-size: 20px;
+}
+
+.principle-list li:first-child { border-top: 1px solid var(--sage-tint); }
+.principle-list .before { font-weight: 700; min-width: 170px; }
+.principle-list .over { font-family: var(--sans); font-size: 12px; color: var(--shell); text-transform: uppercase; letter-spacing: 0.14em; }
+.principle-list .after { color: var(--ink-soft); font-style: italic; }
+
+/* ---------- Page headers ---------- */
+.page-head { padding: 72px 0 44px; }
+.page-head h1 { font-size: clamp(34px, 5vw, 52px); line-height: 1.12; margin: 14px 0 16px; font-weight: 700; letter-spacing: -0.01em; }
+.page-head .lede { max-width: 660px; font-size: 19px; color: var(--ink-soft); }
+
+/* ---------- Calculator layout ---------- */
+.calc-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; padding-bottom: 96px; }
+
+.calc-form {
+  background: var(--cream-panel);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 38px 34px;
+  box-shadow: 0 6px 24px rgba(44,58,46,0.06);
+}
+
+.calc-form h2 { font-size: 22px; margin-bottom: 24px; }
+
+.field { margin-bottom: 20px; }
+
+.field label {
+  display: block; font-family: var(--sans); font-size: 13px; font-weight: 600;
+  letter-spacing: 0.04em; color: var(--ink-soft); margin-bottom: 6px;
+}
+
+.field input, .field select {
+  width: 100%; padding: 13px 15px; font-size: 16px; font-family: var(--sans);
+  border: 1.5px solid var(--border); border-radius: 10px; background: var(--cream); color: var(--pine);
+  transition: border-color 0.18s;
+}
+
+.field input:focus, .field select:focus { border-color: var(--sage); outline: none; }
+.field .hint { font-family: var(--sans); font-size: 12px; color: var(--sage); margin-top: 5px; }
+.field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.calc-form .btn { width: 100%; margin-top: 8px; }
+
+.result {
+  margin-top: 28px; padding: 26px; border-radius: 14px;
+  background: var(--sage-tint); border: 1px solid var(--border); display: none;
+}
+
+.result.show { display: block; animation: pageIn 0.4s ease both; }
+.result .big { font-size: 44px; font-weight: 700; line-height: 1.1; }
+.result .big small { font-size: 17px; font-weight: 400; color: var(--ink-soft); }
+
+.result .category {
+  font-family: var(--sans); font-size: 13px; font-weight: 700;
+  letter-spacing: 0.08em; text-transform: uppercase; margin-top: 6px;
+}
+
+.result .interpretation { margin-top: 12px; font-size: 16px; color: var(--ink-soft); }
+.result .btn { width: auto; margin-top: 18px; padding: 11px 22px; font-size: 14px; }
+
+.cat-strong { color: #4E7B3A; }
+.cat-average { color: var(--shell); }
+.cat-low { color: #A8552F; }
+
+.error-msg { font-family: var(--sans); font-size: 14px; color: #A8552F; margin-top: 12px; display: none; }
+.error-msg.show { display: block; }
+
+.calc-info h2 { font-size: 24px; margin: 0 0 16px; }
+.calc-info h3 { font-size: 19px; margin: 28px 0 10px; }
+.calc-info p, .calc-info li { color: var(--ink-soft); margin-bottom: 12px; font-size: 16px; }
+.calc-info ol, .calc-info ul { padding-left: 22px; }
+.calc-info li { margin-bottom: 8px; }
+
+.evidence-note {
+  margin-top: 28px; padding: 18px 20px; border-left: 3px solid var(--shell);
+  background: #FDFCF8; font-size: 14px; font-family: var(--sans); color: var(--ink-soft);
+  line-height: 1.6; border-radius: 0 10px 10px 0;
+}
+
+/* ---------- Leaderboard ---------- */
+.lb-controls {
+  display: flex; gap: 14px; flex-wrap: wrap; align-items: center; margin-bottom: 26px;
+  font-family: var(--sans);
+}
+
+.lb-controls select {
+  padding: 11px 16px; font-size: 15px; font-family: var(--sans);
+  border: 1.5px solid var(--border); border-radius: 999px; background: var(--cream-panel); color: var(--pine);
+  cursor: pointer;
+}
+
+.seg { display: inline-flex; border: 1.5px solid var(--border); border-radius: 999px; overflow: hidden; background: var(--cream-panel); }
+
+.seg button {
+  font-family: var(--sans); font-size: 14px; font-weight: 600; padding: 11px 22px;
+  border: none; background: transparent; color: var(--ink-soft); cursor: pointer; transition: background 0.15s, color 0.15s;
+}
+
+.seg button.active { background: var(--pine); color: var(--cream); }
+
+.lb-table-wrap {
+  background: var(--cream-panel); border: 1px solid var(--border); border-radius: 20px;
+  overflow: hidden; box-shadow: 0 6px 24px rgba(44,58,46,0.06);
+}
+
+table.lb { width: 100%; border-collapse: collapse; font-family: var(--sans); font-size: 15px; }
+
+table.lb th {
+  text-align: left; padding: 16px 20px; font-size: 12px; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--ink-soft); background: var(--sage-tint);
+}
+
+table.lb td { padding: 16px 20px; border-top: 1px solid var(--sage-tint); }
+table.lb tr.me td { background: var(--shell-soft); font-weight: 700; }
+table.lb .rank { font-weight: 800; color: var(--shell); width: 64px; }
+table.lb .vo2 { font-weight: 700; }
+
+.lb-empty { padding: 44px 20px; text-align: center; color: var(--ink-soft); font-family: var(--sans); }
+
+.lb-note {
+  font-family: var(--sans); font-size: 13px; color: var(--ink-soft);
+  margin-top: 18px; max-width: 640px;
+}
+
+.lb-form-card {
+  background: var(--cream-panel); border: 1px solid var(--border); border-radius: 20px;
+  padding: 34px 30px; margin-top: 44px; max-width: 560px;
+  box-shadow: 0 6px 24px rgba(44,58,46,0.06);
+}
+
+.lb-form-card h3 { font-size: 21px; margin-bottom: 20px; }
+
+/* ---------- Vision / prose / footer ---------- */
+.vision { padding: 96px 0; text-align: center; border-top: 1px solid var(--sage-tint); }
+.vision p { max-width: 620px; margin: 18px auto 0; color: var(--ink-soft); font-size: 18px; }
+.vision .closing { font-size: clamp(22px, 3vw, 30px); font-style: italic; color: var(--pine); margin-top: 36px; line-height: 1.4; }
+
+.prose { max-width: 680px; padding-bottom: 96px; }
+.prose h2 { font-size: 26px; margin: 40px 0 14px; }
+.prose p { margin-bottom: 18px; color: var(--ink-soft); font-size: 17px; }
+.prose p.lead { font-size: 20px; color: var(--pine); }
+.prose p.closing-line { font-style: italic; color: var(--pine); font-size: 19px; }
+
+footer { background: var(--pine); color: #C9D2C4; padding: 52px 0; text-align: center; font-size: 15px; }
+footer .motto { font-style: italic; color: var(--shell); font-size: 18px; margin-bottom: 12px; }
+footer .foot-links { font-family: var(--sans); font-size: 13px; margin: 14px 0; }
+footer .foot-links a { color: #C9D2C4; text-decoration: none; margin: 0 10px; }
+footer .foot-links a:hover { color: var(--cream); text-decoration: underline; }
+footer .disclaimer { font-family: var(--sans); font-size: 12px; color: #8FA087; max-width: 560px; margin: 20px auto 0; line-height: 1.6; }
+
+@media (max-width: 860px) {
+  .phil-grid, .calc-layout { grid-template-columns: 1fr; gap: 40px; }
+  .hero { padding: 72px 0 60px; }
+  .principle-list li { flex-direction: column; gap: 4px; font-size: 18px; }
+  .principle-list .before { min-width: 0; }
+  .field-row { grid-template-columns: 1fr; }
+  .trivia-card { padding: 32px 24px; }
+}
+</style>
 </head>
-
 <body>
-<a class="skip-link" href="#main">Skip to main content</a>
 
-<header class="site-header">
-  <div class="wrap nav-inner">
+<nav>
+  <div class="nav-inner">
     <a class="brand" href="#home" aria-label="Tortoise Time home">
-      <svg class="brand-logo" viewBox="0 0 120 120" role="img" aria-labelledby="logo-title logo-desc">
-        <title id="logo-title">Tortoise Time logo</title>
-        <desc id="logo-desc">A stylized tortoise walking inside a circular mark.</desc>
-        <circle cx="60" cy="60" r="55" fill="#fffdf8" stroke="#74856c" stroke-width="5"/>
-        <path d="M28 68c3-21 20-36 43-36 20 0 35 13 38 32-7 15-20 24-40 24-18 0-33-7-41-20Z" fill="#e7ebdf" stroke="#243428" stroke-width="5" stroke-linejoin="round"/>
-        <path d="M95 58c10-2 18 3 20 11-7 5-15 5-22 0" fill="#e7ebdf" stroke="#243428" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
-        <circle cx="108" cy="64" r="2.8" fill="#243428"/>
-        <path d="M45 40c4 14 7 28 6 43M68 33c-1 17 0 35 3 53M88 43c-7 12-14 25-22 39" fill="none" stroke="#74856c" stroke-width="3.5" stroke-linecap="round"/>
-        <path d="M39 84l-9 12M58 88l-4 13M82 87l9 12" fill="none" stroke="#243428" stroke-width="5" stroke-linecap="round"/>
-        <path d="M23 67c-8 2-14 0-18-5 6-5 13-6 21-2" fill="#e7ebdf" stroke="#243428" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+      <svg viewBox="0 0 260 160" aria-hidden="true">
+        <path d="M 42 106 C 33 108, 26 103, 21 95 C 24 105, 31 112, 42 112 Z" fill="#2C3A2E"/>
+        <path d="M 40 112 C 92 108, 138 96, 166 68 C 178 56, 188 46, 197 44 C 205 61, 208 92, 203 112 Z" fill="#2C3A2E"/>
+        <path d="M 40 107 C 92 103, 137 91, 164 64 C 176 52, 187 41, 199 35" fill="none" stroke="#B98A3E" stroke-width="7" stroke-linecap="round"/>
+        <circle cx="207" cy="30" r="5" fill="#B98A3E"/>
+        <rect x="58" y="110" width="19" height="24" rx="8" fill="#2C3A2E"/>
+        <rect x="160" y="110" width="19" height="24" rx="8" fill="#2C3A2E"/>
+        <path d="M 200 112 L 200 98 C 200 87, 209 78.5, 219 79 C 229.5 79.5, 236 88, 234 97 C 232 107, 223 112, 214 112 Z" fill="#2C3A2E"/>
+        <circle cx="222" cy="90" r="2.4" fill="#F7F4EC"/>
       </svg>
-      <span class="brand-wordmark">
-        <span class="brand-title">Tortoise<span>Time</span></span>
-        <span class="brand-subtitle">Move daily. Live longer.</span>
-      </span>
+      Tortoise<span>Time</span>
     </a>
-
-    <button class="menu-button" id="menu-button" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
-
-    <nav class="nav-links" id="site-nav" aria-label="Primary navigation">
+    <div class="nav-links">
       <a href="#home" data-nav="home">Home</a>
       <a href="#assessments" data-nav="assessments">Assessments</a>
-      <a href="#challenge" data-nav="challenge">Walking Challenge</a>
-      <a href="#newsletter" data-nav="newsletter">Newsletter</a>
+      <a href="#leaderboard" data-nav="leaderboard">Leaderboard</a>
       <a href="#about" data-nav="about">About</a>
-    </nav>
+    </div>
   </div>
-</header>
+</nav>
 
-<main id="main" tabindex="-1">
+<!-- ==================== HOME ==================== -->
+<div class="page" id="page-home">
 
-  <!-- =========================
-       HOME
-       ========================= -->
-  <section class="page" id="page-home" data-title="Tortoise Time | Move Daily. Live Longer.">
-    <header class="hero">
-      <div class="wrap hero-grid">
-        <div>
-          <p class="eyebrow">A physician-led public health platform</p>
-          <h1>Move daily.<br><em>Live longer.</em></h1>
-          <p class="lede">Tortoise Time helps people build fitness, function, and longevity through small, evidence-informed habits that are realistic enough to sustain for life.</p>
-          <div class="cta-row">
-            <a class="btn btn-primary" href="#assessments">Measure your fitness <span aria-hidden="true">â</span></a>
-            <a class="btn btn-secondary" href="#newsletter">Join the newsletter</a>
-          </div>
-        </div>
-
-        <aside class="hero-card" aria-label="Tortoise Time approach">
-          <strong>Start with a baseline.</strong>
-          <p>Measure a few practical indicators, choose one modest action, and repeat it long enough to see the trend.</p>
-          <div class="metric"><span>Measure</span><span>Every 8â12 weeks</span></div>
-          <div class="metric"><span>Move</span><span>Most days</span></div>
-          <div class="metric"><span>Progress</span><span>Gradually</span></div>
-        </aside>
+  <header class="hero">
+    <div class="wrap">
+      <p class="eyebrow">A physician-led longevity platform</p>
+      <h1>Move Daily.<br><em>Live Longer.</em></h1>
+      <p class="clarifier">Not by doing more, faster — but by choosing sustainable, evidence-based habits that compound over a lifetime.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="#assessments">Measure your fitness</a>
+        <a class="btn btn-amber" href="#trivia-anchor" id="trivia-cta">Play today's trivia</a>
       </div>
-    </header>
+    </div>
+  </header>
 
-    <section class="philosophy">
-      <div class="wrap philosophy-grid">
-        <div>
-          <p class="eyebrow">The philosophy</p>
-          <h2>Health is built over decades, not weekends.</h2>
-          <p>Quick bursts of motivation can start change. Durable routines are what preserve health. The tortoise represents patience, resilience, and movement that continues even when progress feels slow.</p>
-          <p>The objective is not perfection or punishment. It is a steady pattern of walking, aerobic fitness, strength, preventive care, and periodic measurement.</p>
-          <blockquote>Compound your health.</blockquote>
+  <section class="stats-band">
+    <div class="wrap">
+      <div class="stats-grid">
+        <div class="stat reveal">
+          <div class="num"><span data-count="37">0</span><small>&times;</small></div>
+          <div class="lab">1% better every day compounds to 37&times; in a year</div>
         </div>
+        <div class="stat reveal">
+          <div class="num"><span data-count="5">0</span><small>&times;</small></div>
+          <div class="lab">Mortality gap between least- and most-fit adults</div>
+        </div>
+        <div class="stat reveal">
+          <div class="num"><span data-count="150">0</span><small>min</small></div>
+          <div class="lab">Weekly moderate activity in evidence-based guidelines</div>
+        </div>
+        <div class="stat reveal">
+          <div class="num"><span data-count="4">0</span></div>
+          <div class="lab">Validated fitness tests you can take today, free</div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        <figure class="curve-box" aria-labelledby="curve-title curve-desc">
-          <svg viewBox="0 0 460 310" role="img">
-            <title id="curve-title">Health benefits accumulating over time</title>
-            <desc id="curve-desc">A rising curve illustrates how consistent healthy habits may produce increasingly meaningful benefits over years.</desc>
-            <line class="curve-base" x1="30" y1="265" x2="430" y2="265"/>
-            <path class="curve-path" d="M30 262 C145 260 225 244 300 193 C356 154 397 94 427 34"/>
-            <text class="curve-label" x="30" y="290">TODAY</text>
-            <text class="curve-label" x="352" y="290">YEARS</text>
-            <text class="curve-label" x="250" y="37">HEALTH THAT COMPOUNDS</text>
+  <section class="philosophy">
+    <div class="wrap">
+      <div class="phil-grid">
+        <div class="reveal">
+          <p class="eyebrow">The Philosophy</p>
+          <h2>Health is not built in weeks. It is built over decades.</h2>
+          <p>Just as compound interest grows wealth, small healthy behaviors compound into better fitness, lower disease risk, greater independence, and improved quality of life.</p>
+          <p>The tortoise is not a symbol of moving slowly for its own sake. It is a symbol of never stopping. The goal is not perfection — the goal is consistency.</p>
+          <p class="motto">Compound your health.</p>
+        </div>
+        <figure class="curve-figure reveal" id="curveFig" aria-label="A curve showing health benefits growing slowly at first, then rising steeply over decades of consistent habits">
+          <svg viewBox="0 0 420 300" role="img">
+            <line class="curve-baseline" x1="30" y1="260" x2="400" y2="260"/>
+            <path class="curve-path" d="M 30 258 C 130 254, 220 240, 290 190 C 340 152, 375 90, 395 30"/>
+            <text class="curve-label" x="30" y="284">TODAY</text>
+            <text class="curve-label" x="330" y="284">DECADES</text>
+            <text class="curve-label" x="255" y="40">HEALTH THAT COMPOUNDS</text>
           </svg>
         </figure>
       </div>
-    </section>
-
-    <section class="section">
-      <div class="wrap">
-        <p class="eyebrow">Core principles</p>
-        <h2>A simple filter for better health decisions</h2>
-        <ul class="principles">
-          <li><strong>Evidence</strong><small>before</small><em>opinion</em></li>
-          <li><strong>Sustainability</strong><small>before</small><em>intensity</em></li>
-          <li><strong>Prevention</strong><small>before</small><em>crisis</em></li>
-          <li><strong>Measurement</strong><small>before</small><em>assumption</em></li>
-          <li><strong>Long-term function</strong><small>before</small><em>short-term appearance</em></li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="section tinted pillars">
-      <div class="wrap">
-        <p class="eyebrow">The pillars</p>
-        <h2>Five foundations of healthy longevity</h2>
-        <div class="card-grid">
-          <article class="card"><span class="tag">01</span><h3>Cardiorespiratory fitness</h3><p>Walking and aerobic activity that improve endurance and the bodyâs ability to use oxygen.</p></article>
-          <article class="card"><span class="tag">02</span><h3>Strength and function</h3><p>Muscle, mobility, balance, and the physical reserve needed to remain independent.</p></article>
-          <article class="card"><span class="tag">03</span><h3>Preventive medicine</h3><p>Evidence-based screening, risk reduction, and early attention to modifiable health factors.</p></article>
-          <article class="card"><span class="tag">04</span><h3>Clinical research</h3><p>Transparent methods, responsible interpretation, and continuous evaluation of what actually helps.</p></article>
-          <article class="card"><span class="tag">05</span><h3>Community</h3><p>Challenges, newsletters, and shared progress that make healthy routines more visible, social, and sustainable.</p></article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="wrap">
-        <p class="eyebrow">Start with measurement</p>
-        <h2>Choose a practical baseline</h2>
-        <p class="section-intro">These field assessments are estimates and screening toolsânot diagnoses. Their greatest value is often in tracking a consistently performed test over time.</p>
-        <div class="card-grid">
-          <a class="card-link" href="#vo2max"><span class="tag">Aerobic fitness</span><h3>Rockport one-mile walk</h3><p>Estimate aerobic capacity using walk time, finishing heart rate, age, sex, and weight.</p><span class="go">Open calculator â</span></a>
-          <a class="card-link" href="#sixminwalk"><span class="tag">Functional capacity</span><h3>Six-minute walk</h3><p>Compare standardized six-minute walking distance with an older reference equation.</p><span class="go">Open calculator â</span></a>
-          <a class="card-link" href="#grip"><span class="tag">Strength</span><h3>Grip strength</h3><p>Compare dynamometer-measured grip with consensus thresholds for low muscle strength.</p><span class="go">Open assessment â</span></a>
-          <a class="card-link" href="#chairstand"><span class="tag">Lower-body function</span><h3>30-second chair stand</h3><p>Use the CDC STEADI protocol to screen lower-body strength in adults aged 60 and older.</p><span class="go">Open assessment â</span></a>
-        </div>
-      </div>
-    </section>
-
-    <section class="challenge-band">
-      <div class="wrap challenge-grid">
-        <div>
-          <p class="eyebrow">The first community project</p>
-          <h2>The Tortoise Time Walking Challenge</h2>
-          <p>Complete a standardized walk, record your baseline, build a sustainable walking routine, and return to measure your progressânot someone elseâs perfection.</p>
-        </div>
-        <a class="btn btn-primary" href="#challenge">See the challenge</a>
-      </div>
-    </section>
-
-    <section class="newsletter" aria-labelledby="home-newsletter-title">
-      <div class="wrap">
-        <div class="newsletter-box">
-          <div>
-            <p class="eyebrow">The Tortoise Time Letter</p>
-            <h2 id="home-newsletter-title">Slow health, delivered weekly.</h2>
-            <p>A physician-led newsletter about fitness, prevention, healthy aging, and the small daily habits that compound into better health over time.</p>
-            <p>No miracle cures. No fear-based medicine. Just practical, evidence-informed ideas you can actually sustain.</p>
-            <ul class="newsletter-points">
-              <li>Simple walking and fitness challenges</li>
-              <li>Evidence-based prevention and longevity notes</li>
-              <li>Practical tools to measure progress over time</li>
-              <li>Reflections from primary care, geriatrics, and clinical research</li>
-            </ul>
-          </div>
-
-          <form class="newsletter-form newsletter-form-shared" novalidate>
-            <h3>Join the list</h3>
-            <p>Get occasional Tortoise Time updates as the platform grows.</p>
-            <div class="field">
-              <label for="newsletter-name-home">First name</label>
-              <input id="newsletter-name-home" name="name" type="text" autocomplete="given-name" placeholder="Your first name">
-            </div>
-            <div class="field">
-              <label for="newsletter-email-home">Email address</label>
-              <input id="newsletter-email-home" name="email" type="email" autocomplete="email" required placeholder="you@example.com">
-            </div>
-            <button class="btn btn-primary" type="submit">Subscribe</button>
-            <p class="newsletter-privacy">Educational content only. No spam. No medical advice by email.</p>
-            <p class="error-msg" role="alert">Please enter a valid email address.</p>
-            <div class="result" role="status" aria-live="polite">
-              <div class="category cat-strong">Youâre on the list</div>
-              <p class="interpretation">Thank you for joining Tortoise Time. Your health compounds one small step at a time.</p>
-            </div>
-          </form>
-        </div>
-      </div>
-    </section>
-
-    <section class="vision">
-      <div class="wrap">
-        <p class="eyebrow">The vision</p>
-        <p>Begin as a trusted public health platform for fitness, function, and sustainable prevention. Build toward responsible research, digital health tools, and eventually a high-quality online clinical platform.</p>
-        <p class="closing">Small daily improvements, sustained over years, can create extraordinary health.</p>
-      </div>
-    </section>
+    </div>
   </section>
 
-  <!-- =========================
-       ASSESSMENTS
-       ========================= -->
-  <section class="page" id="page-assessments" data-title="Fitness Assessments | Tortoise Time">
-    <header class="page-head">
-      <div class="wrap">
-        <p class="eyebrow">Measurement before assumption</p>
-        <h1>Fitness assessments</h1>
-        <p class="lede">Use the same protocol each time, record the context, and focus on the trend. These tools provide estimates or screening information and should not be treated as diagnoses.</p>
+  <!-- ---------- DAILY TRIVIA ---------- -->
+  <section class="section" id="trivia-anchor">
+    <div class="wrap">
+      <div style="text-align:center;" class="reveal">
+        <p class="eyebrow">Daily Trivia</p>
+        <h2>One question. Every day.</h2>
+        <p class="sub" style="margin-left:auto; margin-right:auto;">A new evidence-based longevity question every day. Build your streak — small daily reps for your brain, too.</p>
       </div>
-    </header>
+      <div class="trivia-card reveal">
+        <div class="trivia-top">
+          <span id="tr-date"></span>
+          <span class="streak">&#128293; Streak: <span id="tr-streak">0</span></span>
+        </div>
+        <div class="trivia-q" id="tr-question"></div>
+        <div class="trivia-opts" id="tr-options"></div>
+        <div class="trivia-verdict" id="tr-verdict"></div>
+        <div class="trivia-explain" id="tr-explain"></div>
+      </div>
+    </div>
+  </section>
 
-    <div class="wrap section" style="padding-top:20px">
+  <section class="section tinted">
+    <div class="wrap">
+      <div class="reveal">
+        <p class="eyebrow">Start Today</p>
+        <h2>Measure where you are</h2>
+        <p class="sub">Four validated clinical tests. No lab required — just a walk, a chair, or a grip.</p>
+      </div>
       <div class="card-grid">
-        <a class="card-link" href="#vo2max"><span class="tag">Aerobic fitness</span><h3>Rockport one-mile walk</h3><p>A submaximal field estimate of aerobic capacity for adults able to walk one mile briskly.</p><span class="go">Open calculator â</span></a>
-        <a class="card-link" href="#sixminwalk"><span class="tag">Functional capacity</span><h3>Six-minute walk</h3><p>A standardized measure commonly used in clinical settings; course design affects comparability.</p><span class="go">Open calculator â</span></a>
-        <a class="card-link" href="#grip"><span class="tag">Muscle strength</span><h3>Grip strength</h3><p>A quick dynamometer-based measure with established clinical thresholds in older adults.</p><span class="go">Open assessment â</span></a>
-        <a class="card-link" href="#chairstand"><span class="tag">Leg strength</span><h3>30-second chair stand</h3><p>A CDC STEADI functional assessment for adults aged 60 years and older.</p><span class="go">Open assessment â</span></a>
-      </div>
-
-      <div class="safety-note"><strong>Stop and seek medical guidance</strong> if activity causes chest pressure, fainting, severe breathlessness, new neurologic symptoms, or unusual palpitations. People with unstable heart or lung disease, recent surgery, significant mobility limitations, or clinician-imposed exercise restrictions should not self-test without individualized advice.</div>
-    </div>
-  </section>
-
-  <!-- =========================
-       CHALLENGE
-       ========================= -->
-  <section class="page" id="page-challenge" data-title="Walking Challenge | Tortoise Time">
-    <header class="page-head">
-      <div class="wrap">
-        <p class="eyebrow">A public health project</p>
-        <h1>The walking challenge</h1>
-        <p class="lede">A simple program designed around baseline measurement, daily movement, gradual progression, and repeat testing.</p>
-      </div>
-    </header>
-
-    <div class="wrap prose">
-      <p class="lead">The challenge is not a race to the top of a leaderboard. It is a structured way to make progress visible and walking more consistent.</p>
-
-      <h2>How it works</h2>
-      <p>Choose an appropriate baseline assessment, record the date and conditions, set a realistic weekly walking target, and repeat the same assessment after 8â12 weeks. Group leaderboards should emphasize participation, consistency, and individual improvement rather than only absolute performance.</p>
-
-      <h2>Recommended leaderboard categories</h2>
-      <p>Most consistent participation, greatest percentage improvement, personal milestone reached, and team participation rate. This keeps the challenge inclusive for people starting at very different fitness levels.</p>
-
-      <h2>Research boundary</h2>
-      <p>Routine wellness or quality-improvement tracking is not automatically human-subjects research. Before using participant information for generalizable research, publication, or external presentation, obtain appropriate institutional review and clarify consent, privacy, data governance, and security.</p>
-
-      <div class="cta-row">
-        <a class="btn btn-primary" href="#vo2max">Start with the Rockport test</a>
-        <a class="btn btn-secondary" href="#assessments">Compare assessments</a>
+        <a class="card-link reveal" href="#vo2max">
+          <span class="tag">Cardiorespiratory</span>
+          <h3>Rockport Walk Test</h3>
+          <p>Estimate your VO&#8322; max with a one-mile walk — then post your score to the leaderboard.</p>
+          <span class="go">Take the test &rarr;</span>
+        </a>
+        <a class="card-link reveal" href="#sixminwalk">
+          <span class="tag">Cardiorespiratory</span>
+          <h3>Six-Minute Walk Test</h3>
+          <p>Measure your functional exercise capacity against predicted values for your age.</p>
+          <span class="go">Take the test &rarr;</span>
+        </a>
+        <a class="card-link reveal" href="#grip">
+          <span class="tag">Strength &amp; Function</span>
+          <h3>Grip Strength Test</h3>
+          <p>A simple measurement that predicts overall strength, independence, and longevity.</p>
+          <span class="go">Check your grip &rarr;</span>
+        </a>
+        <a class="card-link reveal" href="#chairstand">
+          <span class="tag">Strength &amp; Function</span>
+          <h3>30-Second Chair Stand</h3>
+          <p>Assess your lower-body strength and fall risk with a chair and a timer.</p>
+          <span class="go">Take the test &rarr;</span>
+        </a>
       </div>
     </div>
   </section>
 
-  <!-- =========================
-       NEWSLETTER PAGE
-       ========================= -->
-  <section class="page" id="page-newsletter" data-title="Newsletter | Tortoise Time">
-    <header class="page-head">
-      <div class="wrap">
-        <p class="eyebrow">The Tortoise Time Letter</p>
-        <h1>Slow health. Strong future.</h1>
-        <p class="lede">A physician-led newsletter for people who want practical, sustainable, evidence-informed health habitsânot another round of quick fixes.</p>
+  <section class="section">
+    <div class="wrap">
+      <div class="reveal">
+        <p class="eyebrow">Core Principles</p>
+        <h2>What guides every recommendation</h2>
       </div>
-    </header>
-
-    <section class="newsletter" style="padding-top: 24px;">
-      <div class="wrap">
-        <div class="newsletter-box">
-          <div>
-            <p class="eyebrow">What youâll receive</p>
-            <h2>Small ideas that compound.</h2>
-            <p>Each issue focuses on one practical topic: walking, VOâ max, strength, fall prevention, metabolic health, preventive care, healthy aging, or the research behind sustainable behavior change.</p>
-            <ul class="newsletter-points">
-              <li>One clear concept</li>
-              <li>One practical action</li>
-              <li>One measurement or reflection</li>
-              <li>No supplement hype or miracle claims</li>
-            </ul>
-          </div>
-
-          <form class="newsletter-form newsletter-form-shared" novalidate>
-            <h3>Subscribe</h3>
-            <p>Join the Tortoise Time Letter.</p>
-            <div class="field">
-              <label for="newsletter-name-page">First name</label>
-              <input id="newsletter-name-page" name="name" type="text" autocomplete="given-name" placeholder="Your first name">
-            </div>
-            <div class="field">
-              <label for="newsletter-email-page">Email address</label>
-              <input id="newsletter-email-page" name="email" type="email" autocomplete="email" required placeholder="you@example.com">
-            </div>
-            <button class="btn btn-primary" type="submit">Subscribe</button>
-            <p class="newsletter-privacy">Educational content only. No spam. No medical advice by email.</p>
-            <p class="error-msg" role="alert">Please enter a valid email address.</p>
-            <div class="result" role="status" aria-live="polite">
-              <div class="category cat-strong">Youâre on the list</div>
-              <p class="interpretation">Thank you for joining Tortoise Time. Your health compounds one small step at a time.</p>
-            </div>
-          </form>
-        </div>
-      </div>
-    </section>
+      <ul class="principle-list reveal">
+        <li><span class="before">Evidence</span><span class="over">before</span><span class="after">opinion</span></li>
+        <li><span class="before">Sustainability</span><span class="over">before</span><span class="after">intensity</span></li>
+        <li><span class="before">Prevention</span><span class="over">before</span><span class="after">treatment</span></li>
+        <li><span class="before">Measurement</span><span class="over">before</span><span class="after">assumption</span></li>
+        <li><span class="before">Long-term health</span><span class="over">before</span><span class="after">short-term results</span></li>
+      </ul>
+    </div>
   </section>
 
-  <!-- =========================
-       ROCKPORT
-       ========================= -->
-  <section class="page" id="page-vo2max" data-title="Rockport Walk Test | Tortoise Time">
-    <header class="page-head">
-      <div class="wrap">
-        <p class="eyebrow">Aerobic fitness estimate</p>
-        <h1>Rockport one-mile walk</h1>
-        <p class="lede">Estimate VOâ max from a brisk one-mile walk. This is a field estimate, not a direct cardiopulmonary exercise test.</p>
+  <!-- ---------- NEWSLETTER ---------- -->
+  <section class="newsletter">
+    <div class="wrap reveal">
+      <p class="eyebrow">The Weekly Shell</p>
+      <h2>One evidence-based habit, every week.</h2>
+      <p>A short physician-written email: one practical habit, the study behind it, and how to make it stick. No hype, no supplements-of-the-month. Unsubscribe anytime.</p>
+      <div class="nl-row">
+        <input type="email" id="nl-email" placeholder="you@example.com" autocomplete="email" aria-label="Email address">
+        <button class="btn btn-amber" id="nl-btn" type="button">Subscribe</button>
       </div>
-    </header>
+      <p class="nl-note">Free forever. Read by people who plan to be here in 40 years.</p>
+      <p class="nl-done" id="nl-done">You're in! Watch your inbox for the first issue. &#128034;</p>
+      <p class="error-msg" id="nl-error" style="text-align:center;">Please enter a valid email address.</p>
+    </div>
+  </section>
 
-    <div class="wrap calc-layout">
-      <form class="calc-form" id="rp-form" novalidate>
-        <h2>Enter your result</h2>
+  <section class="vision">
+    <div class="wrap reveal">
+      <p class="eyebrow">The Vision</p>
+      <p>Today: fitness assessments, daily trivia, and a growing community. Tomorrow: walking challenges, research collaborations, digital health tools, and preventive telemedicine. The philosophy never changes.</p>
+      <p class="closing">Small daily improvements, sustained over years,<br>create extraordinary health.</p>
+    </div>
+  </section>
 
+</div>
+
+<!-- ==================== ASSESSMENTS HUB ==================== -->
+<div class="page" id="page-assessments">
+  <header class="page-head">
+    <div class="wrap">
+      <p class="eyebrow">Measurement before assumption</p>
+      <h1>Fitness Assessments</h1>
+      <p class="lede">You cannot improve what you do not measure. These validated, field-tested assessments require no laboratory — just a walk, a chair, or a grip. Repeat them every few months and watch your health compound.</p>
+    </div>
+  </header>
+
+  <section class="section" style="padding-top: 24px;">
+    <div class="wrap">
+      <div class="card-grid">
+        <a class="card-link" href="#vo2max">
+          <span class="tag">Cardiorespiratory Fitness</span>
+          <h3>Rockport Walk Test</h3>
+          <p>Walk one mile as fast as you comfortably can and estimate your VO&#8322; max — then rank yourself on the community leaderboard.</p>
+          <span class="go">Take the test &rarr;</span>
+        </a>
+        <a class="card-link" href="#sixminwalk">
+          <span class="tag">Cardiorespiratory Fitness</span>
+          <h3>Six-Minute Walk Test</h3>
+          <p>Walk as far as you can in six minutes. Widely used in clinical medicine to measure functional capacity, especially in adults over 60.</p>
+          <span class="go">Take the test &rarr;</span>
+        </a>
+        <a class="card-link" href="#grip">
+          <span class="tag">Strength &amp; Function</span>
+          <h3>Grip Strength Test</h3>
+          <p>Measured with a hand dynamometer, grip strength is a validated window into whole-body strength and a robust predictor of healthy aging.</p>
+          <span class="go">Check your grip &rarr;</span>
+        </a>
+        <a class="card-link" href="#chairstand">
+          <span class="tag">Strength &amp; Function</span>
+          <h3>30-Second Chair Stand</h3>
+          <p>Count how many times you can stand from a chair in 30 seconds. A core test of lower-body strength and fall risk used by the CDC.</p>
+          <span class="go">Take the test &rarr;</span>
+        </a>
+      </div>
+      <div class="evidence-note" style="max-width: 680px; margin-top: 48px;">
+        <strong>How to use these tools.</strong> Take each test rested, record your result, and re-test every 8&ndash;12 weeks. The trend matters more than any single number. If you have heart disease, uncontrolled blood pressure, or joint problems, check with your physician before performing a maximal-effort test.
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ==================== ROCKPORT ==================== -->
+<div class="page" id="page-vo2max">
+  <header class="page-head">
+    <div class="wrap">
+      <p class="eyebrow">Cardiorespiratory Fitness</p>
+      <h1>Rockport Walk Test</h1>
+      <p class="lede">Estimate your VO&#8322; max — the gold-standard measure of aerobic fitness and one of the strongest known predictors of longevity — with nothing more than a one-mile walk.</p>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <div class="calc-layout">
+      <div class="calc-form">
+        <h2>Your Results</h2>
         <div class="field-row">
           <div class="field">
-            <label for="rp-age">Age in years</label>
-            <input id="rp-age" type="number" min="18" max="100" inputmode="numeric" required placeholder="55">
+            <label for="rp-age">Age (years)</label>
+            <input type="number" id="rp-age" min="18" max="100" placeholder="e.g., 55">
           </div>
           <div class="field">
-            <label for="rp-sex">Sex used by the equation</label>
-            <select id="rp-sex" required>
-              <option value="">Selectâ¦</option>
+            <label for="rp-sex">Sex</label>
+            <select id="rp-sex">
+              <option value="">Select&hellip;</option>
               <option value="1">Male</option>
               <option value="0">Female</option>
             </select>
           </div>
         </div>
-
         <div class="field-row">
           <div class="field">
             <label for="rp-weight">Weight</label>
-            <input id="rp-weight" type="number" min="30" max="660" step="0.1" inputmode="decimal" required placeholder="170">
+            <input type="number" id="rp-weight" min="30" max="660" step="0.1" placeholder="e.g., 170">
           </div>
           <div class="field">
             <label for="rp-weight-unit">Unit</label>
             <select id="rp-weight-unit">
-              <option value="lb">pounds</option>
-              <option value="kg">kilograms</option>
+              <option value="lb">pounds (lb)</option>
+              <option value="kg">kilograms (kg)</option>
             </select>
           </div>
         </div>
-
         <div class="field-row">
           <div class="field">
-            <label for="rp-minutes">Walk time: minutes</label>
-            <input id="rp-minutes" type="number" min="8" max="30" inputmode="numeric" required placeholder="15">
+            <label for="rp-minutes">Walk time — minutes</label>
+            <input type="number" id="rp-minutes" min="5" max="60" placeholder="e.g., 15">
           </div>
           <div class="field">
-            <label for="rp-seconds">Walk time: seconds</label>
-            <input id="rp-seconds" type="number" min="0" max="59" inputmode="numeric" value="0">
+            <label for="rp-seconds">Walk time — seconds</label>
+            <input type="number" id="rp-seconds" min="0" max="59" placeholder="e.g., 30">
           </div>
         </div>
-
         <div class="field">
-          <label for="rp-hr">Heart rate immediately after finishing</label>
-          <input id="rp-hr" type="number" min="50" max="220" inputmode="numeric" required placeholder="132">
-          <p class="hint">A delayed heart-rate measurement can materially change the estimate.</p>
+          <label for="rp-hr">Heart rate at finish (beats per minute)</label>
+          <input type="number" id="rp-hr" min="40" max="220" placeholder="e.g., 132">
+          <p class="hint">Count your pulse for 15 seconds immediately after finishing, then multiply by 4 — or use a heart-rate monitor.</p>
         </div>
-
-        <button class="btn btn-primary" type="submit">Calculate estimated VOâ max</button>
-        <p class="error-msg" id="rp-error" role="alert">Check all fields and enter plausible values.</p>
-
-        <div class="result" id="rp-result" role="status" aria-live="polite">
-          <div class="big"><span id="rp-value">â</span> <small>mL/kg/min</small></div>
+        <button class="btn btn-primary" id="rp-btn" type="button">Calculate VO&#8322; Max</button>
+        <p class="error-msg" id="rp-error">Please complete every field with realistic values.</p>
+        <div class="result" id="rp-result">
+          <div class="big"><span id="rp-value">—</span> <small>mL/kg/min</small></div>
           <div class="category" id="rp-category"></div>
           <p class="interpretation" id="rp-interp"></p>
+          <button class="btn btn-amber" id="rp-to-lb" type="button">Post to leaderboard &rarr;</button>
         </div>
-      </form>
+      </div>
 
       <div class="calc-info">
-        <h2>Standardized approach</h2>
+        <h2>How to take the test</h2>
         <ol>
-          <li>Use a flat, accurately measured one-mile course.</li>
-          <li>Warm up with several minutes of easy walking.</li>
-          <li>Walk the mile as quickly as you can safely sustain without running.</li>
-          <li>Record time precisely.</li>
-          <li>Measure heart rate immediately at the finish.</li>
+          <li>Find a flat, measured one-mile course — a standard 400&nbsp;m track is almost exactly 4 laps.</li>
+          <li>Warm up for a few minutes with easy walking.</li>
+          <li>Walk one mile <strong>as fast as you comfortably can</strong>. Do not run.</li>
+          <li>Record your total time in minutes and seconds.</li>
+          <li>Immediately at the finish, record your heart rate.</li>
         </ol>
-
-        <h3>Interpretation</h3>
-        <p>The equation estimates aerobic capacity from age, sex, body weight, walk time, and finishing heart rate. Individual error is expected, and medications such as beta blockers can alter heart-rate response.</p>
-
-        <h3>Best use</h3>
-        <p>Repeat the same protocol under similar conditions. A consistent trend is generally more informative than a single category.</p>
-
-        <div class="evidence-note"><strong>Method:</strong> Kline and colleaguesâ one-mile track-walk equation. The original publication reported strong correlation with measured VOâ max in its study sample, but this remains an indirect estimate. <a href="https://pubmed.ncbi.nlm.nih.gov/3600239/" target="_blank" rel="noopener">View the study</a>.</div>
+        <h3>Why VO&#8322; max matters</h3>
+        <p>VO&#8322; max is the maximum rate at which your body can use oxygen. In large cohort studies, low cardiorespiratory fitness carries a mortality risk comparable to — or greater than — smoking, diabetes, or hypertension. And unlike your age, it is modifiable at any stage of life.</p>
+        <h3>How to improve it</h3>
+        <p>Consistent aerobic activity — brisk walking, cycling, swimming — performed most days of the week is the foundation. Progress gradually. Re-test every 8&ndash;12 weeks and watch the trend, not the single number.</p>
+        <div class="evidence-note">
+          <strong>The evidence.</strong> This calculator uses the validated Rockport One-Mile Walk Test regression equation (Kline GM, et al. <em>Medicine &amp; Science in Sports &amp; Exercise</em>, 1987), which estimates VO&#8322; max from age, sex, body weight, one-mile walk time, and finishing heart rate. Fitness categories are approximate, based on age- and sex-referenced norms for the general population.
+        </div>
       </div>
     </div>
-  </section>
+  </div>
+</div>
 
-  <!-- =========================
-       SIX-MINUTE WALK
-       ========================= -->
-  <section class="page" id="page-sixminwalk" data-title="Six-Minute Walk Test | Tortoise Time">
-    <header class="page-head">
-      <div class="wrap">
-        <p class="eyebrow">Functional exercise capacity</p>
-        <h1>Six-minute walk</h1>
-        <p class="lede">Compare a standardized six-minute walking distance with the EnrightâSherrill reference equation for healthy adults aged 40â80.</p>
-      </div>
-    </header>
+<!-- ==================== SIX-MINUTE WALK ==================== -->
+<div class="page" id="page-sixminwalk">
+  <header class="page-head">
+    <div class="wrap">
+      <p class="eyebrow">Cardiorespiratory Fitness</p>
+      <h1>Six-Minute Walk Test</h1>
+      <p class="lede">One of the most widely used functional tests in clinical medicine. Walk as far as you can in six minutes, then compare your distance to the predicted value for your age, sex, height, and weight.</p>
+    </div>
+  </header>
 
-    <div class="wrap calc-layout">
-      <form class="calc-form" id="sm-form" novalidate>
-        <h2>Enter your result</h2>
-
+  <div class="wrap">
+    <div class="calc-layout">
+      <div class="calc-form">
+        <h2>Your Results</h2>
         <div class="field-row">
           <div class="field">
-            <label for="sm-age">Age in years</label>
-            <input id="sm-age" type="number" min="40" max="80" inputmode="numeric" required placeholder="68">
+            <label for="sm-age">Age (years)</label>
+            <input type="number" id="sm-age" min="18" max="100" placeholder="e.g., 68">
+            <p class="hint">Reference equations validated for ages 40&ndash;80.</p>
           </div>
           <div class="field">
-            <label for="sm-sex">Sex used by the equation</label>
-            <select id="sm-sex" required>
-              <option value="">Selectâ¦</option>
+            <label for="sm-sex">Sex</label>
+            <select id="sm-sex">
+              <option value="">Select&hellip;</option>
               <option value="m">Male</option>
               <option value="f">Female</option>
             </select>
           </div>
         </div>
-
         <div class="field-row">
           <div class="field">
             <label for="sm-height">Height</label>
-            <input id="sm-height" type="number" min="48" max="230" step="0.1" inputmode="decimal" required placeholder="172">
+            <input type="number" id="sm-height" min="39" max="230" step="0.5" placeholder="e.g., 172">
           </div>
           <div class="field">
             <label for="sm-height-unit">Unit</label>
             <select id="sm-height-unit">
-              <option value="cm">centimeters</option>
-              <option value="in">inches</option>
+              <option value="cm">centimeters (cm)</option>
+              <option value="in">inches (in)</option>
             </select>
           </div>
         </div>
-
         <div class="field-row">
           <div class="field">
             <label for="sm-weight">Weight</label>
-            <input id="sm-weight" type="number" min="30" max="550" step="0.1" inputmode="decimal" required placeholder="78">
+            <input type="number" id="sm-weight" min="30" max="550" step="0.1" placeholder="e.g., 78">
           </div>
           <div class="field">
             <label for="sm-weight-unit">Unit</label>
             <select id="sm-weight-unit">
-              <option value="kg">kilograms</option>
-              <option value="lb">pounds</option>
+              <option value="kg">kilograms (kg)</option>
+              <option value="lb">pounds (lb)</option>
             </select>
           </div>
         </div>
-
         <div class="field-row">
           <div class="field">
             <label for="sm-distance">Distance walked</label>
-            <input id="sm-distance" type="number" min="10" max="4000" inputmode="decimal" required placeholder="480">
+            <input type="number" id="sm-distance" min="10" max="4000" placeholder="e.g., 480">
           </div>
           <div class="field">
             <label for="sm-dist-unit">Unit</label>
             <select id="sm-dist-unit">
-              <option value="m">meters</option>
-              <option value="ft">feet</option>
+              <option value="m">meters (m)</option>
+              <option value="ft">feet (ft)</option>
             </select>
           </div>
         </div>
-
-        <button class="btn btn-primary" type="submit">Calculate percent predicted</button>
-        <p class="error-msg" id="sm-error" role="alert">Use values within the reference population and plausible measurement ranges.</p>
-
-        <div class="result" id="sm-result" role="status" aria-live="polite">
-          <div class="big"><span id="sm-value">â</span> <small>% predicted</small></div>
+        <button class="btn btn-primary" id="sm-btn" type="button">Calculate Result</button>
+        <p class="error-msg" id="sm-error">Please complete every field with realistic values.</p>
+        <div class="result" id="sm-result">
+          <div class="big"><span id="sm-value">—</span> <small>% of predicted distance</small></div>
           <div class="category" id="sm-category"></div>
           <p class="interpretation" id="sm-interp"></p>
         </div>
-      </form>
+      </div>
 
       <div class="calc-info">
-        <h2>Protocol matters</h2>
+        <h2>How to take the test</h2>
         <ol>
-          <li>Use a flat, straight 30-meter indoor corridor when possible.</li>
-          <li>Follow standardized instructions and encouragement.</li>
-          <li>Walk as far as possible for six minutes; resting is allowed while the timer continues.</li>
-          <li>Record total distance.</li>
+          <li>Find a flat, straight walking course — hospital protocols use a 30&nbsp;m (100&nbsp;ft) hallway, but any measured flat loop works.</li>
+          <li>Set a timer for six minutes.</li>
+          <li>Walk as far as you can. You may slow down or rest if needed — the timer keeps running.</li>
+          <li>Do not run or jog.</li>
+          <li>Record the total distance covered.</li>
         </ol>
-
-        <p>Shorter tracks, repeated tight turns, outdoor surfaces, and nonstandard encouragement can change performance. Results from a casual home course should not be treated as directly comparable to a clinical 30-meter protocol.</p>
-
-        <h3>Interpretation</h3>
-        <p>The reference equation was derived from healthy adults aged 40â80. Percent predicted is contextânot a diagnosisâand reference performance varies among populations and protocols.</p>
-
-        <div class="evidence-note"><strong>Method:</strong> Enright and Sherrill reference equations for healthy adults. <a href="https://pubmed.ncbi.nlm.nih.gov/9817683/" target="_blank" rel="noopener">View the study</a>.</div>
+        <h3>What your distance means</h3>
+        <p>In adults over 60, walking distance in six minutes is a practical window into heart, lung, and muscle function combined. Most healthy adults walk between 400 and 700 meters. Distances below 300 meters are associated with substantially higher risk of hospitalization and mortality in clinical populations.</p>
+        <div class="evidence-note">
+          <strong>The evidence.</strong> Predicted distances use the reference equations of Enright &amp; Sherrill (<em>American Journal of Respiratory and Critical Care Medicine</em>, 1998), derived from healthy adults aged 40&ndash;80. Values outside that age range are extrapolations and should be interpreted loosely. The six-minute walk test itself is standardized by the American Thoracic Society.
+        </div>
       </div>
     </div>
-  </section>
+  </div>
+</div>
 
-  <!-- =========================
-       GRIP
-       ========================= -->
-  <section class="page" id="page-grip" data-title="Grip Strength | Tortoise Time">
-    <header class="page-head">
-      <div class="wrap">
-        <p class="eyebrow">Muscle strength screening</p>
-        <h1>Grip strength</h1>
-        <p class="lede">Measure maximal grip with a calibrated hand dynamometer and compare it with EWGSOP2 thresholds for low muscle strength.</p>
-      </div>
-    </header>
+<!-- ==================== GRIP ==================== -->
+<div class="page" id="page-grip">
+  <header class="page-head">
+    <div class="wrap">
+      <p class="eyebrow">Strength &amp; Function</p>
+      <h1>Grip Strength Test</h1>
+      <p class="lede">A ten-second squeeze that predicts decades. Grip strength correlates with whole-body strength and independently predicts cardiovascular disease, disability, and mortality.</p>
+    </div>
+  </header>
 
-    <div class="wrap calc-layout">
-      <form class="calc-form" id="gs-form" novalidate>
-        <h2>Enter your result</h2>
-
+  <div class="wrap">
+    <div class="calc-layout">
+      <div class="calc-form">
+        <h2>Your Results</h2>
         <div class="field-row">
           <div class="field">
-            <label for="gs-age">Age in years</label>
-            <input id="gs-age" type="number" min="18" max="100" required inputmode="numeric" placeholder="72">
+            <label for="gs-age">Age (years)</label>
+            <input type="number" id="gs-age" min="18" max="100" placeholder="e.g., 62">
           </div>
           <div class="field">
-            <label for="gs-sex">Sex used by the threshold</label>
-            <select id="gs-sex" required>
-              <option value="">Selectâ¦</option>
+            <label for="gs-sex">Sex</label>
+            <select id="gs-sex">
+              <option value="">Select&hellip;</option>
               <option value="m">Male</option>
               <option value="f">Female</option>
             </select>
           </div>
         </div>
-
         <div class="field-row">
           <div class="field">
             <label for="gs-grip">Best grip strength</label>
-            <input id="gs-grip" type="number" min="1" max="265" step="0.1" required inputmode="decimal" placeholder="34">
+            <input type="number" id="gs-grip" min="1" max="265" step="0.1" placeholder="e.g., 34">
           </div>
           <div class="field">
             <label for="gs-unit">Unit</label>
             <select id="gs-unit">
-              <option value="kg">kilograms</option>
-              <option value="lb">pounds</option>
+              <option value="kg">kilograms (kg)</option>
+              <option value="lb">pounds (lb)</option>
             </select>
           </div>
         </div>
-
-        <button class="btn btn-primary" type="submit">Compare with threshold</button>
-        <p class="error-msg" id="gs-error" role="alert">Check all fields and enter a plausible dynamometer result.</p>
-
-        <div class="result" id="gs-result" role="status" aria-live="polite">
-          <div class="big"><span id="gs-value">â</span> <small>kg</small></div>
+        <div class="field" style="margin-top:-8px;">
+          <p class="hint">Take the best of at least two attempts with each hand, using a hand dynamometer.</p>
+        </div>
+        <button class="btn btn-primary" id="gs-btn" type="button">Assess Grip Strength</button>
+        <p class="error-msg" id="gs-error">Please complete every field with realistic values.</p>
+        <div class="result" id="gs-result">
+          <div class="big"><span id="gs-value">—</span> <small>kg</small></div>
           <div class="category" id="gs-category"></div>
           <p class="interpretation" id="gs-interp"></p>
         </div>
-      </form>
+      </div>
 
       <div class="calc-info">
-        <h2>Use a consistent technique</h2>
+        <h2>How to take the test</h2>
         <ol>
-          <li>Use a calibrated hand dynamometer.</li>
-          <li>Follow the device or clinic protocol consistently.</li>
-          <li>Perform at least two maximal attempts per hand with rest between attempts.</li>
-          <li>Record the best valid reading and the device used.</li>
+          <li>Use a hand dynamometer (widely available for the price of a dinner out; many pharmacies, gyms, and clinics also have one).</li>
+          <li>Sit upright, elbow bent at 90 degrees at your side, wrist neutral.</li>
+          <li>Squeeze as hard as you can for about 3&ndash;5 seconds.</li>
+          <li>Take at least two attempts with each hand, resting between attempts.</li>
+          <li>Record your single best reading.</li>
         </ol>
-
-        <h3>Important limitation</h3>
-        <p>The EWGSOP2 thresholds identify low muscle strength in the assessment of sarcopenia; they do not diagnose sarcopenia by themselves. Muscle quantity or quality and physical performance may also need assessment.</p>
-
-        <div class="evidence-note"><strong>Thresholds:</strong> less than 27 kg in men and less than 16 kg in women. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6322506/" target="_blank" rel="noopener">View the consensus paper</a>.</div>
+        <h3>Why grip strength matters</h3>
+        <p>Grip strength tracks whole-body muscle strength closely, and in large international cohort studies it has predicted cardiovascular events and all-cause mortality — in some analyses more strongly than systolic blood pressure. In geriatric medicine it is a core criterion for diagnosing sarcopenia, the age-related loss of muscle mass and function.</p>
+        <div class="evidence-note">
+          <strong>The evidence.</strong> The Low / Borderline / Normal classifications on this page use the EWGSOP2 consensus cutoffs for probable sarcopenia (grip &lt;27&nbsp;kg in men, &lt;16&nbsp;kg in women; Cruz-Jentoft et al., <em>Age and Ageing</em>, 2019), with an additional borderline band to flag values approaching the cutoff.
+        </div>
       </div>
     </div>
-  </section>
+  </div>
+</div>
 
-  <!-- =========================
-       CHAIR STAND
-       ========================= -->
-  <section class="page" id="page-chairstand" data-title="30-Second Chair Stand | Tortoise Time">
-    <header class="page-head">
-      <div class="wrap">
-        <p class="eyebrow">Lower-body strength and endurance</p>
-        <h1>30-second chair stand</h1>
-        <p class="lede">Follow the CDC STEADI protocol and compare performance with age- and sex-specific thresholds for adults aged 60 and older.</p>
-      </div>
-    </header>
+<!-- ==================== CHAIR STAND ==================== -->
+<div class="page" id="page-chairstand">
+  <header class="page-head">
+    <div class="wrap">
+      <p class="eyebrow">Strength &amp; Function</p>
+      <h1>30-Second Chair Stand Test</h1>
+      <p class="lede">All you need is a chair and a timer. This test of lower-body strength is used by the CDC to screen for fall risk — and it is one of the best functional measures of the strength that keeps you independent.</p>
+    </div>
+  </header>
 
-    <div class="wrap calc-layout">
-      <form class="calc-form" id="cs-form" novalidate>
-        <h2>Enter your result</h2>
-
+  <div class="wrap">
+    <div class="calc-layout">
+      <div class="calc-form">
+        <h2>Your Results</h2>
         <div class="field-row">
           <div class="field">
-            <label for="cs-age">Age in years</label>
-            <input id="cs-age" type="number" min="60" max="94" required inputmode="numeric" placeholder="72">
+            <label for="cs-age">Age (years)</label>
+            <input type="number" id="cs-age" min="18" max="100" placeholder="e.g., 72">
+            <p class="hint">CDC reference values cover ages 60&ndash;94.</p>
           </div>
           <div class="field">
-            <label for="cs-sex">Sex used by the reference</label>
-            <select id="cs-sex" required>
-              <option value="">Selectâ¦</option>
+            <label for="cs-sex">Sex</label>
+            <select id="cs-sex">
+              <option value="">Select&hellip;</option>
               <option value="m">Male</option>
               <option value="f">Female</option>
             </select>
           </div>
         </div>
-
         <div class="field">
-          <label for="cs-stands">Full stands in 30 seconds</label>
-          <input id="cs-stands" type="number" min="0" max="40" required inputmode="numeric" placeholder="13">
-          <p class="hint">Count a final repetition if more than halfway standing when time expires.</p>
+          <label for="cs-stands">Number of full stands in 30 seconds</label>
+          <input type="number" id="cs-stands" min="0" max="60" placeholder="e.g., 13">
+          <p class="hint">Count only complete stands. If you are more than halfway up when time expires, count it.</p>
         </div>
-
-        <button class="btn btn-primary" type="submit">Compare with threshold</button>
-        <p class="error-msg" id="cs-error" role="alert">This reference is limited to adults aged 60â94. Check all fields.</p>
-
-        <div class="result" id="cs-result" role="status" aria-live="polite">
-          <div class="big"><span id="cs-value">â</span> <small>stands</small></div>
+        <button class="btn btn-primary" id="cs-btn" type="button">Assess Result</button>
+        <p class="error-msg" id="cs-error">Please complete every field with realistic values.</p>
+        <div class="result" id="cs-result">
+          <div class="big"><span id="cs-value">—</span> <small>stands in 30 seconds</small></div>
           <div class="category" id="cs-category"></div>
           <p class="interpretation" id="cs-interp"></p>
         </div>
-      </form>
+      </div>
 
       <div class="calc-info">
-        <h2>CDC STEADI protocol</h2>
+        <h2>How to take the test</h2>
         <ol>
-          <li>Use a straight-backed chair without armrests, approximately 17 inches high, placed against a wall.</li>
-          <li>Sit in the middle, feet flat, arms crossed over the chest.</li>
-          <li>Stand fully and sit fully as many times as possible in 30 seconds.</li>
-          <li>If arms are used to rise, stop the test and record zero according to the assessment form.</li>
+          <li>Use a sturdy chair with a straight back and no arm rests, seat about 17 inches (43&nbsp;cm) high, placed against a wall.</li>
+          <li>Sit in the middle of the seat, feet flat on the floor, arms crossed over your chest.</li>
+          <li>On &ldquo;go,&rdquo; rise to a full stand, then sit back down. That is one repetition.</li>
+          <li>Repeat as many times as you can in 30 seconds.</li>
+          <li>Do not use your arms to push off. If you must use your arms, stop and record a score of 0 — and mention it to your physician.</li>
         </ol>
+        <h3>Why this test matters</h3>
+        <p>Standing from a chair is the fundamental movement of independent life. It requires leg strength, balance, and coordination, and performance on this test predicts fall risk — the leading cause of injury-related death in adults over 65.</p>
+        <div class="evidence-note">
+          <strong>The evidence.</strong> Below-average thresholds are taken from the CDC STEADI (Stopping Elderly Accidents, Deaths &amp; Injuries) initiative's 30-Second Chair Stand assessment, based on the normative data of Rikli &amp; Jones (Senior Fitness Test). A below-average score indicates elevated fall risk and warrants clinical attention.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-        <p>A below-average score suggests reduced leg strength or endurance and should prompt broader fall-risk and clinical assessment rather than a stand-alone diagnosis.</p>
+<!-- ==================== LEADERBOARD ==================== -->
+<div class="page" id="page-leaderboard">
+  <header class="page-head">
+    <div class="wrap">
+      <p class="eyebrow">Community</p>
+      <h1>Rockport Leaderboard</h1>
+      <p class="lede">Post your Rockport Walk Test VO&#8322; max and see how you rank against others in your age group and sex. The tortoise wins by showing up — re-test and repost every 8&ndash;12 weeks.</p>
+    </div>
+  </header>
 
-        <div class="evidence-note"><strong>Protocol and thresholds:</strong> CDC STEADI 30-second chair stand assessment. <a href="https://www.cdc.gov/steadi/media/pdfs/steadi-assessment-30sec-508.pdf" target="_blank" rel="noopener">View the CDC form</a>.</div>
+  <section style="padding: 12px 0 96px;">
+    <div class="wrap">
+      <div class="lb-controls">
+        <div class="seg" role="group" aria-label="Filter by sex">
+          <button type="button" data-lbsex="all" class="active">All</button>
+          <button type="button" data-lbsex="m">Men</button>
+          <button type="button" data-lbsex="f">Women</button>
+        </div>
+        <select id="lb-ageband" aria-label="Filter by age group">
+          <option value="all">All ages</option>
+          <option value="18-29">18&ndash;29</option>
+          <option value="30-39">30&ndash;39</option>
+          <option value="40-49">40&ndash;49</option>
+          <option value="50-59">50&ndash;59</option>
+          <option value="60-69">60&ndash;69</option>
+          <option value="70+">70+</option>
+        </select>
+      </div>
+
+      <div class="lb-table-wrap">
+        <table class="lb" aria-label="VO2 max leaderboard">
+          <thead>
+            <tr><th>Rank</th><th>Name</th><th>Age</th><th>Sex</th><th>VO&#8322; max</th><th></th></tr>
+          </thead>
+          <tbody id="lb-body"></tbody>
+        </table>
+        <div class="lb-empty" id="lb-empty">No entries yet for this group. Take the <a href="#vo2max">Rockport Walk Test</a> and be the first on the board!</div>
+      </div>
+
+      <p class="lb-note" id="lb-storage-note">Entries are currently stored on this device only. A shared global leaderboard is coming — your saved scores will carry over.</p>
+
+      <div class="lb-form-card">
+        <h3>Add an entry</h3>
+        <div class="field">
+          <label for="lb-name">Display name or initials</label>
+          <input type="text" id="lb-name" maxlength="20" placeholder="e.g., B.T.">
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="lb-age">Age (years)</label>
+            <input type="number" id="lb-age" min="18" max="100" placeholder="e.g., 55">
+          </div>
+          <div class="field">
+            <label for="lb-sex">Sex</label>
+            <select id="lb-sex">
+              <option value="">Select&hellip;</option>
+              <option value="m">Male</option>
+              <option value="f">Female</option>
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <label for="lb-vo2">VO&#8322; max (mL/kg/min) — from the Rockport test</label>
+          <input type="number" id="lb-vo2" min="5" max="95" step="0.1" placeholder="e.g., 38.5">
+          <p class="hint">Don't have a score yet? <a href="#vo2max">Take the Rockport Walk Test</a> — it takes one mile.</p>
+        </div>
+        <button class="btn btn-primary" id="lb-add" type="button">Post my score</button>
+        <p class="error-msg" id="lb-error">Please enter a name, age (18&ndash;100), sex, and a VO&#8322; max between 5 and 95.</p>
       </div>
     </div>
   </section>
+</div>
 
-  <!-- =========================
-       ABOUT
-       ========================= -->
-  <section class="page" id="page-about" data-title="About | Tortoise Time">
-    <header class="page-head">
-      <div class="wrap">
-        <p class="eyebrow">About Tortoise Time</p>
-        <h1>Why the tortoise?</h1>
-      </div>
-    </header>
+<!-- ==================== ABOUT ==================== -->
+<div class="page" id="page-about">
+  <header class="page-head">
+    <div class="wrap">
+      <p class="eyebrow">About Tortoise Time</p>
+      <h1>Why the tortoise?</h1>
+    </div>
+  </header>
 
-    <div class="wrap prose">
-      <p class="lead">Tortoise Time is a physician-led public health platform dedicated to sustainable fitness, prevention, function, and healthy longevity.</p>
-
-      <p>The tortoise is not an argument for inactivity. It is a symbol of durable progress: movement that is deliberate, repeatable, and resilient enough to continue for years.</p>
-
+  <div class="wrap">
+    <div class="prose">
+      <p class="lead">Tortoise Time is a physician-led public health platform dedicated to improving health and longevity through sustainable, evidence-based habits.</p>
+      <p>Inspired by the tortoise — an enduring symbol of patience, resilience, and longevity — the platform rejects quick fixes and promotes the idea that the greatest health gains come from small, consistent actions repeated over a lifetime. Rather than chasing dramatic transformations, Tortoise Time encourages people to invest in their future health one day at a time.</p>
       <h2>The mission</h2>
-      <p>To translate high-quality medical evidence into practical daily habits and accessible measurements that help people protect their long-term health and independence.</p>
-
+      <p>To help people live longer, healthier, and more functional lives by translating the best medical evidence into practical, sustainable daily habits.</p>
       <h2>The physician behind the platform</h2>
-      <p>Tortoise Time was created by a practicing primary care physician and geriatrician. Clinical experience across the lifespan repeatedly shows that healthy aging rarely comes from one extreme intervention. It is more often the result of reasonable actions maintained over time.</p>
-
-      <p><strong>Before launch:</strong> replace this paragraph with your full name, degrees, board certifications, current role, relevant fitness or research training, conflict-of-interest statement, and a professional photograph. Clearly distinguish personal views from those of your employer.</p>
-
+      <!-- TODO (Bernard): Replace this section with your name, credentials, training,
+           and personal story. A photo would strengthen this page considerably. -->
+      <p>Tortoise Time was created by a practicing primary care physician and geriatrician. Years of caring for patients across the lifespan — and especially in the final decades of life — made one pattern impossible to ignore: the people who age well are rarely the ones who did something extreme. They are the ones who did something reasonable, and never stopped.</p>
+      <p>That observation is the entire foundation of this platform. Medicine has extraordinary evidence about what preserves health: aerobic fitness, muscular strength, preventive care, and measurement over guesswork. What is missing is not knowledge. It is a sustainable way to apply it — day after day, year after year, for decades.</p>
+      <h2>The philosophy</h2>
+      <p>Health is not built in weeks. It is built over decades. Just as compound interest grows wealth, small healthy behaviors compound into better fitness, lower disease risk, greater independence, and improved quality of life. The goal is not perfection. The goal is consistency.</p>
       <h2>Where this is going</h2>
-      <p>The first phase centers on fitness assessment, walking challenges, public health education, newsletter-based community building, and careful outcome tracking. Future phases may include research collaborations, digital tools, and preventive telemedicineâsubject to appropriate clinical, legal, privacy, and institutional safeguards.</p>
-
-      <p class="closing">Live deliberately. Move consistently. Compound your health.</p>
+      <p>Today, Tortoise Time offers validated fitness assessments, daily trivia, a community leaderboard, and a weekly newsletter. Tomorrow, it may include walking challenges, research collaborations, digital health tools, preventive telemedicine, and new models of evidence-based care. The tools will evolve. The philosophy will not.</p>
+      <p class="closing-line">Small daily improvements, sustained over years, create extraordinary health.</p>
     </div>
-  </section>
-</main>
+  </div>
+</div>
 
 <footer>
   <div class="wrap">
     <p class="motto">Compound your health.</p>
-    <nav class="foot-links" aria-label="Footer navigation">
+    <div class="foot-links">
       <a href="#home">Home</a>
       <a href="#assessments">Assessments</a>
-      <a href="#challenge">Challenge</a>
-      <a href="#newsletter">Newsletter</a>
+      <a href="#leaderboard">Leaderboard</a>
       <a href="#about">About</a>
-    </nav>
-    <p>Â© 2026 Tortoise Time Â· tortoisetime.com</p>
-    <p class="disclaimer">This website provides general educational information and field-estimate tools. It does not provide medical diagnosis or individualized treatment, and it does not establish a clinicianâpatient relationship. Seek professional advice before testing or changing exercise when health conditions, symptoms, medications, pregnancy, disability, or recent procedures may affect safety.</p>
+    </div>
+    <p>&copy; 2026 Tortoise Time &middot; tortoisetime.com</p>
+    <p class="disclaimer">Tortoise Time provides general educational information and is not a substitute for professional medical advice, diagnosis, or treatment. Always consult your physician before beginning a new exercise program.</p>
   </div>
 </footer>
 
 <script>
-(() => {
+(function () {
   'use strict';
 
-  const pages = ['home','assessments','challenge','newsletter','vo2max','sixminwalk','grip','chairstand','about'];
+  /* ==========================================================
+     SAFE STORAGE — localStorage with in-memory fallback so the
+     site still works in private browsing / restricted contexts.
+     Swap these two functions for API calls when a backend lands.
+     ========================================================== */
+  var memStore = {};
+  function storeGet(key) {
+    try { return window.localStorage.getItem(key); }
+    catch (e) { return Object.prototype.hasOwnProperty.call(memStore, key) ? memStore[key] : null; }
+  }
+  function storeSet(key, value) {
+    try { window.localStorage.setItem(key, value); }
+    catch (e) { memStore[key] = value; }
+  }
 
-  const navForPage = {
-    home:'home',
-    assessments:'assessments',
-    challenge:'challenge',
-    newsletter:'newsletter',
-    vo2max:'assessments',
-    sixminwalk:'assessments',
-    grip:'assessments',
-    chairstand:'assessments',
-    about:'about'
+  /* ==========================================================
+     ROUTER
+     ========================================================== */
+  var PAGES = ['home', 'assessments', 'vo2max', 'sixminwalk', 'grip', 'chairstand', 'leaderboard', 'about'];
+  var NAV_FOR_PAGE = {
+    home: 'home', assessments: 'assessments', vo2max: 'assessments',
+    sixminwalk: 'assessments', grip: 'assessments', chairstand: 'assessments',
+    leaderboard: 'leaderboard', about: 'about'
   };
 
-  const menuButton = document.getElementById('menu-button');
-  const siteNav = document.getElementById('site-nav');
-  const LB_PER_KG = 2.2046226218;
-
-  function route() {
-    let hash = location.hash.slice(1) || 'home';
-    if (!pages.includes(hash)) hash = 'home';
-
-    pages.forEach(name => {
-      document.getElementById(`page-${name}`).classList.toggle('active', name === hash);
-    });
-
-    document.querySelectorAll('[data-nav]').forEach(link => {
-      link.classList.toggle('active', link.dataset.nav === navForPage[hash]);
-    });
-
-    const activePage = document.getElementById(`page-${hash}`);
-    document.title = activePage.dataset.title || 'Tortoise Time';
-
-    closeMenu();
-    window.scrollTo({ top: 0, behavior: 'auto' });
-    requestAnimationFrame(() => document.getElementById('main').focus({ preventScroll: true }));
+  function currentPage() {
+    var hash = window.location.hash.replace('#', '') || 'home';
+    return PAGES.indexOf(hash) !== -1 ? hash : 'home';
   }
 
-  function closeMenu() {
-    siteNav.classList.remove('open');
-    menuButton.setAttribute('aria-expanded','false');
-    document.body.classList.remove('menu-open');
+  function showPage() {
+    var page = currentPage();
+    PAGES.forEach(function (p) {
+      document.getElementById('page-' + p).classList.toggle('active', p === page);
+    });
+    document.querySelectorAll('.nav-links a').forEach(function (a) {
+      a.classList.toggle('active', a.getAttribute('data-nav') === NAV_FOR_PAGE[page]);
+    });
+    window.scrollTo(0, 0);
+    bindReveals();
+    if (page === 'leaderboard') renderLeaderboard();
   }
 
-  menuButton.addEventListener('click', () => {
-    const open = siteNav.classList.toggle('open');
-    menuButton.setAttribute('aria-expanded', String(open));
-    document.body.classList.toggle('menu-open', open);
+  window.addEventListener('hashchange', showPage);
+
+  // "Play today's trivia" scrolls within the home page instead of routing
+  document.getElementById('trivia-cta').addEventListener('click', function (e) {
+    e.preventDefault();
+    document.getElementById('trivia-anchor').scrollIntoView({ behavior: 'smooth' });
   });
 
-  siteNav.addEventListener('click', event => {
-    if (event.target.matches('a')) closeMenu();
+  /* ==========================================================
+     SCROLL REVEAL + counters + curve animation
+     ========================================================== */
+  var observer = ('IntersectionObserver' in window) ? new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        if (entry.target.id === 'curveFig') entry.target.classList.add('in');
+        entry.target.querySelectorAll('[data-count]').forEach(animateCount);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.2 }) : null;
+
+  function bindReveals() {
+    document.querySelectorAll('.page.active .reveal').forEach(function (el) {
+      if (el.classList.contains('in')) return;
+      if (observer) observer.observe(el);
+      else el.classList.add('in');
+    });
+  }
+
+  function animateCount(el) {
+    if (el.dataset.done) return;
+    el.dataset.done = '1';
+    var target = parseInt(el.getAttribute('data-count'), 10);
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      el.textContent = target; return;
+    }
+    var start = null, dur = 1400;
+    function step(ts) {
+      if (!start) start = ts;
+      var p = Math.min((ts - start) / dur, 1);
+      el.textContent = Math.round(target * (1 - Math.pow(1 - p, 3)));
+      if (p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  /* ==========================================================
+     DAILY TRIVIA — deterministic daily question + streak
+     ========================================================== */
+  var TRIVIA = [
+    { q: 'If you improve just 1% every day, how much better are you after one year?', opts: ['About 4&times; better', 'About 37&times; better', 'About 2&times; better'], a: 1, why: '1.01 to the power of 365 is roughly 37.8. That is the mathematics of compounding — and the entire philosophy of this platform.' },
+    { q: 'Which measurement predicted death from cardiovascular disease more strongly than systolic blood pressure in a major international study?', opts: ['Grip strength', 'Cholesterol level', 'Body mass index'], a: 0, why: 'In the PURE study of nearly 140,000 adults across 17 countries, grip strength was a stronger predictor of cardiovascular mortality than systolic blood pressure.' },
+    { q: 'Roughly how large is the all-cause mortality gap between the least fit and the most fit adults?', opts: ['About 1.5&times;', 'About 2&times;', 'About 5&times;'], a: 2, why: 'In a Cleveland Clinic cohort of 122,000 patients, the least-fit group had roughly five times the mortality risk of elite performers — a bigger gap than smoking.' },
+    { q: 'What is the minimum weekly amount of moderate aerobic activity recommended by major health guidelines?', opts: ['75 minutes', '150 minutes', '300 minutes'], a: 1, why: '150 minutes per week of moderate activity (or 75 minutes vigorous) is the WHO and US guideline floor — about 22 minutes a day. More provides additional benefit.' },
+    { q: 'How many times per week do guidelines recommend strength training for all adults?', opts: ['Once', 'At least twice', 'Five times'], a: 1, why: 'Muscle-strengthening activity at least two days per week is recommended for every adult — and it becomes more important with every decade.' },
+    { q: 'What is the leading cause of injury-related death in adults over 65?', opts: ['Car accidents', 'Falls', 'Burns'], a: 1, why: 'Falls are the leading cause of injury-related death in older adults. Lower-body strength and balance training measurably reduce fall risk.' },
+    { q: 'After about age 50, untrained adults typically lose muscle mass at what rate?', opts: ['About 1% per year', 'About 5% per year', 'Muscle mass stays stable'], a: 0, why: 'Sarcopenia progresses at roughly 1% of muscle mass per year after 50, accelerating later — but resistance training slows or reverses it at any age.' },
+    { q: 'Can adults in their 90s still build muscle through resistance training?', opts: ['No — muscle cannot grow after 80', 'Yes — significant gains are documented', 'Only with hormone therapy'], a: 1, why: 'Landmark trials in nonagenarians showed strength gains of over 100% within weeks of supervised resistance training. Muscle responds to training at every age.' },
+    { q: 'Regular physical activity is associated with roughly what reduction in dementia risk?', opts: ['No effect', 'About 30%', 'About 80%'], a: 1, why: 'Meta-analyses associate regular physical activity with an approximately 30% lower risk of dementia — one of the strongest modifiable protections known.' },
+    { q: 'What resting blood pressure is classified as normal?', opts: ['Below 120/80', 'Below 140/90', 'Below 160/100'], a: 0, why: 'Normal is below 120/80 mmHg. Elevated and hypertensive ranges begin above that — and walking, weight management, and sodium reduction all move the number.' },
+    { q: 'How much sleep is recommended for most adults?', opts: ['5–6 hours', '7–9 hours', '10+ hours'], a: 1, why: 'Seven to nine hours is the consensus recommendation. Chronic short sleep is linked with higher risks of cardiovascular disease, diabetes, and dementia.' },
+    { q: 'Roughly how far can most healthy adults walk in the six-minute walk test?', opts: ['100–200 meters', '400–700 meters', '900–1200 meters'], a: 1, why: 'Healthy adults typically cover 400–700 meters in six minutes. Below 300 meters is associated with substantially worse outcomes in clinical populations.' },
+    { q: 'Jonathan, the oldest known living land animal, is a tortoise. Approximately how old is he?', opts: ['About 90 years', 'About 190 years', 'About 300 years'], a: 1, why: 'Jonathan, a Seychelles giant tortoise on the island of St Helena, is estimated to be over 190 years old. Slow and steady, indeed.' },
+    { q: 'Which of these best describes "Zone 2" training?', opts: ['All-out sprinting', 'A pace where you can still hold a conversation', 'Any exercise done twice a week'], a: 1, why: 'Zone 2 is a comfortable aerobic pace at which you can speak in full sentences. It builds the mitochondrial base that supports cardiovascular health and endurance.' },
+    { q: 'Peak bone density is typically reached around what age?', opts: ['Age 20–30', 'Age 45–50', 'Age 60'], a: 0, why: 'Bone mass peaks around the late 20s. After that, the goal is to slow loss — resistance training and impact activity are among the best tools.' },
+    { q: 'A daily step count around which number is associated with a large reduction in mortality risk in cohort studies?', opts: ['2,000 steps', '7,000–8,000 steps', 'Benefits only begin at 15,000 steps'], a: 1, why: 'Multiple cohorts show risk dropping steeply up to roughly 7,000–8,000 steps per day, with more modest additional gains beyond that. Every step above sedentary counts.' },
+    { q: 'What does VO&#8322; max measure?', opts: ['Lung size', 'The maximum rate your body can use oxygen', 'Resting heart rate'], a: 1, why: 'VO&#8322; max is the ceiling of your aerobic engine — the maximum oxygen your body can transport and use. It is among the strongest predictors of longevity.' },
+    { q: 'Which change tends to happen to resting heart rate as aerobic fitness improves?', opts: ['It rises', 'It falls', 'It is unchanged'], a: 1, why: 'A trained heart pumps more blood per beat, so it needs fewer beats at rest. A falling resting heart rate over months is a quiet sign your habits are compounding.' },
+    { q: 'For older adults, expert groups suggest daily protein intake of roughly:', opts: ['0.4 g per kg of body weight', '1.0–1.2 g per kg of body weight', '3 g per kg of body weight'], a: 1, why: 'Aging muscle is less responsive to protein, so intakes of about 1.0–1.2 g/kg/day (higher with illness or training) are commonly recommended for older adults.' },
+    { q: 'The 30-second chair stand test primarily measures:', opts: ['Flexibility', 'Lower-body strength', 'Reaction time'], a: 1, why: 'It measures functional lower-body strength — the strength of independence. The CDC uses it to screen fall risk in adults over 60.' },
+    { q: 'Compared with staying sedentary, becoming physically active in midlife:', opts: ['Provides no benefit — it is too late', 'Still substantially lowers mortality risk', 'Only helps if you become an athlete'], a: 1, why: 'Cohort studies consistently show that adults who become active in midlife capture a large share of the longevity benefit. It is never too late for the curve to bend.' },
+    { q: 'Low cardiorespiratory fitness carries a mortality risk comparable to:', opts: ['Skipping breakfast', 'Smoking', 'Mild seasonal allergies'], a: 1, why: 'In large cohorts, being unfit rivals or exceeds smoking, diabetes, and hypertension as a mortality risk factor — and unlike age, it is modifiable.' },
+    { q: 'Which everyday activity is a legitimate way to build grip strength?', opts: ['Carrying groceries', 'Watching television', 'Wearing compression gloves'], a: 0, why: 'Loaded carries — groceries, suitcases, farmer\u2019s walks — train grip, core, and posture all at once. Strength hides in daily life.' },
+    { q: 'The tortoise in our logo carries what on its shell?', opts: ['A map', 'A compounding growth curve', 'A clock'], a: 1, why: 'The shell rises like compound interest: slowly at first, then steeply. Small daily habits, extraordinary long-term returns. That is Tortoise Time.' }
+  ];
+
+  var trState = { answered: false };
+
+  function dayIndex() {
+    var now = new Date();
+    var start = Date.UTC(2026, 0, 1);
+    var today = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate());
+    return Math.max(0, Math.floor((today - start) / 86400000));
+  }
+
+  function todayKey() {
+    var d = new Date();
+    return d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate();
+  }
+
+  function yesterdayKey() {
+    var d = new Date(Date.now() - 86400000);
+    return d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate();
+  }
+
+  function initTrivia() {
+    var item = TRIVIA[dayIndex() % TRIVIA.length];
+    var dateEl = document.getElementById('tr-date');
+    dateEl.textContent = new Date().toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric' });
+    document.getElementById('tr-streak').textContent = storeGet('tt-streak') || '0';
+    document.getElementById('tr-question').innerHTML = item.q;
+
+    var optsEl = document.getElementById('tr-options');
+    item.opts.forEach(function (opt, i) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'trivia-opt';
+      b.innerHTML = opt;
+      b.addEventListener('click', function () { answerTrivia(i, item, optsEl); });
+      optsEl.appendChild(b);
+    });
+
+    // Already played today? Re-show the outcome.
+    if (storeGet('tt-played') === todayKey()) {
+      var picked = parseInt(storeGet('tt-picked'), 10);
+      if (!isNaN(picked)) answerTrivia(picked, item, optsEl, true);
+    }
+  }
+
+  function answerTrivia(i, item, optsEl, replay) {
+    if (trState.answered) return;
+    trState.answered = true;
+
+    var buttons = optsEl.querySelectorAll('.trivia-opt');
+    buttons.forEach(function (b, idx) {
+      b.disabled = true;
+      if (idx === item.a) b.classList.add('correct');
+      else if (idx === i) b.classList.add('wrong');
+    });
+
+    var verdict = document.getElementById('tr-verdict');
+    var correct = (i === item.a);
+    verdict.textContent = correct ? 'Correct! Slow and steady wins.' : 'Not quite — but showing up counts.';
+    verdict.className = 'trivia-verdict show ' + (correct ? 'good' : 'bad');
+
+    var explain = document.getElementById('tr-explain');
+    explain.innerHTML = item.why;
+    explain.classList.add('show');
+
+    if (!replay) {
+      storeSet('tt-played', todayKey());
+      storeSet('tt-picked', String(i));
+      var last = storeGet('tt-last-correct-day');
+      var streak = parseInt(storeGet('tt-streak'), 10) || 0;
+      if (correct) {
+        streak = (last === yesterdayKey()) ? streak + 1 : 1;
+        storeSet('tt-last-correct-day', todayKey());
+      } else {
+        streak = 0;
+      }
+      storeSet('tt-streak', String(streak));
+      document.getElementById('tr-streak').textContent = streak;
+    }
+  }
+
+  /* ==========================================================
+     NEWSLETTER
+     To connect a real provider, set NEWSLETTER_ENDPOINT to your
+     form action (e.g. Buttondown: https://buttondown.email/api/emails/embed-subscribe/YOURNAME
+     or a Formspree endpoint) and entries will POST there.
+     ========================================================== */
+  var NEWSLETTER_ENDPOINT = ''; // <-- paste your Buttondown/Formspree endpoint here
+
+  document.getElementById('nl-btn').addEventListener('click', function () {
+    var input = document.getElementById('nl-email');
+    var email = input.value.trim();
+    var err = document.getElementById('nl-error');
+    var done = document.getElementById('nl-done');
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
+      err.classList.add('show'); done.classList.remove('show');
+      return;
+    }
+    err.classList.remove('show');
+
+    if (NEWSLETTER_ENDPOINT) {
+      var data = new FormData();
+      data.append('email', email);
+      fetch(NEWSLETTER_ENDPOINT, { method: 'POST', body: data, mode: 'no-cors' })
+        .catch(function () { /* endpoint unreachable; still confirm to user */ });
+    } else {
+      // No provider connected yet: store locally so no signup is lost.
+      var list = [];
+      try { list = JSON.parse(storeGet('tt-newsletter') || '[]'); } catch (e) { list = []; }
+      if (list.indexOf(email) === -1) list.push(email);
+      storeSet('tt-newsletter', JSON.stringify(list));
+    }
+
+    input.value = '';
+    done.classList.add('show');
   });
 
-  addEventListener('hashchange', route);
-  route();
-
-  const number = id => Number.parseFloat(document.getElementById(id).value);
-  const value = id => document.getElementById(id).value;
-
-  function validNumber(n, min, max) {
-    return Number.isFinite(n) && n >= min && n <= max;
-  }
+  /* ==========================================================
+     SHARED CALC HELPERS
+     ========================================================== */
+  function num(id) { return parseFloat(document.getElementById(id).value); }
+  function val(id) { return document.getElementById(id).value; }
 
   function fail(prefix) {
-    document.getElementById(`${prefix}-error`).classList.add('show');
-    document.getElementById(`${prefix}-result`).classList.remove('show');
+    document.getElementById(prefix + '-error').classList.add('show');
+    document.getElementById(prefix + '-result').classList.remove('show');
   }
 
-  function show(prefix, displayedValue, category) {
-    document.getElementById(`${prefix}-error`).classList.remove('show');
-    document.getElementById(`${prefix}-value`).textContent = displayedValue;
-
-    const categoryEl = document.getElementById(`${prefix}-category`);
-    categoryEl.textContent = category.label;
-    categoryEl.className = `category ${category.cls}`;
-
-    document.getElementById(`${prefix}-interp`).textContent = category.text;
-
-    const result = document.getElementById(`${prefix}-result`);
-    result.classList.add('show');
-    result.scrollIntoView({
-      behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
-      block: 'nearest'
-    });
+  function showResult(prefix, value, cat) {
+    document.getElementById(prefix + '-error').classList.remove('show');
+    document.getElementById(prefix + '-value').textContent = value;
+    var catEl = document.getElementById(prefix + '-category');
+    catEl.textContent = cat.label;
+    catEl.className = 'category ' + cat.cls;
+    document.getElementById(prefix + '-interp').textContent = cat.text;
+    document.getElementById(prefix + '-result').classList.add('show');
   }
 
-  document.getElementById('rp-form').addEventListener('submit', event => {
-    event.preventDefault();
+  var LB_PER_KG = 2.20462;
+  var lastRockport = null; // carries result to the leaderboard
 
-    const age = number('rp-age');
-    const sex = value('rp-sex');
-    const weight = number('rp-weight');
-    const minutes = number('rp-minutes');
-    const seconds = number('rp-seconds');
-    const hr = number('rp-hr');
+  /* ==========================================================
+     1. ROCKPORT — Kline et al. 1987
+     ========================================================== */
+  document.getElementById('rp-btn').addEventListener('click', function () {
+    var age = num('rp-age'), sex = val('rp-sex'), weight = num('rp-weight');
+    var minutes = num('rp-minutes'), hr = num('rp-hr');
+    var seconds = num('rp-seconds'); if (isNaN(seconds)) seconds = 0;
 
-    if (!validNumber(age,18,100) || sex === '' || !validNumber(weight,30,660) || !validNumber(minutes,8,30) || !validNumber(seconds,0,59) || !validNumber(hr,50,220)) return fail('rp');
-
-    const weightLb = value('rp-weight-unit') === 'kg' ? weight * LB_PER_KG : weight;
-    if (!validNumber(weightLb,66,660)) return fail('rp');
-
-    const time = minutes + seconds / 60;
-    const vo2 = 132.853 - 0.0769 * weightLb - 0.3877 * age + 6.315 * Number(sex) - 3.2649 * time - 0.1565 * hr;
-
-    if (!validNumber(vo2,5,90)) return fail('rp');
-
-    let cat;
-    if (vo2 < 25) {
-      cat = { label:'Lower estimated aerobic capacity', cls:'cat-low', text:'This estimate is relatively low in broad adult terms, but age, sex, medications, technique, and the equationâs prediction error matter. Consider discussing symptoms or exercise safety with a clinician, then focus on gradual, consistent aerobic activity.' };
-    } else if (vo2 < 40) {
-      cat = { label:'Moderate estimated aerobic capacity', cls:'cat-average', text:'This estimate falls in a broad middle range. Repeat the same protocol under similar conditions and use the trend to guide gradual progression.' };
-    } else {
-      cat = { label:'Higher estimated aerobic capacity', cls:'cat-strong', text:'This is a comparatively strong field estimate. Maintain regular aerobic activity and track the trend rather than treating one result as definitive.' };
+    if (isNaN(age) || sex === '' || isNaN(weight) || isNaN(minutes) || isNaN(hr) ||
+        age < 18 || age > 100 || minutes < 5 || minutes > 60 ||
+        seconds < 0 || seconds > 59 || hr < 40 || hr > 220) {
+      return fail('rp');
     }
 
-    show('rp', vo2.toFixed(1), cat);
+    var weightLb = (val('rp-weight-unit') === 'kg') ? weight * LB_PER_KG : weight;
+    if (weightLb < 66 || weightLb > 660) return fail('rp');
+
+    var timeMin = minutes + seconds / 60;
+    var sexVal = parseInt(sex, 10);
+
+    var vo2 = 132.853 - 0.0769 * weightLb - 0.3877 * age +
+              6.315 * sexVal - 3.2649 * timeMin - 0.1565 * hr;
+
+    if (vo2 <= 0) return fail('rp');
+
+    lastRockport = { vo2: Math.round(vo2 * 10) / 10, age: Math.round(age), sex: (sexVal === 1 ? 'm' : 'f') };
+    showResult('rp', vo2.toFixed(1), classifyVO2(vo2, age, sexVal));
   });
 
-  document.getElementById('sm-form').addEventListener('submit', event => {
-    event.preventDefault();
+  document.getElementById('rp-to-lb').addEventListener('click', function () {
+    window.location.hash = 'leaderboard';
+    // Prefill happens after the page switches
+    setTimeout(function () {
+      if (!lastRockport) return;
+      document.getElementById('lb-age').value = lastRockport.age;
+      document.getElementById('lb-sex').value = lastRockport.sex;
+      document.getElementById('lb-vo2').value = lastRockport.vo2;
+      document.getElementById('lb-name').focus();
+    }, 60);
+  });
 
-    const age = number('sm-age');
-    const sex = value('sm-sex');
-    const height = number('sm-height');
-    const weight = number('sm-weight');
-    const distance = number('sm-distance');
+  function classifyVO2(vo2, age, male) {
+    var table = (male === 1)
+      ? [[29, 36, 44], [39, 34, 42], [49, 31, 39], [59, 27, 35], [69, 23, 31], [120, 20, 28]]
+      : [[29, 29, 37], [39, 27, 35], [49, 24, 32], [59, 21, 29], [69, 18, 26], [120, 16, 23]];
+    var row = table.filter(function (r) { return age <= r[0]; })[0];
 
-    if (!validNumber(age,40,80) || sex === '' || !Number.isFinite(height) || !Number.isFinite(weight) || !Number.isFinite(distance)) return fail('sm');
+    if (vo2 < row[1]) {
+      return { label: 'Below Average', cls: 'cat-low',
+        text: 'Your estimated aerobic fitness is below average for your age and sex. The encouraging news: this is the group with the most to gain. Even modest, consistent walking improves VO\u2082 max and meaningfully lowers long-term risk.' };
+    }
+    if (vo2 < row[2]) {
+      return { label: 'Average', cls: 'cat-average',
+        text: 'Your estimated aerobic fitness is in the average range for your age and sex. Consistent aerobic activity \u2014 a little more distance or a little more pace, sustained over months \u2014 will move you upward.' };
+    }
+    return { label: 'Above Average', cls: 'cat-strong',
+      text: 'Your estimated aerobic fitness is above average for your age and sex \u2014 strongly associated with longer, healthier life. Keep doing what you are doing, and re-test periodically to hold the trend.' };
+  }
 
-    const heightCm = value('sm-height-unit') === 'in' ? height * 2.54 : height;
-    const weightKg = value('sm-weight-unit') === 'lb' ? weight / LB_PER_KG : weight;
-    const distanceM = value('sm-dist-unit') === 'ft' ? distance * 0.3048 : distance;
+  /* ==========================================================
+     2. SIX-MINUTE WALK — Enright & Sherrill 1998
+     ========================================================== */
+  document.getElementById('sm-btn').addEventListener('click', function () {
+    var age = num('sm-age'), sex = val('sm-sex');
+    var height = num('sm-height'), weight = num('sm-weight'), distance = num('sm-distance');
 
-    if (!validNumber(heightCm,120,230) || !validNumber(weightKg,30,250) || !validNumber(distanceM,10,1200)) return fail('sm');
+    if (isNaN(age) || sex === '' || isNaN(height) || isNaN(weight) || isNaN(distance) ||
+        age < 18 || age > 100) {
+      return fail('sm');
+    }
 
-    const predicted = sex === 'm'
-      ? 7.57 * heightCm - 5.02 * age - 1.76 * weightKg - 309
-      : 2.11 * heightCm - 2.29 * weightKg - 5.78 * age + 667;
+    var heightCm  = (val('sm-height-unit') === 'in') ? height * 2.54 : height;
+    var weightKg  = (val('sm-weight-unit') === 'lb') ? weight / LB_PER_KG : weight;
+    var distanceM = (val('sm-dist-unit')  === 'ft') ? distance * 0.3048 : distance;
 
-    if (!validNumber(predicted,200,900)) return fail('sm');
+    if (heightCm < 120 || heightCm > 230 || weightKg < 30 || weightKg > 250 ||
+        distanceM < 10 || distanceM > 1200) {
+      return fail('sm');
+    }
 
-    const pct = Math.round(distanceM / predicted * 100);
-    const detail = ` Predicted: ${Math.round(predicted)} m; measured: ${Math.round(distanceM)} m.`;
+    var predicted = (sex === 'm')
+      ? (7.57 * heightCm) - (5.02 * age) - (1.76 * weightKg) - 309
+      : (2.11 * heightCm) - (2.29 * weightKg) - (5.78 * age) + 667;
 
-    let cat;
+    if (predicted < 50) predicted = 50;
+
+    var pct = Math.round((distanceM / predicted) * 100);
+    var detail = ' (Predicted: ' + Math.round(predicted) + ' m; you walked ' + Math.round(distanceM) + ' m.)';
+
+    var cat;
     if (pct >= 100) {
-      cat = { label:'At or above this prediction', cls:'cat-strong', text:'Your distance met or exceeded this older reference equation. Protocol and population differences still matter.' + detail };
+      cat = { label: 'Above Predicted', cls: 'cat-strong',
+        text: 'You walked farther than predicted for a healthy adult of your age, sex, and body size \u2014 an excellent sign of functional capacity.' + detail };
     } else if (pct >= 80) {
-      cat = { label:'80â99% of this prediction', cls:'cat-average', text:'Your distance is moderately close to this reference prediction. Track repeated standardized results and interpret them with symptoms and clinical context.' + detail };
+      cat = { label: 'Within Normal Range', cls: 'cat-average',
+        text: 'Your distance is within the normal range (80\u2013100% of predicted). Consistent brisk walking will nudge this upward over the coming months.' + detail };
     } else {
-      cat = { label:'Below 80% of this prediction', cls:'cat-low', text:'Your distance is below 80% of this reference prediction. This may reflect deconditioning, technique, or health limitations and is reasonable to discuss with a clinician, especially when symptoms are present.' + detail };
+      cat = { label: 'Below Predicted', cls: 'cat-low',
+        text: 'Your distance is below 80% of the predicted value, which can reflect deconditioning or an underlying heart, lung, or musculoskeletal issue. This is worth discussing with your physician \u2014 and it is also very responsive to regular walking.' + detail };
     }
 
-    show('sm', pct, cat);
+    showResult('sm', pct, cat);
   });
 
-  document.getElementById('gs-form').addEventListener('submit', event => {
-    event.preventDefault();
+  /* ==========================================================
+     3. GRIP — EWGSOP2 cutoffs
+     ========================================================== */
+  document.getElementById('gs-btn').addEventListener('click', function () {
+    var age = num('gs-age'), sex = val('gs-sex'), grip = num('gs-grip');
 
-    const age = number('gs-age');
-    const sex = value('gs-sex');
-    const grip = number('gs-grip');
+    if (isNaN(age) || sex === '' || isNaN(grip) || age < 18 || age > 100) {
+      return fail('gs');
+    }
 
-    if (!validNumber(age,18,100) || sex === '' || !Number.isFinite(grip)) return fail('gs');
+    var gripKg = (val('gs-unit') === 'lb') ? grip / LB_PER_KG : grip;
+    if (gripKg < 1 || gripKg > 120) return fail('gs');
 
-    const kg = value('gs-unit') === 'lb' ? grip / LB_PER_KG : grip;
-    if (!validNumber(kg,1,120)) return fail('gs');
+    var cutoff = (sex === 'm') ? 27 : 16;
+    var borderline = cutoff + 4;
 
-    const cutoff = sex === 'm' ? 27 : 16;
+    var cat;
+    if (gripKg < cutoff) {
+      cat = { label: 'Low (Below Clinical Cutoff)', cls: 'cat-low',
+        text: 'Your grip strength is below the clinical cutoff used to identify probable sarcopenia (' + cutoff + ' kg for your sex). This is worth discussing with your physician \u2014 and it is highly responsive to resistance training at any age.' };
+    } else if (gripKg < borderline) {
+      cat = { label: 'Borderline', cls: 'cat-average',
+        text: 'Your grip strength is above the clinical cutoff (' + cutoff + ' kg) but approaching it. Now is an excellent moment to make resistance training a twice-weekly habit.' };
+    } else {
+      cat = { label: 'Normal', cls: 'cat-strong',
+        text: 'Your grip strength is comfortably above the clinical cutoff (' + cutoff + ' kg for your sex). Keep training \u2014 strength is maintained, not stored. Re-test every few months to hold your trend.' };
+    }
 
-    const cat = kg < cutoff
-      ? { label:'Below EWGSOP2 low-strength threshold', cls:'cat-low', text:`This result is below the ${cutoff} kg threshold. It can support identification of probable sarcopenia in the appropriate population, but it is not a stand-alone diagnosis. Confirm technique and discuss clinical context.` }
-      : { label:'Above EWGSOP2 low-strength threshold', cls:'cat-strong', text:`This result is above the ${cutoff} kg low-strength threshold. It does not describe your percentile or eliminate other causes of weakness; use consistent repeat testing to monitor change.` };
-
-    show('gs', kg.toFixed(1), cat);
+    showResult('gs', gripKg.toFixed(1), cat);
   });
 
-  document.getElementById('cs-form').addEventListener('submit', event => {
-    event.preventDefault();
+  /* ==========================================================
+     4. CHAIR STAND — CDC STEADI thresholds
+     ========================================================== */
+  document.getElementById('cs-btn').addEventListener('click', function () {
+    var age = num('cs-age'), sex = val('cs-sex'), stands = num('cs-stands');
 
-    const age = number('cs-age');
-    const sex = value('cs-sex');
-    const stands = number('cs-stands');
+    if (isNaN(age) || sex === '' || isNaN(stands) ||
+        age < 18 || age > 100 || stands < 0 || stands > 60) {
+      return fail('cs');
+    }
 
-    if (!validNumber(age,60,94) || sex === '' || !validNumber(stands,0,40) || !Number.isInteger(stands)) return fail('cs');
+    var thresholds = [
+      [64, 14, 12], [69, 12, 11], [74, 12, 10], [79, 11, 10],
+      [84, 10, 9], [89, 8, 8], [120, 7, 4]
+    ];
+    var row = thresholds.filter(function (r) { return age <= r[0]; })[0];
+    var threshold = (sex === 'm') ? row[1] : row[2];
 
-    const thresholds = [[64,14,12],[69,12,11],[74,12,10],[79,11,10],[84,10,9],[89,8,8],[94,7,4]];
-    const row = thresholds.find(r => age <= r[0]);
-    const threshold = sex === 'm' ? row[1] : row[2];
+    var cat;
+    if (stands < threshold) {
+      cat = { label: 'Below Average \u2014 Elevated Fall Risk', cls: 'cat-low',
+        text: 'Your score is below the CDC reference threshold (' + threshold + ' stands) for your age and sex, which indicates elevated fall risk. Please discuss this with your physician. The good news: lower-body strength responds quickly to training.' };
+    } else if (stands < threshold + 3) {
+      cat = { label: 'Average', cls: 'cat-average',
+        text: 'Your score meets the CDC reference threshold (' + threshold + ' stands) for your age and sex. Adding twice-weekly lower-body strength work will build a margin of safety.' };
+    } else {
+      cat = { label: 'Above Average', cls: 'cat-strong',
+        text: 'Your score is comfortably above the CDC reference threshold (' + threshold + ' stands) for your age and sex \u2014 an excellent indicator of lower-body strength and low fall risk.' };
+    }
 
-    const cat = stands < threshold
-      ? { label:'Below age- and sex-specific threshold', cls:'cat-low', text:`The CDC STEADI threshold for this group is ${threshold} stands. A lower score can indicate reduced leg strength or endurance and should be interpreted as part of a broader fall-risk assessment.` }
-      : { label:'At or above threshold', cls:'cat-strong', text:`The CDC STEADI threshold for this group is ${threshold} stands. Your score meets or exceeds it; continue strength and balance work and monitor change over time.` };
+    if (age < 60) {
+      cat.text += ' Note: published reference values begin at age 60, so results for younger adults are an approximation.';
+    }
 
-    show('cs', stands, cat);
+    showResult('cs', Math.round(stands), cat);
   });
 
-  document.querySelectorAll('.newsletter-form-shared').forEach(form => {
-    form.addEventListener('submit', event => {
-      event.preventDefault();
+  /* ==========================================================
+     LEADERBOARD — device-local for now.
+     To go global later: replace loadEntries/saveEntries with
+     fetch() calls to an API and everything else keeps working.
+     ========================================================== */
+  var lbSexFilter = 'all';
+  var lastEntryId = storeGet('tt-lb-last-id') || null;
 
-      const emailInput = form.querySelector('input[type="email"]');
-      const error = form.querySelector('.error-msg');
-      const result = form.querySelector('.result');
+  function loadEntries() {
+    try { return JSON.parse(storeGet('tt-leaderboard') || '[]'); }
+    catch (e) { return []; }
+  }
 
-      if (!emailInput.checkValidity()) {
-        error.classList.add('show');
-        result.classList.remove('show');
-        emailInput.focus();
-        return;
-      }
+  function saveEntries(entries) {
+    storeSet('tt-leaderboard', JSON.stringify(entries));
+  }
 
-      error.classList.remove('show');
-      result.classList.add('show');
-      form.reset();
+  function ageBand(age) {
+    if (age < 30) return '18-29';
+    if (age < 40) return '30-39';
+    if (age < 50) return '40-49';
+    if (age < 60) return '50-59';
+    if (age < 70) return '60-69';
+    return '70+';
+  }
+
+  function renderLeaderboard() {
+    var band = document.getElementById('lb-ageband').value;
+    var entries = loadEntries().filter(function (e) {
+      if (lbSexFilter !== 'all' && e.sex !== lbSexFilter) return false;
+      if (band !== 'all' && ageBand(e.age) !== band) return false;
+      return true;
+    });
+
+    entries.sort(function (a, b) { return b.vo2 - a.vo2; });
+
+    var body = document.getElementById('lb-body');
+    body.innerHTML = '';
+    document.getElementById('lb-empty').style.display = entries.length ? 'none' : 'block';
+
+    entries.forEach(function (e, i) {
+      var tr = document.createElement('tr');
+      if (e.id === lastEntryId) tr.className = 'me';
+
+      var medal = i === 0 ? ' \uD83E\uDD47' : i === 1 ? ' \uD83E\uDD48' : i === 2 ? ' \uD83E\uDD49' : '';
+
+      var cells = [
+        ['rank', '#' + (i + 1) + medal],
+        ['', e.name],
+        ['', String(e.age)],
+        ['', e.sex === 'm' ? 'M' : 'F'],
+        ['vo2', e.vo2.toFixed(1)]
+      ];
+
+      cells.forEach(function (c) {
+        var td = document.createElement('td');
+        if (c[0]) td.className = c[0];
+        td.textContent = c[1];
+        tr.appendChild(td);
+      });
+
+      // Delete own entries (local storage, so all entries are "yours")
+      var tdDel = document.createElement('td');
+      var del = document.createElement('button');
+      del.textContent = '\u00D7';
+      del.setAttribute('aria-label', 'Remove entry');
+      del.style.cssText = 'border:none;background:none;color:#A8552F;font-size:18px;cursor:pointer;';
+      del.addEventListener('click', function () {
+        saveEntries(loadEntries().filter(function (x) { return x.id !== e.id; }));
+        renderLeaderboard();
+      });
+      tdDel.appendChild(del);
+      tr.appendChild(tdDel);
+
+      body.appendChild(tr);
+    });
+  }
+
+  document.querySelectorAll('[data-lbsex]').forEach(function (b) {
+    b.addEventListener('click', function () {
+      lbSexFilter = b.getAttribute('data-lbsex');
+      document.querySelectorAll('[data-lbsex]').forEach(function (x) { x.classList.remove('active'); });
+      b.classList.add('active');
+      renderLeaderboard();
     });
   });
+
+  document.getElementById('lb-ageband').addEventListener('change', renderLeaderboard);
+
+  document.getElementById('lb-add').addEventListener('click', function () {
+    var name = document.getElementById('lb-name').value.trim();
+    var age = num('lb-age'), sex = val('lb-sex'), vo2 = num('lb-vo2');
+    var err = document.getElementById('lb-error');
+
+    if (!name || name.length > 20 || isNaN(age) || age < 18 || age > 100 ||
+        sex === '' || isNaN(vo2) || vo2 < 5 || vo2 > 95) {
+      err.classList.add('show');
+      return;
+    }
+    err.classList.remove('show');
+
+    var entries = loadEntries();
+    var entry = {
+      id: 'e' + Date.now() + Math.floor(Math.random() * 1000),
+      name: name, age: Math.round(age), sex: sex, vo2: Math.round(vo2 * 10) / 10,
+      ts: Date.now()
+    };
+    entries.push(entry);
+    saveEntries(entries);
+    lastEntryId = entry.id;
+    storeSet('tt-lb-last-id', entry.id);
+
+    document.getElementById('lb-name').value = '';
+    document.getElementById('lb-age').value = '';
+    document.getElementById('lb-sex').value = '';
+    document.getElementById('lb-vo2').value = '';
+    renderLeaderboard();
+    document.querySelector('.lb-table-wrap').scrollIntoView({ behavior: 'smooth', block: 'center' });
+  });
+
+  /* ---------- Boot ---------- */
+  initTrivia();
+  showPage();
+
 })();
 </script>
+
 </body>
 </html>
