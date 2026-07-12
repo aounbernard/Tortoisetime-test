@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#243428">
+
   <title>Tortoise Time | Move Daily. Live Longer.</title>
   <meta name="description" content="A physician-led public health platform helping people build fitness, function, and longevity through sustainable, evidence-informed daily habits.">
   <meta property="og:title" content="Tortoise Time | Move Daily. Live Longer.">
@@ -11,6 +12,7 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://tortoisetime.com/">
   <link rel="canonical" href="https://tortoisetime.com/">
+
   <style>
     :root {
       --cream: #f7f3e9;
@@ -34,7 +36,9 @@
     }
 
     * { box-sizing: border-box; }
+
     html { scroll-behavior: smooth; }
+
     body {
       margin: 0;
       background: var(--cream);
@@ -44,7 +48,9 @@
       line-height: 1.65;
       text-rendering: optimizeLegibility;
     }
+
     body.menu-open { overflow: hidden; }
+
     a { color: inherit; }
     img, svg { max-width: 100%; }
     button, input, select { font: inherit; }
@@ -62,6 +68,7 @@
       font-family: var(--sans);
       text-decoration: none;
     }
+
     .skip-link:focus { top: 16px; }
 
     :focus-visible {
@@ -70,10 +77,20 @@
       border-radius: 4px;
     }
 
-    .wrap { width: min(var(--max), calc(100% - 40px)); margin-inline: auto; }
+    .wrap {
+      width: min(var(--max), calc(100% - 40px));
+      margin-inline: auto;
+    }
+
     .page { display: none; }
-    .page.active { display: block; animation: fade .22s ease-out; }
-    @keyframes fade { from { opacity: .4; transform: translateY(4px); } }
+    .page.active {
+      display: block;
+      animation: fade .22s ease-out;
+    }
+
+    @keyframes fade {
+      from { opacity: .4; transform: translateY(4px); }
+    }
 
     .eyebrow {
       margin: 0;
@@ -85,6 +102,10 @@
       text-transform: uppercase;
     }
 
+    /* =========================
+       Header + Logo
+       ========================= */
+
     .site-header {
       position: sticky;
       top: 0;
@@ -93,58 +114,76 @@
       background: rgba(247, 243, 233, .94);
       backdrop-filter: blur(14px);
     }
+
     .nav-inner {
-      min-height: 72px;
+      min-height: 76px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 24px;
     }
+
     .brand {
       display: inline-flex;
       align-items: center;
-      gap: 10px;
-      font-size: 1.2rem;
-      font-weight: 800;
+      gap: 12px;
+      color: var(--pine);
       text-decoration: none;
     }
-    .brand-mark {
-      width: 34px;
-      height: 24px;
-      position: relative;
-      display: inline-block;
-    }
-    .brand-mark::before {
-      content: "";
-      position: absolute;
-      inset: 2px 5px 4px 1px;
-      border: 2px solid var(--sage);
-      border-radius: 50% 55% 45% 50%;
-      transform: rotate(-4deg);
-    }
-    .brand-mark::after {
-      content: "";
-      position: absolute;
-      right: 0;
-      top: 8px;
-      width: 8px;
-      height: 7px;
-      border: 2px solid var(--sage);
-      border-left: 0;
-      border-radius: 0 60% 60% 0;
-    }
-    .brand span:last-child { color: var(--sage); }
 
-    .nav-links { display: flex; align-items: center; gap: 28px; font-family: var(--sans); }
+    .brand-logo {
+      width: 48px;
+      height: 48px;
+      flex: 0 0 48px;
+    }
+
+    .brand-wordmark {
+      display: flex;
+      flex-direction: column;
+      line-height: 1;
+    }
+
+    .brand-title {
+      font-family: var(--serif);
+      font-size: 1.34rem;
+      font-weight: 800;
+      letter-spacing: -.02em;
+    }
+
+    .brand-title span { color: var(--sage); }
+
+    .brand-subtitle {
+      margin-top: 5px;
+      color: var(--muted);
+      font-family: var(--sans);
+      font-size: .66rem;
+      font-weight: 800;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 25px;
+      font-family: var(--sans);
+    }
+
     .nav-links a {
-      padding: 22px 0 18px;
+      padding: 24px 0 20px;
       border-bottom: 3px solid transparent;
       color: var(--muted);
-      font-size: .9rem;
-      font-weight: 650;
+      font-size: .88rem;
+      font-weight: 700;
       text-decoration: none;
     }
-    .nav-links a:hover, .nav-links a.active { color: var(--pine); border-bottom-color: var(--amber); }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--pine);
+      border-bottom-color: var(--amber);
+    }
+
     .menu-button {
       display: none;
       border: 1px solid var(--border);
@@ -153,48 +192,21 @@
       color: var(--pine);
       padding: 9px 12px;
       font-family: var(--sans);
-      font-weight: 700;
+      font-weight: 800;
       cursor: pointer;
     }
 
-    .hero { padding: clamp(72px, 11vw, 126px) 0 82px; position: relative; overflow: hidden; }
-    .hero::after {
-      content: "";
-      position: absolute;
-      width: 480px;
-      height: 480px;
-      right: -210px;
-      top: -210px;
-      border: 1px solid rgba(116, 133, 108, .28);
-      border-radius: 50%;
-      box-shadow: 0 0 0 60px rgba(116, 133, 108, .035), 0 0 0 130px rgba(116, 133, 108, .025);
-      pointer-events: none;
-    }
-    .hero-grid { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(280px, .65fr); gap: 72px; align-items: center; }
-    .hero h1 {
-      max-width: 760px;
-      margin: 18px 0 24px;
-      font-size: clamp(3rem, 7vw, 5.6rem);
-      line-height: .98;
-      letter-spacing: -.045em;
-    }
-    .hero h1 em { color: var(--sage); font-weight: 500; }
-    .hero .lede { max-width: 680px; margin: 0; color: var(--muted); font-size: clamp(1.1rem, 2vw, 1.28rem); }
-    .hero-card {
-      position: relative;
-      padding: 32px;
-      border: 1px solid var(--border);
-      border-radius: 28px;
-      background: rgba(255, 253, 248, .82);
-      box-shadow: var(--shadow);
-    }
-    .hero-card strong { display: block; font-size: 1.4rem; margin-bottom: 8px; }
-    .hero-card p { color: var(--muted); margin: 0 0 22px; }
-    .metric { display: flex; justify-content: space-between; gap: 14px; padding: 14px 0; border-top: 1px solid var(--border); font-family: var(--sans); font-size: .88rem; }
-    .metric span:first-child { color: var(--muted); }
-    .metric span:last-child { font-weight: 800; }
+    /* =========================
+       Buttons
+       ========================= */
 
-    .cta-row { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 34px; }
+    .cta-row {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 34px;
+    }
+
     .btn {
       display: inline-flex;
       align-items: center;
@@ -211,39 +223,234 @@
       cursor: pointer;
       transition: transform .16s ease, background .16s ease, box-shadow .16s ease;
     }
+
     .btn:hover { transform: translateY(-1px); }
-    .btn-primary { background: var(--pine); color: #fff; box-shadow: 0 10px 22px rgba(36, 52, 40, .16); }
+
+    .btn-primary {
+      background: var(--pine);
+      color: #fff;
+      box-shadow: 0 10px 22px rgba(36, 52, 40, .16);
+    }
+
     .btn-primary:hover { background: var(--pine-2); }
-    .btn-secondary { border-color: var(--sage); background: transparent; color: var(--pine); }
+
+    .btn-secondary {
+      border-color: var(--sage);
+      background: transparent;
+      color: var(--pine);
+    }
+
     .btn-secondary:hover { background: var(--sage-soft); }
+
+    /* =========================
+       Hero
+       ========================= */
+
+    .hero {
+      padding: clamp(72px, 11vw, 126px) 0 82px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 480px;
+      height: 480px;
+      right: -210px;
+      top: -210px;
+      border: 1px solid rgba(116, 133, 108, .28);
+      border-radius: 50%;
+      box-shadow: 0 0 0 60px rgba(116, 133, 108, .035),
+                  0 0 0 130px rgba(116, 133, 108, .025);
+      pointer-events: none;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(280px, .65fr);
+      gap: 72px;
+      align-items: center;
+    }
+
+    .hero h1 {
+      max-width: 760px;
+      margin: 18px 0 24px;
+      font-size: clamp(3rem, 7vw, 5.6rem);
+      line-height: .98;
+      letter-spacing: -.045em;
+    }
+
+    .hero h1 em {
+      color: var(--sage);
+      font-weight: 500;
+    }
+
+    .hero .lede {
+      max-width: 680px;
+      margin: 0;
+      color: var(--muted);
+      font-size: clamp(1.1rem, 2vw, 1.28rem);
+    }
+
+    .hero-card {
+      position: relative;
+      padding: 32px;
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      background: rgba(255, 253, 248, .82);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-card strong {
+      display: block;
+      font-size: 1.4rem;
+      margin-bottom: 8px;
+    }
+
+    .hero-card p {
+      color: var(--muted);
+      margin: 0 0 22px;
+    }
+
+    .metric {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 14px 0;
+      border-top: 1px solid var(--border);
+      font-family: var(--sans);
+      font-size: .88rem;
+    }
+
+    .metric span:first-child { color: var(--muted); }
+    .metric span:last-child { font-weight: 800; }
+
+    /* =========================
+       Sections
+       ========================= */
 
     .section { padding: 92px 0; }
     .section.tinted { background: var(--sage-soft); }
-    .section h2, .page-head h1 { margin: 14px 0 24px; line-height: 1.12; letter-spacing: -.025em; }
-    .section h2 { font-size: clamp(2rem, 4vw, 3.2rem); }
-    .section-intro { max-width: 680px; color: var(--muted); font-size: 1.08rem; }
 
-    .philosophy { padding: 94px 0; background: var(--pine); color: var(--cream); }
+    .section h2,
+    .page-head h1 {
+      margin: 14px 0 24px;
+      line-height: 1.12;
+      letter-spacing: -.025em;
+    }
+
+    .section h2 {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+    }
+
+    .section-intro {
+      max-width: 680px;
+      color: var(--muted);
+      font-size: 1.08rem;
+    }
+
+    .philosophy {
+      padding: 94px 0;
+      background: var(--pine);
+      color: var(--cream);
+    }
+
     .philosophy .eyebrow { color: #e4b565; }
-    .philosophy-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; }
-    .philosophy h2 { margin: 14px 0 22px; font-size: clamp(2rem, 4vw, 3.25rem); line-height: 1.08; }
+
+    .philosophy-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 72px;
+      align-items: center;
+    }
+
+    .philosophy h2 {
+      margin: 14px 0 22px;
+      font-size: clamp(2rem, 4vw, 3.25rem);
+      line-height: 1.08;
+    }
+
     .philosophy p { color: #cad3c7; }
-    .philosophy blockquote { margin: 28px 0 0; color: #edbd6c; font-size: 1.3rem; font-style: italic; }
-    .curve-box { padding: 24px; border: 1px solid rgba(255,255,255,.1); border-radius: 22px; background: rgba(255,255,255,.035); }
-    .curve-path { fill: none; stroke: #dca650; stroke-width: 4; stroke-linecap: round; stroke-dasharray: 900; stroke-dashoffset: 900; animation: draw 2.8s ease-out .25s forwards; }
-    .curve-base { stroke: #617164; stroke-dasharray: 5 7; }
-    .curve-label { fill: #aebbac; font: 700 12px var(--sans); letter-spacing: .09em; }
+
+    .philosophy blockquote {
+      margin: 28px 0 0;
+      color: #edbd6c;
+      font-size: 1.3rem;
+      font-style: italic;
+    }
+
+    .curve-box {
+      padding: 24px;
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 22px;
+      background: rgba(255,255,255,.035);
+    }
+
+    .curve-path {
+      fill: none;
+      stroke: #dca650;
+      stroke-width: 4;
+      stroke-linecap: round;
+      stroke-dasharray: 900;
+      stroke-dashoffset: 900;
+      animation: draw 2.8s ease-out .25s forwards;
+    }
+
+    .curve-base {
+      stroke: #617164;
+      stroke-dasharray: 5 7;
+    }
+
+    .curve-label {
+      fill: #aebbac;
+      font: 700 12px var(--sans);
+      letter-spacing: .09em;
+    }
+
     @keyframes draw { to { stroke-dashoffset: 0; } }
 
-    .principles { list-style: none; max-width: 760px; padding: 0; margin: 44px 0 0; }
-    .principles li { display: grid; grid-template-columns: minmax(190px, 1fr) auto minmax(190px, 1fr); align-items: baseline; gap: 18px; padding: 20px 0; border-top: 1px solid var(--border); }
+    .principles {
+      list-style: none;
+      max-width: 760px;
+      padding: 0;
+      margin: 44px 0 0;
+    }
+
+    .principles li {
+      display: grid;
+      grid-template-columns: minmax(190px, 1fr) auto minmax(190px, 1fr);
+      align-items: baseline;
+      gap: 18px;
+      padding: 20px 0;
+      border-top: 1px solid var(--border);
+    }
+
     .principles li:last-child { border-bottom: 1px solid var(--border); }
     .principles strong { font-size: 1.18rem; }
-    .principles small { color: var(--amber-dark); font: 800 .68rem var(--sans); letter-spacing: .13em; text-transform: uppercase; }
+
+    .principles small {
+      color: var(--amber-dark);
+      font: 800 .68rem var(--sans);
+      letter-spacing: .13em;
+      text-transform: uppercase;
+    }
+
     .principles em { color: var(--muted); }
 
-    .card-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 22px; margin-top: 40px; }
-    .card, .card-link {
+    /* =========================
+       Cards
+       ========================= */
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 22px;
+      margin-top: 40px;
+    }
+
+    .card,
+    .card-link {
       grid-column: span 4;
       min-height: 240px;
       padding: 30px;
@@ -252,30 +459,228 @@
       background: var(--paper);
       box-shadow: 0 1px 0 rgba(36,52,40,.02);
     }
-    .card-link { display: flex; flex-direction: column; color: var(--pine); text-decoration: none; transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease; }
-    .card-link:hover { transform: translateY(-4px); border-color: var(--sage); box-shadow: var(--shadow); }
-    .card h3, .card-link h3 { margin: 8px 0 10px; font-size: 1.28rem; line-height: 1.2; }
-    .card p, .card-link p { color: var(--muted); font-size: .96rem; }
-    .card-link .go { margin-top: auto; padding-top: 16px; color: var(--amber-dark); font: 800 .78rem var(--sans); letter-spacing: .05em; }
-    .tag { color: var(--sage); font: 800 .68rem var(--sans); letter-spacing: .12em; text-transform: uppercase; }
-    .pillars .card:nth-child(4), .pillars .card:nth-child(5) { grid-column: span 6; }
 
-    .challenge-band { padding: 72px 0; background: #e8d8b7; }
-    .challenge-grid { display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: center; }
-    .challenge-band h2 { margin: 8px 0 10px; font-size: clamp(1.8rem, 4vw, 2.8rem); }
-    .challenge-band p { max-width: 700px; margin: 0; color: #5c4d36; }
+    .card-link {
+      display: flex;
+      flex-direction: column;
+      color: var(--pine);
+      text-decoration: none;
+      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+    }
+
+    .card-link:hover {
+      transform: translateY(-4px);
+      border-color: var(--sage);
+      box-shadow: var(--shadow);
+    }
+
+    .card h3,
+    .card-link h3 {
+      margin: 8px 0 10px;
+      font-size: 1.28rem;
+      line-height: 1.2;
+    }
+
+    .card p,
+    .card-link p {
+      color: var(--muted);
+      font-size: .96rem;
+    }
+
+    .card-link .go {
+      margin-top: auto;
+      padding-top: 16px;
+      color: var(--amber-dark);
+      font: 800 .78rem var(--sans);
+      letter-spacing: .05em;
+    }
+
+    .tag {
+      color: var(--sage);
+      font: 800 .68rem var(--sans);
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .pillars .card:nth-child(4),
+    .pillars .card:nth-child(5) {
+      grid-column: span 6;
+    }
+
+    /* =========================
+       Walking challenge
+       ========================= */
+
+    .challenge-band {
+      padding: 72px 0;
+      background: #e8d8b7;
+    }
+
+    .challenge-grid {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .challenge-band h2 {
+      margin: 8px 0 10px;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+    }
+
+    .challenge-band p {
+      max-width: 700px;
+      margin: 0;
+      color: #5c4d36;
+    }
+
+    /* =========================
+       Newsletter
+       ========================= */
+
+    .newsletter {
+      padding: 90px 0;
+      background: var(--paper);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .newsletter-box {
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 46px;
+      align-items: center;
+      padding: 44px;
+      border: 1px solid var(--border);
+      border-radius: 26px;
+      background:
+        radial-gradient(circle at top left, rgba(189,135,50,.12), transparent 34%),
+        linear-gradient(135deg, var(--cream), #fffaf0);
+      box-shadow: var(--shadow);
+    }
+
+    .newsletter h2 {
+      margin: 12px 0 16px;
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.08;
+      letter-spacing: -.025em;
+    }
+
+    .newsletter p {
+      color: var(--muted);
+      margin: 0 0 18px;
+    }
+
+    .newsletter-points {
+      list-style: none;
+      padding: 0;
+      margin: 24px 0 0;
+      font-family: var(--sans);
+      font-size: .92rem;
+      color: var(--muted);
+    }
+
+    .newsletter-points li {
+      padding: 9px 0;
+      border-top: 1px solid rgba(216, 222, 207, .85);
+    }
+
+    .newsletter-points li::before {
+      content: "â";
+      color: var(--amber-dark);
+      font-weight: 900;
+      margin-right: 9px;
+    }
+
+    .newsletter-form {
+      padding: 30px;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      background: var(--paper);
+      box-shadow: 0 10px 28px rgba(36, 52, 40, .06);
+    }
+
+    .newsletter-form h3 {
+      margin: 0 0 10px;
+      font-size: 1.35rem;
+    }
+
+    .newsletter-form p {
+      font-size: .92rem;
+      margin-bottom: 20px;
+    }
+
+    .newsletter-form .field {
+      margin-bottom: 14px;
+    }
+
+    .newsletter-form .btn {
+      width: 100%;
+      margin-top: 4px;
+    }
+
+    .newsletter-privacy {
+      margin-top: 14px !important;
+      font: .74rem/1.5 var(--sans);
+      color: var(--sage) !important;
+    }
+
+    /* =========================
+       Inner pages and calculators
+       ========================= */
 
     .page-head { padding: 74px 0 44px; }
-    .page-head h1 { font-size: clamp(2.5rem, 6vw, 4.5rem); }
-    .page-head .lede { max-width: 730px; color: var(--muted); font-size: 1.14rem; }
 
-    .calc-layout { display: grid; grid-template-columns: minmax(0, .92fr) minmax(0, 1.08fr); gap: 54px; align-items: start; padding-bottom: 92px; }
-    .calc-form { padding: 32px; border: 1px solid var(--border); border-radius: 18px; background: var(--paper); box-shadow: var(--shadow); }
-    .calc-form h2, .calc-info h2 { margin: 0 0 22px; font-size: 1.5rem; }
+    .page-head h1 {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+    }
+
+    .page-head .lede {
+      max-width: 730px;
+      color: var(--muted);
+      font-size: 1.14rem;
+    }
+
+    .calc-layout {
+      display: grid;
+      grid-template-columns: minmax(0, .92fr) minmax(0, 1.08fr);
+      gap: 54px;
+      align-items: start;
+      padding-bottom: 92px;
+    }
+
+    .calc-form {
+      padding: 32px;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: var(--paper);
+      box-shadow: var(--shadow);
+    }
+
+    .calc-form h2,
+    .calc-info h2 {
+      margin: 0 0 22px;
+      font-size: 1.5rem;
+    }
+
     .field { margin-bottom: 18px; }
-    .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-    label { display: block; margin-bottom: 6px; color: #4f5b50; font: 750 .8rem var(--sans); letter-spacing: .025em; }
-    input, select {
+
+    .field-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      color: #4f5b50;
+      font: 750 .8rem var(--sans);
+      letter-spacing: .025em;
+    }
+
+    input,
+    select {
       width: 100%;
       min-height: 48px;
       padding: 10px 12px;
@@ -286,58 +691,211 @@
       font-family: var(--sans);
       font-size: 1rem;
     }
-    input:focus, select:focus { border-color: var(--sage); outline: 3px solid rgba(116,133,108,.18); }
-    .hint { margin: 5px 0 0; color: var(--sage); font: .75rem/1.45 var(--sans); }
+
+    input:focus,
+    select:focus {
+      border-color: var(--sage);
+      outline: 3px solid rgba(116,133,108,.18);
+    }
+
+    .hint {
+      margin: 5px 0 0;
+      color: var(--sage);
+      font: .75rem/1.45 var(--sans);
+    }
+
     .calc-form .btn { width: 100%; margin-top: 6px; }
-    .error-msg { display: none; margin: 12px 0 0; color: var(--danger); font: 750 .85rem var(--sans); }
+
+    .error-msg {
+      display: none;
+      margin: 12px 0 0;
+      color: var(--danger);
+      font: 750 .85rem var(--sans);
+    }
+
     .error-msg.show { display: block; }
-    .result { display: none; margin-top: 24px; padding: 24px; border: 1px solid var(--border); border-radius: 13px; background: var(--sage-soft); }
+
+    .result {
+      display: none;
+      margin-top: 24px;
+      padding: 24px;
+      border: 1px solid var(--border);
+      border-radius: 13px;
+      background: var(--sage-soft);
+    }
+
     .result.show { display: block; }
-    .result .big { font-size: 2.4rem; font-weight: 800; line-height: 1.05; }
-    .result .big small { color: var(--muted); font-size: .95rem; font-weight: 400; }
-    .result .category { margin-top: 8px; font: 850 .75rem var(--sans); letter-spacing: .08em; text-transform: uppercase; }
-    .result .interpretation { margin: 12px 0 0; color: var(--muted); font-size: .95rem; }
+
+    .result .big {
+      font-size: 2.4rem;
+      font-weight: 800;
+      line-height: 1.05;
+    }
+
+    .result .big small {
+      color: var(--muted);
+      font-size: .95rem;
+      font-weight: 400;
+    }
+
+    .result .category {
+      margin-top: 8px;
+      font: 850 .75rem var(--sans);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .result .interpretation {
+      margin: 12px 0 0;
+      color: var(--muted);
+      font-size: .95rem;
+    }
+
     .cat-strong { color: var(--success); }
     .cat-average { color: var(--amber-dark); }
     .cat-low { color: var(--danger); }
-    .calc-info h3 { margin: 28px 0 8px; font-size: 1.12rem; }
-    .calc-info p, .calc-info li { color: var(--muted); font-size: .96rem; }
+
+    .calc-info h3 {
+      margin: 28px 0 8px;
+      font-size: 1.12rem;
+    }
+
+    .calc-info p,
+    .calc-info li {
+      color: var(--muted);
+      font-size: .96rem;
+    }
+
     .calc-info li { margin-bottom: 7px; }
-    .calc-info ol, .calc-info ul { padding-left: 22px; }
-    .safety-note, .evidence-note { margin-top: 26px; padding: 18px 20px; border-left: 4px solid var(--amber); background: var(--paper); color: var(--muted); font: .84rem/1.6 var(--sans); }
+    .calc-info ol,
+    .calc-info ul { padding-left: 22px; }
+
+    .safety-note,
+    .evidence-note {
+      margin-top: 26px;
+      padding: 18px 20px;
+      border-left: 4px solid var(--amber);
+      background: var(--paper);
+      color: var(--muted);
+      font: .84rem/1.6 var(--sans);
+    }
+
     .safety-note { border-left-color: var(--danger); }
     .evidence-note a { color: var(--pine); font-weight: 750; }
 
-    .prose { max-width: 760px; padding-bottom: 90px; }
-    .prose h2 { margin: 42px 0 12px; font-size: 1.65rem; }
+    .prose {
+      max-width: 760px;
+      padding-bottom: 90px;
+    }
+
+    .prose h2 {
+      margin: 42px 0 12px;
+      font-size: 1.65rem;
+    }
+
     .prose p { color: var(--muted); }
     .prose .lead { color: var(--pine); font-size: 1.18rem; }
     .prose .closing { color: var(--pine); font-size: 1.18rem; font-style: italic; }
 
-    .vision { padding: 92px 0; text-align: center; border-top: 1px solid var(--border); }
-    .vision p { max-width: 700px; margin: 16px auto 0; color: var(--muted); }
-    .vision .closing { color: var(--pine); font-size: clamp(1.35rem, 3vw, 1.9rem); font-style: italic; }
+    .vision {
+      padding: 92px 0;
+      text-align: center;
+      border-top: 1px solid var(--border);
+    }
 
-    footer { padding: 52px 0; background: var(--pine); color: #c9d2c6; text-align: center; }
-    footer .motto { margin: 0 0 12px; color: #e5b463; font-size: 1.18rem; font-style: italic; }
-    footer nav { position: static; border: 0; background: transparent; backdrop-filter: none; }
-    .foot-links { margin: 15px 0; font: .8rem var(--sans); }
-    .foot-links a { margin: 0 9px; text-decoration: none; }
+    .vision p {
+      max-width: 700px;
+      margin: 16px auto 0;
+      color: var(--muted);
+    }
+
+    .vision .closing {
+      color: var(--pine);
+      font-size: clamp(1.35rem, 3vw, 1.9rem);
+      font-style: italic;
+    }
+
+    footer {
+      padding: 52px 0;
+      background: var(--pine);
+      color: #c9d2c6;
+      text-align: center;
+    }
+
+    footer .motto {
+      margin: 0 0 12px;
+      color: #e5b463;
+      font-size: 1.18rem;
+      font-style: italic;
+    }
+
+    footer nav {
+      position: static;
+      border: 0;
+      background: transparent;
+      backdrop-filter: none;
+    }
+
+    .foot-links {
+      margin: 15px 0;
+      font: .8rem var(--sans);
+    }
+
+    .foot-links a {
+      margin: 0 9px;
+      text-decoration: none;
+    }
+
     .foot-links a:hover { text-decoration: underline; }
-    .disclaimer { max-width: 680px; margin: 20px auto 0; color: #93a08f; font: .74rem/1.55 var(--sans); }
+
+    .disclaimer {
+      max-width: 680px;
+      margin: 20px auto 0;
+      color: #93a08f;
+      font: .74rem/1.55 var(--sans);
+    }
+
+    /* =========================
+       Responsive
+       ========================= */
 
     @media (max-width: 900px) {
-      .hero-grid, .philosophy-grid, .calc-layout { grid-template-columns: 1fr; gap: 42px; }
+      .hero-grid,
+      .philosophy-grid,
+      .calc-layout,
+      .newsletter-box {
+        grid-template-columns: 1fr;
+        gap: 42px;
+      }
+
       .hero-card { max-width: 580px; }
-      .card, .card-link, .pillars .card:nth-child(4), .pillars .card:nth-child(5) { grid-column: span 6; }
+
+      .card,
+      .card-link,
+      .pillars .card:nth-child(4),
+      .pillars .card:nth-child(5) {
+        grid-column: span 6;
+      }
     }
+
     @media (max-width: 700px) {
       .wrap { width: min(100% - 28px, var(--max)); }
+
+      .brand-logo {
+        width: 42px;
+        height: 42px;
+        flex-basis: 42px;
+      }
+
+      .brand-title { font-size: 1.14rem; }
+      .brand-subtitle { display: none; }
+
       .menu-button { display: inline-flex; }
+
       .nav-links {
         display: none;
         position: fixed;
-        inset: 72px 0 auto;
+        inset: 76px 0 auto;
         flex-direction: column;
         align-items: stretch;
         gap: 0;
@@ -346,44 +904,85 @@
         background: var(--cream);
         box-shadow: 0 20px 30px rgba(36,52,40,.1);
       }
+
       .nav-links.open { display: flex; }
       .nav-links a { padding: 14px 4px; }
+
       .hero { padding-top: 64px; }
       .hero h1 { font-size: clamp(3.2rem, 16vw, 4.7rem); }
-      .card, .card-link, .pillars .card:nth-child(4), .pillars .card:nth-child(5) { grid-column: 1 / -1; }
+
+      .card,
+      .card-link,
+      .pillars .card:nth-child(4),
+      .pillars .card:nth-child(5) {
+        grid-column: 1 / -1;
+      }
+
       .principles li { grid-template-columns: 1fr; gap: 3px; }
       .field-row { grid-template-columns: 1fr; }
       .challenge-grid { grid-template-columns: 1fr; }
       .challenge-grid .btn { justify-self: start; }
-      .calc-form { padding: 24px 18px; }
+      .calc-form,
+      .newsletter-form { padding: 24px 18px; }
+      .newsletter-box { padding: 30px 22px; }
     }
+
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
-      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+      }
+
       .curve-path { stroke-dashoffset: 0; }
     }
   </style>
 </head>
+
 <body>
 <a class="skip-link" href="#main">Skip to main content</a>
 
 <header class="site-header">
   <div class="wrap nav-inner">
     <a class="brand" href="#home" aria-label="Tortoise Time home">
-      <span class="brand-mark" aria-hidden="true"></span>
-      <span>Tortoise<span>Time</span></span>
+      <svg class="brand-logo" viewBox="0 0 120 120" role="img" aria-labelledby="logo-title logo-desc">
+        <title id="logo-title">Tortoise Time logo</title>
+        <desc id="logo-desc">A stylized tortoise walking inside a circular mark.</desc>
+        <circle cx="60" cy="60" r="55" fill="#fffdf8" stroke="#74856c" stroke-width="5"/>
+        <path d="M28 68c3-21 20-36 43-36 20 0 35 13 38 32-7 15-20 24-40 24-18 0-33-7-41-20Z" fill="#e7ebdf" stroke="#243428" stroke-width="5" stroke-linejoin="round"/>
+        <path d="M95 58c10-2 18 3 20 11-7 5-15 5-22 0" fill="#e7ebdf" stroke="#243428" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="108" cy="64" r="2.8" fill="#243428"/>
+        <path d="M45 40c4 14 7 28 6 43M68 33c-1 17 0 35 3 53M88 43c-7 12-14 25-22 39" fill="none" stroke="#74856c" stroke-width="3.5" stroke-linecap="round"/>
+        <path d="M39 84l-9 12M58 88l-4 13M82 87l9 12" fill="none" stroke="#243428" stroke-width="5" stroke-linecap="round"/>
+        <path d="M23 67c-8 2-14 0-18-5 6-5 13-6 21-2" fill="#e7ebdf" stroke="#243428" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="brand-wordmark">
+        <span class="brand-title">Tortoise<span>Time</span></span>
+        <span class="brand-subtitle">Move daily. Live longer.</span>
+      </span>
     </a>
+
     <button class="menu-button" id="menu-button" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+
     <nav class="nav-links" id="site-nav" aria-label="Primary navigation">
       <a href="#home" data-nav="home">Home</a>
       <a href="#assessments" data-nav="assessments">Assessments</a>
       <a href="#challenge" data-nav="challenge">Walking Challenge</a>
+      <a href="#newsletter" data-nav="newsletter">Newsletter</a>
       <a href="#about" data-nav="about">About</a>
     </nav>
   </div>
 </header>
 
 <main id="main" tabindex="-1">
+
+  <!-- =========================
+       HOME
+       ========================= -->
   <section class="page" id="page-home" data-title="Tortoise Time | Move Daily. Live Longer.">
     <header class="hero">
       <div class="wrap hero-grid">
@@ -392,14 +991,15 @@
           <h1>Move daily.<br><em>Live longer.</em></h1>
           <p class="lede">Tortoise Time helps people build fitness, function, and longevity through small, evidence-informed habits that are realistic enough to sustain for life.</p>
           <div class="cta-row">
-            <a class="btn btn-primary" href="#assessments">Measure your fitness <span aria-hidden="true">→</span></a>
-            <a class="btn btn-secondary" href="#challenge">Join the walking challenge</a>
+            <a class="btn btn-primary" href="#assessments">Measure your fitness <span aria-hidden="true">â</span></a>
+            <a class="btn btn-secondary" href="#newsletter">Join the newsletter</a>
           </div>
         </div>
+
         <aside class="hero-card" aria-label="Tortoise Time approach">
           <strong>Start with a baseline.</strong>
           <p>Measure a few practical indicators, choose one modest action, and repeat it long enough to see the trend.</p>
-          <div class="metric"><span>Measure</span><span>Every 8–12 weeks</span></div>
+          <div class="metric"><span>Measure</span><span>Every 8â12 weeks</span></div>
           <div class="metric"><span>Move</span><span>Most days</span></div>
           <div class="metric"><span>Progress</span><span>Gradually</span></div>
         </aside>
@@ -415,6 +1015,7 @@
           <p>The objective is not perfection or punishment. It is a steady pattern of walking, aerobic fitness, strength, preventive care, and periodic measurement.</p>
           <blockquote>Compound your health.</blockquote>
         </div>
+
         <figure class="curve-box" aria-labelledby="curve-title curve-desc">
           <svg viewBox="0 0 460 310" role="img">
             <title id="curve-title">Health benefits accumulating over time</title>
@@ -448,11 +1049,11 @@
         <p class="eyebrow">The pillars</p>
         <h2>Five foundations of healthy longevity</h2>
         <div class="card-grid">
-          <article class="card"><span class="tag">01</span><h3>Cardiorespiratory fitness</h3><p>Walking and aerobic activity that improve endurance and the body’s ability to use oxygen.</p></article>
+          <article class="card"><span class="tag">01</span><h3>Cardiorespiratory fitness</h3><p>Walking and aerobic activity that improve endurance and the bodyâs ability to use oxygen.</p></article>
           <article class="card"><span class="tag">02</span><h3>Strength and function</h3><p>Muscle, mobility, balance, and the physical reserve needed to remain independent.</p></article>
           <article class="card"><span class="tag">03</span><h3>Preventive medicine</h3><p>Evidence-based screening, risk reduction, and early attention to modifiable health factors.</p></article>
           <article class="card"><span class="tag">04</span><h3>Clinical research</h3><p>Transparent methods, responsible interpretation, and continuous evaluation of what actually helps.</p></article>
-          <article class="card"><span class="tag">05</span><h3>Community</h3><p>Challenges and shared progress that make healthy routines more visible, social, and sustainable.</p></article>
+          <article class="card"><span class="tag">05</span><h3>Community</h3><p>Challenges, newsletters, and shared progress that make healthy routines more visible, social, and sustainable.</p></article>
         </div>
       </div>
     </section>
@@ -461,121 +1062,576 @@
       <div class="wrap">
         <p class="eyebrow">Start with measurement</p>
         <h2>Choose a practical baseline</h2>
-        <p class="section-intro">These field assessments are estimates and screening tools—not diagnoses. Their greatest value is often in tracking a consistently performed test over time.</p>
+        <p class="section-intro">These field assessments are estimates and screening toolsânot diagnoses. Their greatest value is often in tracking a consistently performed test over time.</p>
         <div class="card-grid">
-          <a class="card-link" href="#vo2max"><span class="tag">Aerobic fitness</span><h3>Rockport one-mile walk</h3><p>Estimate aerobic capacity using walk time, finishing heart rate, age, sex, and weight.</p><span class="go">Open calculator →</span></a>
-          <a class="card-link" href="#sixminwalk"><span class="tag">Functional capacity</span><h3>Six-minute walk</h3><p>Compare standardized six-minute walking distance with an older reference equation.</p><span class="go">Open calculator →</span></a>
-          <a class="card-link" href="#grip"><span class="tag">Strength</span><h3>Grip strength</h3><p>Compare dynamometer-measured grip with consensus thresholds for low muscle strength.</p><span class="go">Open assessment →</span></a>
-          <a class="card-link" href="#chairstand"><span class="tag">Lower-body function</span><h3>30-second chair stand</h3><p>Use the CDC STEADI protocol to screen lower-body strength in adults aged 60 and older.</p><span class="go">Open assessment →</span></a>
+          <a class="card-link" href="#vo2max"><span class="tag">Aerobic fitness</span><h3>Rockport one-mile walk</h3><p>Estimate aerobic capacity using walk time, finishing heart rate, age, sex, and weight.</p><span class="go">Open calculator â</span></a>
+          <a class="card-link" href="#sixminwalk"><span class="tag">Functional capacity</span><h3>Six-minute walk</h3><p>Compare standardized six-minute walking distance with an older reference equation.</p><span class="go">Open calculator â</span></a>
+          <a class="card-link" href="#grip"><span class="tag">Strength</span><h3>Grip strength</h3><p>Compare dynamometer-measured grip with consensus thresholds for low muscle strength.</p><span class="go">Open assessment â</span></a>
+          <a class="card-link" href="#chairstand"><span class="tag">Lower-body function</span><h3>30-second chair stand</h3><p>Use the CDC STEADI protocol to screen lower-body strength in adults aged 60 and older.</p><span class="go">Open assessment â</span></a>
         </div>
       </div>
     </section>
 
     <section class="challenge-band">
       <div class="wrap challenge-grid">
-        <div><p class="eyebrow">The first community project</p><h2>The Tortoise Time Walking Challenge</h2><p>Complete a standardized walk, record your baseline, build a sustainable walking routine, and return to measure your progress—not someone else’s perfection.</p></div>
+        <div>
+          <p class="eyebrow">The first community project</p>
+          <h2>The Tortoise Time Walking Challenge</h2>
+          <p>Complete a standardized walk, record your baseline, build a sustainable walking routine, and return to measure your progressânot someone elseâs perfection.</p>
+        </div>
         <a class="btn btn-primary" href="#challenge">See the challenge</a>
       </div>
     </section>
 
-    <section class="vision"><div class="wrap"><p class="eyebrow">The vision</p><p>Begin as a trusted public health platform for fitness, function, and sustainable prevention. Build toward responsible research, digital health tools, and eventually a high-quality online clinical platform.</p><p class="closing">Small daily improvements, sustained over years, can create extraordinary health.</p></div></section>
+    <section class="newsletter" aria-labelledby="home-newsletter-title">
+      <div class="wrap">
+        <div class="newsletter-box">
+          <div>
+            <p class="eyebrow">The Tortoise Time Letter</p>
+            <h2 id="home-newsletter-title">Slow health, delivered weekly.</h2>
+            <p>A physician-led newsletter about fitness, prevention, healthy aging, and the small daily habits that compound into better health over time.</p>
+            <p>No miracle cures. No fear-based medicine. Just practical, evidence-informed ideas you can actually sustain.</p>
+            <ul class="newsletter-points">
+              <li>Simple walking and fitness challenges</li>
+              <li>Evidence-based prevention and longevity notes</li>
+              <li>Practical tools to measure progress over time</li>
+              <li>Reflections from primary care, geriatrics, and clinical research</li>
+            </ul>
+          </div>
+
+          <form class="newsletter-form newsletter-form-shared" novalidate>
+            <h3>Join the list</h3>
+            <p>Get occasional Tortoise Time updates as the platform grows.</p>
+            <div class="field">
+              <label for="newsletter-name-home">First name</label>
+              <input id="newsletter-name-home" name="name" type="text" autocomplete="given-name" placeholder="Your first name">
+            </div>
+            <div class="field">
+              <label for="newsletter-email-home">Email address</label>
+              <input id="newsletter-email-home" name="email" type="email" autocomplete="email" required placeholder="you@example.com">
+            </div>
+            <button class="btn btn-primary" type="submit">Subscribe</button>
+            <p class="newsletter-privacy">Educational content only. No spam. No medical advice by email.</p>
+            <p class="error-msg" role="alert">Please enter a valid email address.</p>
+            <div class="result" role="status" aria-live="polite">
+              <div class="category cat-strong">Youâre on the list</div>
+              <p class="interpretation">Thank you for joining Tortoise Time. Your health compounds one small step at a time.</p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="vision">
+      <div class="wrap">
+        <p class="eyebrow">The vision</p>
+        <p>Begin as a trusted public health platform for fitness, function, and sustainable prevention. Build toward responsible research, digital health tools, and eventually a high-quality online clinical platform.</p>
+        <p class="closing">Small daily improvements, sustained over years, can create extraordinary health.</p>
+      </div>
+    </section>
   </section>
 
+  <!-- =========================
+       ASSESSMENTS
+       ========================= -->
   <section class="page" id="page-assessments" data-title="Fitness Assessments | Tortoise Time">
-    <header class="page-head"><div class="wrap"><p class="eyebrow">Measurement before assumption</p><h1>Fitness assessments</h1><p class="lede">Use the same protocol each time, record the context, and focus on the trend. These tools provide estimates or screening information and should not be treated as diagnoses.</p></div></header>
+    <header class="page-head">
+      <div class="wrap">
+        <p class="eyebrow">Measurement before assumption</p>
+        <h1>Fitness assessments</h1>
+        <p class="lede">Use the same protocol each time, record the context, and focus on the trend. These tools provide estimates or screening information and should not be treated as diagnoses.</p>
+      </div>
+    </header>
+
     <div class="wrap section" style="padding-top:20px">
       <div class="card-grid">
-        <a class="card-link" href="#vo2max"><span class="tag">Aerobic fitness</span><h3>Rockport one-mile walk</h3><p>A submaximal field estimate of aerobic capacity for adults able to walk one mile briskly.</p><span class="go">Open calculator →</span></a>
-        <a class="card-link" href="#sixminwalk"><span class="tag">Functional capacity</span><h3>Six-minute walk</h3><p>A standardized measure commonly used in clinical settings; course design affects comparability.</p><span class="go">Open calculator →</span></a>
-        <a class="card-link" href="#grip"><span class="tag">Muscle strength</span><h3>Grip strength</h3><p>A quick dynamometer-based measure with established clinical thresholds in older adults.</p><span class="go">Open assessment →</span></a>
-        <a class="card-link" href="#chairstand"><span class="tag">Leg strength</span><h3>30-second chair stand</h3><p>A CDC STEADI functional assessment for adults aged 60 years and older.</p><span class="go">Open assessment →</span></a>
+        <a class="card-link" href="#vo2max"><span class="tag">Aerobic fitness</span><h3>Rockport one-mile walk</h3><p>A submaximal field estimate of aerobic capacity for adults able to walk one mile briskly.</p><span class="go">Open calculator â</span></a>
+        <a class="card-link" href="#sixminwalk"><span class="tag">Functional capacity</span><h3>Six-minute walk</h3><p>A standardized measure commonly used in clinical settings; course design affects comparability.</p><span class="go">Open calculator â</span></a>
+        <a class="card-link" href="#grip"><span class="tag">Muscle strength</span><h3>Grip strength</h3><p>A quick dynamometer-based measure with established clinical thresholds in older adults.</p><span class="go">Open assessment â</span></a>
+        <a class="card-link" href="#chairstand"><span class="tag">Leg strength</span><h3>30-second chair stand</h3><p>A CDC STEADI functional assessment for adults aged 60 years and older.</p><span class="go">Open assessment â</span></a>
       </div>
+
       <div class="safety-note"><strong>Stop and seek medical guidance</strong> if activity causes chest pressure, fainting, severe breathlessness, new neurologic symptoms, or unusual palpitations. People with unstable heart or lung disease, recent surgery, significant mobility limitations, or clinician-imposed exercise restrictions should not self-test without individualized advice.</div>
     </div>
   </section>
 
+  <!-- =========================
+       CHALLENGE
+       ========================= -->
   <section class="page" id="page-challenge" data-title="Walking Challenge | Tortoise Time">
-    <header class="page-head"><div class="wrap"><p class="eyebrow">A public health project</p><h1>The walking challenge</h1><p class="lede">A simple program designed around baseline measurement, daily movement, gradual progression, and repeat testing.</p></div></header>
+    <header class="page-head">
+      <div class="wrap">
+        <p class="eyebrow">A public health project</p>
+        <h1>The walking challenge</h1>
+        <p class="lede">A simple program designed around baseline measurement, daily movement, gradual progression, and repeat testing.</p>
+      </div>
+    </header>
+
     <div class="wrap prose">
       <p class="lead">The challenge is not a race to the top of a leaderboard. It is a structured way to make progress visible and walking more consistent.</p>
+
       <h2>How it works</h2>
-      <p>Choose an appropriate baseline assessment, record the date and conditions, set a realistic weekly walking target, and repeat the same assessment after 8–12 weeks. Group leaderboards should emphasize participation, consistency, and individual improvement rather than only absolute performance.</p>
+      <p>Choose an appropriate baseline assessment, record the date and conditions, set a realistic weekly walking target, and repeat the same assessment after 8â12 weeks. Group leaderboards should emphasize participation, consistency, and individual improvement rather than only absolute performance.</p>
+
       <h2>Recommended leaderboard categories</h2>
       <p>Most consistent participation, greatest percentage improvement, personal milestone reached, and team participation rate. This keeps the challenge inclusive for people starting at very different fitness levels.</p>
+
       <h2>Research boundary</h2>
       <p>Routine wellness or quality-improvement tracking is not automatically human-subjects research. Before using participant information for generalizable research, publication, or external presentation, obtain appropriate institutional review and clarify consent, privacy, data governance, and security.</p>
-      <div class="cta-row"><a class="btn btn-primary" href="#vo2max">Start with the Rockport test</a><a class="btn btn-secondary" href="#assessments">Compare assessments</a></div>
+
+      <div class="cta-row">
+        <a class="btn btn-primary" href="#vo2max">Start with the Rockport test</a>
+        <a class="btn btn-secondary" href="#assessments">Compare assessments</a>
+      </div>
     </div>
   </section>
 
+  <!-- =========================
+       NEWSLETTER PAGE
+       ========================= -->
+  <section class="page" id="page-newsletter" data-title="Newsletter | Tortoise Time">
+    <header class="page-head">
+      <div class="wrap">
+        <p class="eyebrow">The Tortoise Time Letter</p>
+        <h1>Slow health. Strong future.</h1>
+        <p class="lede">A physician-led newsletter for people who want practical, sustainable, evidence-informed health habitsânot another round of quick fixes.</p>
+      </div>
+    </header>
+
+    <section class="newsletter" style="padding-top: 24px;">
+      <div class="wrap">
+        <div class="newsletter-box">
+          <div>
+            <p class="eyebrow">What youâll receive</p>
+            <h2>Small ideas that compound.</h2>
+            <p>Each issue focuses on one practical topic: walking, VOâ max, strength, fall prevention, metabolic health, preventive care, healthy aging, or the research behind sustainable behavior change.</p>
+            <ul class="newsletter-points">
+              <li>One clear concept</li>
+              <li>One practical action</li>
+              <li>One measurement or reflection</li>
+              <li>No supplement hype or miracle claims</li>
+            </ul>
+          </div>
+
+          <form class="newsletter-form newsletter-form-shared" novalidate>
+            <h3>Subscribe</h3>
+            <p>Join the Tortoise Time Letter.</p>
+            <div class="field">
+              <label for="newsletter-name-page">First name</label>
+              <input id="newsletter-name-page" name="name" type="text" autocomplete="given-name" placeholder="Your first name">
+            </div>
+            <div class="field">
+              <label for="newsletter-email-page">Email address</label>
+              <input id="newsletter-email-page" name="email" type="email" autocomplete="email" required placeholder="you@example.com">
+            </div>
+            <button class="btn btn-primary" type="submit">Subscribe</button>
+            <p class="newsletter-privacy">Educational content only. No spam. No medical advice by email.</p>
+            <p class="error-msg" role="alert">Please enter a valid email address.</p>
+            <div class="result" role="status" aria-live="polite">
+              <div class="category cat-strong">Youâre on the list</div>
+              <p class="interpretation">Thank you for joining Tortoise Time. Your health compounds one small step at a time.</p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </section>
+
+  <!-- =========================
+       ROCKPORT
+       ========================= -->
   <section class="page" id="page-vo2max" data-title="Rockport Walk Test | Tortoise Time">
-    <header class="page-head"><div class="wrap"><p class="eyebrow">Aerobic fitness estimate</p><h1>Rockport one-mile walk</h1><p class="lede">Estimate VO₂ max from a brisk one-mile walk. This is a field estimate, not a direct cardiopulmonary exercise test.</p></div></header>
+    <header class="page-head">
+      <div class="wrap">
+        <p class="eyebrow">Aerobic fitness estimate</p>
+        <h1>Rockport one-mile walk</h1>
+        <p class="lede">Estimate VOâ max from a brisk one-mile walk. This is a field estimate, not a direct cardiopulmonary exercise test.</p>
+      </div>
+    </header>
+
     <div class="wrap calc-layout">
       <form class="calc-form" id="rp-form" novalidate>
         <h2>Enter your result</h2>
-        <div class="field-row"><div class="field"><label for="rp-age">Age in years</label><input id="rp-age" type="number" min="18" max="100" inputmode="numeric" required placeholder="55"></div><div class="field"><label for="rp-sex">Sex used by the equation</label><select id="rp-sex" required><option value="">Select…</option><option value="1">Male</option><option value="0">Female</option></select></div></div>
-        <div class="field-row"><div class="field"><label for="rp-weight">Weight</label><input id="rp-weight" type="number" min="30" max="660" step="0.1" inputmode="decimal" required placeholder="170"></div><div class="field"><label for="rp-weight-unit">Unit</label><select id="rp-weight-unit"><option value="lb">pounds</option><option value="kg">kilograms</option></select></div></div>
-        <div class="field-row"><div class="field"><label for="rp-minutes">Walk time: minutes</label><input id="rp-minutes" type="number" min="8" max="30" inputmode="numeric" required placeholder="15"></div><div class="field"><label for="rp-seconds">Walk time: seconds</label><input id="rp-seconds" type="number" min="0" max="59" inputmode="numeric" value="0"></div></div>
-        <div class="field"><label for="rp-hr">Heart rate immediately after finishing</label><input id="rp-hr" type="number" min="50" max="220" inputmode="numeric" required placeholder="132"><p class="hint">A delayed heart-rate measurement can materially change the estimate.</p></div>
-        <button class="btn btn-primary" type="submit">Calculate estimated VO₂ max</button>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="rp-age">Age in years</label>
+            <input id="rp-age" type="number" min="18" max="100" inputmode="numeric" required placeholder="55">
+          </div>
+          <div class="field">
+            <label for="rp-sex">Sex used by the equation</label>
+            <select id="rp-sex" required>
+              <option value="">Selectâ¦</option>
+              <option value="1">Male</option>
+              <option value="0">Female</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="rp-weight">Weight</label>
+            <input id="rp-weight" type="number" min="30" max="660" step="0.1" inputmode="decimal" required placeholder="170">
+          </div>
+          <div class="field">
+            <label for="rp-weight-unit">Unit</label>
+            <select id="rp-weight-unit">
+              <option value="lb">pounds</option>
+              <option value="kg">kilograms</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="rp-minutes">Walk time: minutes</label>
+            <input id="rp-minutes" type="number" min="8" max="30" inputmode="numeric" required placeholder="15">
+          </div>
+          <div class="field">
+            <label for="rp-seconds">Walk time: seconds</label>
+            <input id="rp-seconds" type="number" min="0" max="59" inputmode="numeric" value="0">
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="rp-hr">Heart rate immediately after finishing</label>
+          <input id="rp-hr" type="number" min="50" max="220" inputmode="numeric" required placeholder="132">
+          <p class="hint">A delayed heart-rate measurement can materially change the estimate.</p>
+        </div>
+
+        <button class="btn btn-primary" type="submit">Calculate estimated VOâ max</button>
         <p class="error-msg" id="rp-error" role="alert">Check all fields and enter plausible values.</p>
-        <div class="result" id="rp-result" role="status" aria-live="polite"><div class="big"><span id="rp-value">—</span> <small>mL/kg/min</small></div><div class="category" id="rp-category"></div><p class="interpretation" id="rp-interp"></p></div>
+
+        <div class="result" id="rp-result" role="status" aria-live="polite">
+          <div class="big"><span id="rp-value">â</span> <small>mL/kg/min</small></div>
+          <div class="category" id="rp-category"></div>
+          <p class="interpretation" id="rp-interp"></p>
+        </div>
       </form>
-      <div class="calc-info"><h2>Standardized approach</h2><ol><li>Use a flat, accurately measured one-mile course.</li><li>Warm up with several minutes of easy walking.</li><li>Walk the mile as quickly as you can safely sustain without running.</li><li>Record time precisely.</li><li>Measure heart rate immediately at the finish.</li></ol><h3>Interpretation</h3><p>The equation estimates aerobic capacity from age, sex, body weight, walk time, and finishing heart rate. Individual error is expected, and medications such as beta blockers can alter heart-rate response.</p><h3>Best use</h3><p>Repeat the same protocol under similar conditions. A consistent trend is generally more informative than a single category.</p><div class="evidence-note"><strong>Method:</strong> Kline and colleagues’ one-mile track-walk equation. The original publication reported strong correlation with measured VO₂ max in its study sample, but this remains an indirect estimate. <a href="https://pubmed.ncbi.nlm.nih.gov/3600239/" target="_blank" rel="noopener">View the study</a>.</div></div>
+
+      <div class="calc-info">
+        <h2>Standardized approach</h2>
+        <ol>
+          <li>Use a flat, accurately measured one-mile course.</li>
+          <li>Warm up with several minutes of easy walking.</li>
+          <li>Walk the mile as quickly as you can safely sustain without running.</li>
+          <li>Record time precisely.</li>
+          <li>Measure heart rate immediately at the finish.</li>
+        </ol>
+
+        <h3>Interpretation</h3>
+        <p>The equation estimates aerobic capacity from age, sex, body weight, walk time, and finishing heart rate. Individual error is expected, and medications such as beta blockers can alter heart-rate response.</p>
+
+        <h3>Best use</h3>
+        <p>Repeat the same protocol under similar conditions. A consistent trend is generally more informative than a single category.</p>
+
+        <div class="evidence-note"><strong>Method:</strong> Kline and colleaguesâ one-mile track-walk equation. The original publication reported strong correlation with measured VOâ max in its study sample, but this remains an indirect estimate. <a href="https://pubmed.ncbi.nlm.nih.gov/3600239/" target="_blank" rel="noopener">View the study</a>.</div>
+      </div>
     </div>
   </section>
 
+  <!-- =========================
+       SIX-MINUTE WALK
+       ========================= -->
   <section class="page" id="page-sixminwalk" data-title="Six-Minute Walk Test | Tortoise Time">
-    <header class="page-head"><div class="wrap"><p class="eyebrow">Functional exercise capacity</p><h1>Six-minute walk</h1><p class="lede">Compare a standardized six-minute walking distance with the Enright–Sherrill reference equation for healthy adults aged 40–80.</p></div></header>
+    <header class="page-head">
+      <div class="wrap">
+        <p class="eyebrow">Functional exercise capacity</p>
+        <h1>Six-minute walk</h1>
+        <p class="lede">Compare a standardized six-minute walking distance with the EnrightâSherrill reference equation for healthy adults aged 40â80.</p>
+      </div>
+    </header>
+
     <div class="wrap calc-layout">
-      <form class="calc-form" id="sm-form" novalidate><h2>Enter your result</h2>
-        <div class="field-row"><div class="field"><label for="sm-age">Age in years</label><input id="sm-age" type="number" min="40" max="80" inputmode="numeric" required placeholder="68"></div><div class="field"><label for="sm-sex">Sex used by the equation</label><select id="sm-sex" required><option value="">Select…</option><option value="m">Male</option><option value="f">Female</option></select></div></div>
-        <div class="field-row"><div class="field"><label for="sm-height">Height</label><input id="sm-height" type="number" min="48" max="230" step="0.1" inputmode="decimal" required placeholder="172"></div><div class="field"><label for="sm-height-unit">Unit</label><select id="sm-height-unit"><option value="cm">centimeters</option><option value="in">inches</option></select></div></div>
-        <div class="field-row"><div class="field"><label for="sm-weight">Weight</label><input id="sm-weight" type="number" min="30" max="550" step="0.1" inputmode="decimal" required placeholder="78"></div><div class="field"><label for="sm-weight-unit">Unit</label><select id="sm-weight-unit"><option value="kg">kilograms</option><option value="lb">pounds</option></select></div></div>
-        <div class="field-row"><div class="field"><label for="sm-distance">Distance walked</label><input id="sm-distance" type="number" min="10" max="4000" inputmode="decimal" required placeholder="480"></div><div class="field"><label for="sm-dist-unit">Unit</label><select id="sm-dist-unit"><option value="m">meters</option><option value="ft">feet</option></select></div></div>
-        <button class="btn btn-primary" type="submit">Calculate percent predicted</button><p class="error-msg" id="sm-error" role="alert">Use values within the reference population and plausible measurement ranges.</p><div class="result" id="sm-result" role="status" aria-live="polite"><div class="big"><span id="sm-value">—</span> <small>% predicted</small></div><div class="category" id="sm-category"></div><p class="interpretation" id="sm-interp"></p></div>
+      <form class="calc-form" id="sm-form" novalidate>
+        <h2>Enter your result</h2>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="sm-age">Age in years</label>
+            <input id="sm-age" type="number" min="40" max="80" inputmode="numeric" required placeholder="68">
+          </div>
+          <div class="field">
+            <label for="sm-sex">Sex used by the equation</label>
+            <select id="sm-sex" required>
+              <option value="">Selectâ¦</option>
+              <option value="m">Male</option>
+              <option value="f">Female</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="sm-height">Height</label>
+            <input id="sm-height" type="number" min="48" max="230" step="0.1" inputmode="decimal" required placeholder="172">
+          </div>
+          <div class="field">
+            <label for="sm-height-unit">Unit</label>
+            <select id="sm-height-unit">
+              <option value="cm">centimeters</option>
+              <option value="in">inches</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="sm-weight">Weight</label>
+            <input id="sm-weight" type="number" min="30" max="550" step="0.1" inputmode="decimal" required placeholder="78">
+          </div>
+          <div class="field">
+            <label for="sm-weight-unit">Unit</label>
+            <select id="sm-weight-unit">
+              <option value="kg">kilograms</option>
+              <option value="lb">pounds</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="sm-distance">Distance walked</label>
+            <input id="sm-distance" type="number" min="10" max="4000" inputmode="decimal" required placeholder="480">
+          </div>
+          <div class="field">
+            <label for="sm-dist-unit">Unit</label>
+            <select id="sm-dist-unit">
+              <option value="m">meters</option>
+              <option value="ft">feet</option>
+            </select>
+          </div>
+        </div>
+
+        <button class="btn btn-primary" type="submit">Calculate percent predicted</button>
+        <p class="error-msg" id="sm-error" role="alert">Use values within the reference population and plausible measurement ranges.</p>
+
+        <div class="result" id="sm-result" role="status" aria-live="polite">
+          <div class="big"><span id="sm-value">â</span> <small>% predicted</small></div>
+          <div class="category" id="sm-category"></div>
+          <p class="interpretation" id="sm-interp"></p>
+        </div>
       </form>
-      <div class="calc-info"><h2>Protocol matters</h2><ol><li>Use a flat, straight 30-meter indoor corridor when possible.</li><li>Follow standardized instructions and encouragement.</li><li>Walk as far as possible for six minutes; resting is allowed while the timer continues.</li><li>Record total distance.</li></ol><p>Shorter tracks, repeated tight turns, outdoor surfaces, and nonstandard encouragement can change performance. Results from a casual home course should not be treated as directly comparable to a clinical 30-meter protocol.</p><h3>Interpretation</h3><p>The reference equation was derived from healthy adults aged 40–80. Percent predicted is context—not a diagnosis—and reference performance varies among populations and protocols.</p><div class="evidence-note"><strong>Method:</strong> Enright and Sherrill reference equations for healthy adults. <a href="https://pubmed.ncbi.nlm.nih.gov/9817683/" target="_blank" rel="noopener">View the study</a>.</div></div>
+
+      <div class="calc-info">
+        <h2>Protocol matters</h2>
+        <ol>
+          <li>Use a flat, straight 30-meter indoor corridor when possible.</li>
+          <li>Follow standardized instructions and encouragement.</li>
+          <li>Walk as far as possible for six minutes; resting is allowed while the timer continues.</li>
+          <li>Record total distance.</li>
+        </ol>
+
+        <p>Shorter tracks, repeated tight turns, outdoor surfaces, and nonstandard encouragement can change performance. Results from a casual home course should not be treated as directly comparable to a clinical 30-meter protocol.</p>
+
+        <h3>Interpretation</h3>
+        <p>The reference equation was derived from healthy adults aged 40â80. Percent predicted is contextânot a diagnosisâand reference performance varies among populations and protocols.</p>
+
+        <div class="evidence-note"><strong>Method:</strong> Enright and Sherrill reference equations for healthy adults. <a href="https://pubmed.ncbi.nlm.nih.gov/9817683/" target="_blank" rel="noopener">View the study</a>.</div>
+      </div>
     </div>
   </section>
 
+  <!-- =========================
+       GRIP
+       ========================= -->
   <section class="page" id="page-grip" data-title="Grip Strength | Tortoise Time">
-    <header class="page-head"><div class="wrap"><p class="eyebrow">Muscle strength screening</p><h1>Grip strength</h1><p class="lede">Measure maximal grip with a calibrated hand dynamometer and compare it with EWGSOP2 thresholds for low muscle strength.</p></div></header>
+    <header class="page-head">
+      <div class="wrap">
+        <p class="eyebrow">Muscle strength screening</p>
+        <h1>Grip strength</h1>
+        <p class="lede">Measure maximal grip with a calibrated hand dynamometer and compare it with EWGSOP2 thresholds for low muscle strength.</p>
+      </div>
+    </header>
+
     <div class="wrap calc-layout">
-      <form class="calc-form" id="gs-form" novalidate><h2>Enter your result</h2>
-        <div class="field-row"><div class="field"><label for="gs-age">Age in years</label><input id="gs-age" type="number" min="18" max="100" required inputmode="numeric" placeholder="72"></div><div class="field"><label for="gs-sex">Sex used by the threshold</label><select id="gs-sex" required><option value="">Select…</option><option value="m">Male</option><option value="f">Female</option></select></div></div>
-        <div class="field-row"><div class="field"><label for="gs-grip">Best grip strength</label><input id="gs-grip" type="number" min="1" max="265" step="0.1" required inputmode="decimal" placeholder="34"></div><div class="field"><label for="gs-unit">Unit</label><select id="gs-unit"><option value="kg">kilograms</option><option value="lb">pounds</option></select></div></div>
-        <button class="btn btn-primary" type="submit">Compare with threshold</button><p class="error-msg" id="gs-error" role="alert">Check all fields and enter a plausible dynamometer result.</p><div class="result" id="gs-result" role="status" aria-live="polite"><div class="big"><span id="gs-value">—</span> <small>kg</small></div><div class="category" id="gs-category"></div><p class="interpretation" id="gs-interp"></p></div>
+      <form class="calc-form" id="gs-form" novalidate>
+        <h2>Enter your result</h2>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="gs-age">Age in years</label>
+            <input id="gs-age" type="number" min="18" max="100" required inputmode="numeric" placeholder="72">
+          </div>
+          <div class="field">
+            <label for="gs-sex">Sex used by the threshold</label>
+            <select id="gs-sex" required>
+              <option value="">Selectâ¦</option>
+              <option value="m">Male</option>
+              <option value="f">Female</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="gs-grip">Best grip strength</label>
+            <input id="gs-grip" type="number" min="1" max="265" step="0.1" required inputmode="decimal" placeholder="34">
+          </div>
+          <div class="field">
+            <label for="gs-unit">Unit</label>
+            <select id="gs-unit">
+              <option value="kg">kilograms</option>
+              <option value="lb">pounds</option>
+            </select>
+          </div>
+        </div>
+
+        <button class="btn btn-primary" type="submit">Compare with threshold</button>
+        <p class="error-msg" id="gs-error" role="alert">Check all fields and enter a plausible dynamometer result.</p>
+
+        <div class="result" id="gs-result" role="status" aria-live="polite">
+          <div class="big"><span id="gs-value">â</span> <small>kg</small></div>
+          <div class="category" id="gs-category"></div>
+          <p class="interpretation" id="gs-interp"></p>
+        </div>
       </form>
-      <div class="calc-info"><h2>Use a consistent technique</h2><ol><li>Use a calibrated hand dynamometer.</li><li>Follow the device or clinic protocol consistently.</li><li>Perform at least two maximal attempts per hand with rest between attempts.</li><li>Record the best valid reading and the device used.</li></ol><h3>Important limitation</h3><p>The EWGSOP2 thresholds identify low muscle strength in the assessment of sarcopenia; they do not diagnose sarcopenia by themselves. Muscle quantity or quality and physical performance may also need assessment.</p><div class="evidence-note"><strong>Thresholds:</strong> less than 27 kg in men and less than 16 kg in women. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6322506/" target="_blank" rel="noopener">View the consensus paper</a>.</div></div>
+
+      <div class="calc-info">
+        <h2>Use a consistent technique</h2>
+        <ol>
+          <li>Use a calibrated hand dynamometer.</li>
+          <li>Follow the device or clinic protocol consistently.</li>
+          <li>Perform at least two maximal attempts per hand with rest between attempts.</li>
+          <li>Record the best valid reading and the device used.</li>
+        </ol>
+
+        <h3>Important limitation</h3>
+        <p>The EWGSOP2 thresholds identify low muscle strength in the assessment of sarcopenia; they do not diagnose sarcopenia by themselves. Muscle quantity or quality and physical performance may also need assessment.</p>
+
+        <div class="evidence-note"><strong>Thresholds:</strong> less than 27 kg in men and less than 16 kg in women. <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6322506/" target="_blank" rel="noopener">View the consensus paper</a>.</div>
+      </div>
     </div>
   </section>
 
+  <!-- =========================
+       CHAIR STAND
+       ========================= -->
   <section class="page" id="page-chairstand" data-title="30-Second Chair Stand | Tortoise Time">
-    <header class="page-head"><div class="wrap"><p class="eyebrow">Lower-body strength and endurance</p><h1>30-second chair stand</h1><p class="lede">Follow the CDC STEADI protocol and compare performance with age- and sex-specific thresholds for adults aged 60 and older.</p></div></header>
+    <header class="page-head">
+      <div class="wrap">
+        <p class="eyebrow">Lower-body strength and endurance</p>
+        <h1>30-second chair stand</h1>
+        <p class="lede">Follow the CDC STEADI protocol and compare performance with age- and sex-specific thresholds for adults aged 60 and older.</p>
+      </div>
+    </header>
+
     <div class="wrap calc-layout">
-      <form class="calc-form" id="cs-form" novalidate><h2>Enter your result</h2>
-        <div class="field-row"><div class="field"><label for="cs-age">Age in years</label><input id="cs-age" type="number" min="60" max="94" required inputmode="numeric" placeholder="72"></div><div class="field"><label for="cs-sex">Sex used by the reference</label><select id="cs-sex" required><option value="">Select…</option><option value="m">Male</option><option value="f">Female</option></select></div></div>
-        <div class="field"><label for="cs-stands">Full stands in 30 seconds</label><input id="cs-stands" type="number" min="0" max="40" required inputmode="numeric" placeholder="13"><p class="hint">Count a final repetition if more than halfway standing when time expires.</p></div>
-        <button class="btn btn-primary" type="submit">Compare with threshold</button><p class="error-msg" id="cs-error" role="alert">This reference is limited to adults aged 60–94. Check all fields.</p><div class="result" id="cs-result" role="status" aria-live="polite"><div class="big"><span id="cs-value">—</span> <small>stands</small></div><div class="category" id="cs-category"></div><p class="interpretation" id="cs-interp"></p></div>
+      <form class="calc-form" id="cs-form" novalidate>
+        <h2>Enter your result</h2>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="cs-age">Age in years</label>
+            <input id="cs-age" type="number" min="60" max="94" required inputmode="numeric" placeholder="72">
+          </div>
+          <div class="field">
+            <label for="cs-sex">Sex used by the reference</label>
+            <select id="cs-sex" required>
+              <option value="">Selectâ¦</option>
+              <option value="m">Male</option>
+              <option value="f">Female</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="cs-stands">Full stands in 30 seconds</label>
+          <input id="cs-stands" type="number" min="0" max="40" required inputmode="numeric" placeholder="13">
+          <p class="hint">Count a final repetition if more than halfway standing when time expires.</p>
+        </div>
+
+        <button class="btn btn-primary" type="submit">Compare with threshold</button>
+        <p class="error-msg" id="cs-error" role="alert">This reference is limited to adults aged 60â94. Check all fields.</p>
+
+        <div class="result" id="cs-result" role="status" aria-live="polite">
+          <div class="big"><span id="cs-value">â</span> <small>stands</small></div>
+          <div class="category" id="cs-category"></div>
+          <p class="interpretation" id="cs-interp"></p>
+        </div>
       </form>
-      <div class="calc-info"><h2>CDC STEADI protocol</h2><ol><li>Use a straight-backed chair without armrests, approximately 17 inches high, placed against a wall.</li><li>Sit in the middle, feet flat, arms crossed over the chest.</li><li>Stand fully and sit fully as many times as possible in 30 seconds.</li><li>If arms are used to rise, stop the test and record zero according to the assessment form.</li></ol><p>A below-average score suggests reduced leg strength or endurance and should prompt broader fall-risk and clinical assessment rather than a stand-alone diagnosis.</p><div class="evidence-note"><strong>Protocol and thresholds:</strong> CDC STEADI 30-second chair stand assessment. <a href="https://www.cdc.gov/steadi/media/pdfs/steadi-assessment-30sec-508.pdf" target="_blank" rel="noopener">View the CDC form</a>.</div></div>
+
+      <div class="calc-info">
+        <h2>CDC STEADI protocol</h2>
+        <ol>
+          <li>Use a straight-backed chair without armrests, approximately 17 inches high, placed against a wall.</li>
+          <li>Sit in the middle, feet flat, arms crossed over the chest.</li>
+          <li>Stand fully and sit fully as many times as possible in 30 seconds.</li>
+          <li>If arms are used to rise, stop the test and record zero according to the assessment form.</li>
+        </ol>
+
+        <p>A below-average score suggests reduced leg strength or endurance and should prompt broader fall-risk and clinical assessment rather than a stand-alone diagnosis.</p>
+
+        <div class="evidence-note"><strong>Protocol and thresholds:</strong> CDC STEADI 30-second chair stand assessment. <a href="https://www.cdc.gov/steadi/media/pdfs/steadi-assessment-30sec-508.pdf" target="_blank" rel="noopener">View the CDC form</a>.</div>
+      </div>
     </div>
   </section>
 
+  <!-- =========================
+       ABOUT
+       ========================= -->
   <section class="page" id="page-about" data-title="About | Tortoise Time">
-    <header class="page-head"><div class="wrap"><p class="eyebrow">About Tortoise Time</p><h1>Why the tortoise?</h1></div></header>
-    <div class="wrap prose"><p class="lead">Tortoise Time is a physician-led public health platform dedicated to sustainable fitness, prevention, function, and healthy longevity.</p><p>The tortoise is not an argument for inactivity. It is a symbol of durable progress: movement that is deliberate, repeatable, and resilient enough to continue for years.</p><h2>The mission</h2><p>To translate high-quality medical evidence into practical daily habits and accessible measurements that help people protect their long-term health and independence.</p><h2>The physician behind the platform</h2><p>Tortoise Time was created by a practicing primary care physician and geriatrician. Clinical experience across the lifespan repeatedly shows that healthy aging rarely comes from one extreme intervention. It is more often the result of reasonable actions maintained over time.</p><p><strong>Before launch:</strong> replace this paragraph with your full name, degrees, board certifications, current role, relevant fitness or research training, conflict-of-interest statement, and a professional photograph. Clearly distinguish personal views from those of your employer.</p><h2>Where this is going</h2><p>The first phase centers on fitness assessment, walking challenges, public health education, and careful outcome tracking. Future phases may include research collaborations, digital tools, and preventive telemedicine—subject to appropriate clinical, legal, privacy, and institutional safeguards.</p><p class="closing">Live deliberately. Move consistently. Compound your health.</p></div>
+    <header class="page-head">
+      <div class="wrap">
+        <p class="eyebrow">About Tortoise Time</p>
+        <h1>Why the tortoise?</h1>
+      </div>
+    </header>
+
+    <div class="wrap prose">
+      <p class="lead">Tortoise Time is a physician-led public health platform dedicated to sustainable fitness, prevention, function, and healthy longevity.</p>
+
+      <p>The tortoise is not an argument for inactivity. It is a symbol of durable progress: movement that is deliberate, repeatable, and resilient enough to continue for years.</p>
+
+      <h2>The mission</h2>
+      <p>To translate high-quality medical evidence into practical daily habits and accessible measurements that help people protect their long-term health and independence.</p>
+
+      <h2>The physician behind the platform</h2>
+      <p>Tortoise Time was created by a practicing primary care physician and geriatrician. Clinical experience across the lifespan repeatedly shows that healthy aging rarely comes from one extreme intervention. It is more often the result of reasonable actions maintained over time.</p>
+
+      <p><strong>Before launch:</strong> replace this paragraph with your full name, degrees, board certifications, current role, relevant fitness or research training, conflict-of-interest statement, and a professional photograph. Clearly distinguish personal views from those of your employer.</p>
+
+      <h2>Where this is going</h2>
+      <p>The first phase centers on fitness assessment, walking challenges, public health education, newsletter-based community building, and careful outcome tracking. Future phases may include research collaborations, digital tools, and preventive telemedicineâsubject to appropriate clinical, legal, privacy, and institutional safeguards.</p>
+
+      <p class="closing">Live deliberately. Move consistently. Compound your health.</p>
+    </div>
   </section>
 </main>
 
-<footer><div class="wrap"><p class="motto">Compound your health.</p><nav class="foot-links" aria-label="Footer navigation"><a href="#home">Home</a><a href="#assessments">Assessments</a><a href="#challenge">Challenge</a><a href="#about">About</a></nav><p>© 2026 Tortoise Time · tortoisetime.com</p><p class="disclaimer">This website provides general educational information and field-estimate tools. It does not provide medical diagnosis or individualized treatment, and it does not establish a clinician–patient relationship. Seek professional advice before testing or changing exercise when health conditions, symptoms, medications, pregnancy, disability, or recent procedures may affect safety.</p></div></footer>
+<footer>
+  <div class="wrap">
+    <p class="motto">Compound your health.</p>
+    <nav class="foot-links" aria-label="Footer navigation">
+      <a href="#home">Home</a>
+      <a href="#assessments">Assessments</a>
+      <a href="#challenge">Challenge</a>
+      <a href="#newsletter">Newsletter</a>
+      <a href="#about">About</a>
+    </nav>
+    <p>Â© 2026 Tortoise Time Â· tortoisetime.com</p>
+    <p class="disclaimer">This website provides general educational information and field-estimate tools. It does not provide medical diagnosis or individualized treatment, and it does not establish a clinicianâpatient relationship. Seek professional advice before testing or changing exercise when health conditions, symptoms, medications, pregnancy, disability, or recent procedures may affect safety.</p>
+  </div>
+</footer>
 
 <script>
 (() => {
   'use strict';
-  const pages = ['home','assessments','challenge','vo2max','sixminwalk','grip','chairstand','about'];
-  const navForPage = { home:'home', assessments:'assessments', challenge:'challenge', vo2max:'assessments', sixminwalk:'assessments', grip:'assessments', chairstand:'assessments', about:'about' };
+
+  const pages = ['home','assessments','challenge','newsletter','vo2max','sixminwalk','grip','chairstand','about'];
+
+  const navForPage = {
+    home:'home',
+    assessments:'assessments',
+    challenge:'challenge',
+    newsletter:'newsletter',
+    vo2max:'assessments',
+    sixminwalk:'assessments',
+    grip:'assessments',
+    chairstand:'assessments',
+    about:'about'
+  };
+
   const menuButton = document.getElementById('menu-button');
   const siteNav = document.getElementById('site-nav');
   const LB_PER_KG = 2.2046226218;
@@ -583,89 +1639,202 @@
   function route() {
     let hash = location.hash.slice(1) || 'home';
     if (!pages.includes(hash)) hash = 'home';
-    pages.forEach(name => document.getElementById(`page-${name}`).classList.toggle('active', name === hash));
-    document.querySelectorAll('[data-nav]').forEach(link => link.classList.toggle('active', link.dataset.nav === navForPage[hash]));
+
+    pages.forEach(name => {
+      document.getElementById(`page-${name}`).classList.toggle('active', name === hash);
+    });
+
+    document.querySelectorAll('[data-nav]').forEach(link => {
+      link.classList.toggle('active', link.dataset.nav === navForPage[hash]);
+    });
+
     const activePage = document.getElementById(`page-${hash}`);
     document.title = activePage.dataset.title || 'Tortoise Time';
+
     closeMenu();
     window.scrollTo({ top: 0, behavior: 'auto' });
     requestAnimationFrame(() => document.getElementById('main').focus({ preventScroll: true }));
   }
-  function closeMenu() { siteNav.classList.remove('open'); menuButton.setAttribute('aria-expanded','false'); document.body.classList.remove('menu-open'); }
-  menuButton.addEventListener('click', () => { const open = siteNav.classList.toggle('open'); menuButton.setAttribute('aria-expanded', String(open)); document.body.classList.toggle('menu-open', open); });
-  siteNav.addEventListener('click', e => { if (e.target.matches('a')) closeMenu(); });
+
+  function closeMenu() {
+    siteNav.classList.remove('open');
+    menuButton.setAttribute('aria-expanded','false');
+    document.body.classList.remove('menu-open');
+  }
+
+  menuButton.addEventListener('click', () => {
+    const open = siteNav.classList.toggle('open');
+    menuButton.setAttribute('aria-expanded', String(open));
+    document.body.classList.toggle('menu-open', open);
+  });
+
+  siteNav.addEventListener('click', event => {
+    if (event.target.matches('a')) closeMenu();
+  });
+
   addEventListener('hashchange', route);
   route();
 
   const number = id => Number.parseFloat(document.getElementById(id).value);
   const value = id => document.getElementById(id).value;
-  function validNumber(n, min, max) { return Number.isFinite(n) && n >= min && n <= max; }
-  function fail(prefix) { document.getElementById(`${prefix}-error`).classList.add('show'); document.getElementById(`${prefix}-result`).classList.remove('show'); }
+
+  function validNumber(n, min, max) {
+    return Number.isFinite(n) && n >= min && n <= max;
+  }
+
+  function fail(prefix) {
+    document.getElementById(`${prefix}-error`).classList.add('show');
+    document.getElementById(`${prefix}-result`).classList.remove('show');
+  }
+
   function show(prefix, displayedValue, category) {
     document.getElementById(`${prefix}-error`).classList.remove('show');
     document.getElementById(`${prefix}-value`).textContent = displayedValue;
+
     const categoryEl = document.getElementById(`${prefix}-category`);
     categoryEl.textContent = category.label;
     categoryEl.className = `category ${category.cls}`;
+
     document.getElementById(`${prefix}-interp`).textContent = category.text;
+
     const result = document.getElementById(`${prefix}-result`);
     result.classList.add('show');
-    result.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'nearest' });
+    result.scrollIntoView({
+      behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
+      block: 'nearest'
+    });
   }
 
   document.getElementById('rp-form').addEventListener('submit', event => {
     event.preventDefault();
-    const age = number('rp-age'), sex = value('rp-sex'), weight = number('rp-weight'), minutes = number('rp-minutes'), seconds = number('rp-seconds'), hr = number('rp-hr');
+
+    const age = number('rp-age');
+    const sex = value('rp-sex');
+    const weight = number('rp-weight');
+    const minutes = number('rp-minutes');
+    const seconds = number('rp-seconds');
+    const hr = number('rp-hr');
+
     if (!validNumber(age,18,100) || sex === '' || !validNumber(weight,30,660) || !validNumber(minutes,8,30) || !validNumber(seconds,0,59) || !validNumber(hr,50,220)) return fail('rp');
+
     const weightLb = value('rp-weight-unit') === 'kg' ? weight * LB_PER_KG : weight;
     if (!validNumber(weightLb,66,660)) return fail('rp');
+
     const time = minutes + seconds / 60;
     const vo2 = 132.853 - 0.0769 * weightLb - 0.3877 * age + 6.315 * Number(sex) - 3.2649 * time - 0.1565 * hr;
+
     if (!validNumber(vo2,5,90)) return fail('rp');
+
     let cat;
-    if (vo2 < 25) cat = { label:'Lower estimated aerobic capacity', cls:'cat-low', text:'This estimate is relatively low in broad adult terms, but age, sex, medications, technique, and the equation’s prediction error matter. Consider discussing symptoms or exercise safety with a clinician, then focus on gradual, consistent aerobic activity.' };
-    else if (vo2 < 40) cat = { label:'Moderate estimated aerobic capacity', cls:'cat-average', text:'This estimate falls in a broad middle range. Repeat the same protocol under similar conditions and use the trend to guide gradual progression.' };
-    else cat = { label:'Higher estimated aerobic capacity', cls:'cat-strong', text:'This is a comparatively strong field estimate. Maintain regular aerobic activity and track the trend rather than treating one result as definitive.' };
+    if (vo2 < 25) {
+      cat = { label:'Lower estimated aerobic capacity', cls:'cat-low', text:'This estimate is relatively low in broad adult terms, but age, sex, medications, technique, and the equationâs prediction error matter. Consider discussing symptoms or exercise safety with a clinician, then focus on gradual, consistent aerobic activity.' };
+    } else if (vo2 < 40) {
+      cat = { label:'Moderate estimated aerobic capacity', cls:'cat-average', text:'This estimate falls in a broad middle range. Repeat the same protocol under similar conditions and use the trend to guide gradual progression.' };
+    } else {
+      cat = { label:'Higher estimated aerobic capacity', cls:'cat-strong', text:'This is a comparatively strong field estimate. Maintain regular aerobic activity and track the trend rather than treating one result as definitive.' };
+    }
+
     show('rp', vo2.toFixed(1), cat);
   });
 
   document.getElementById('sm-form').addEventListener('submit', event => {
     event.preventDefault();
-    const age = number('sm-age'), sex = value('sm-sex'), height = number('sm-height'), weight = number('sm-weight'), distance = number('sm-distance');
+
+    const age = number('sm-age');
+    const sex = value('sm-sex');
+    const height = number('sm-height');
+    const weight = number('sm-weight');
+    const distance = number('sm-distance');
+
     if (!validNumber(age,40,80) || sex === '' || !Number.isFinite(height) || !Number.isFinite(weight) || !Number.isFinite(distance)) return fail('sm');
+
     const heightCm = value('sm-height-unit') === 'in' ? height * 2.54 : height;
     const weightKg = value('sm-weight-unit') === 'lb' ? weight / LB_PER_KG : weight;
     const distanceM = value('sm-dist-unit') === 'ft' ? distance * 0.3048 : distance;
+
     if (!validNumber(heightCm,120,230) || !validNumber(weightKg,30,250) || !validNumber(distanceM,10,1200)) return fail('sm');
-    const predicted = sex === 'm' ? 7.57*heightCm - 5.02*age - 1.76*weightKg - 309 : 2.11*heightCm - 2.29*weightKg - 5.78*age + 667;
+
+    const predicted = sex === 'm'
+      ? 7.57 * heightCm - 5.02 * age - 1.76 * weightKg - 309
+      : 2.11 * heightCm - 2.29 * weightKg - 5.78 * age + 667;
+
     if (!validNumber(predicted,200,900)) return fail('sm');
+
     const pct = Math.round(distanceM / predicted * 100);
     const detail = ` Predicted: ${Math.round(predicted)} m; measured: ${Math.round(distanceM)} m.`;
-    const cat = pct >= 100 ? { label:'At or above this prediction', cls:'cat-strong', text:'Your distance met or exceeded this older reference equation. Protocol and population differences still matter.' + detail } : pct >= 80 ? { label:'80–99% of this prediction', cls:'cat-average', text:'Your distance is moderately close to this reference prediction. Track repeated standardized results and interpret them with symptoms and clinical context.' + detail } : { label:'Below 80% of this prediction', cls:'cat-low', text:'Your distance is below 80% of this reference prediction. This may reflect deconditioning, technique, or health limitations and is reasonable to discuss with a clinician, especially when symptoms are present.' + detail };
+
+    let cat;
+    if (pct >= 100) {
+      cat = { label:'At or above this prediction', cls:'cat-strong', text:'Your distance met or exceeded this older reference equation. Protocol and population differences still matter.' + detail };
+    } else if (pct >= 80) {
+      cat = { label:'80â99% of this prediction', cls:'cat-average', text:'Your distance is moderately close to this reference prediction. Track repeated standardized results and interpret them with symptoms and clinical context.' + detail };
+    } else {
+      cat = { label:'Below 80% of this prediction', cls:'cat-low', text:'Your distance is below 80% of this reference prediction. This may reflect deconditioning, technique, or health limitations and is reasonable to discuss with a clinician, especially when symptoms are present.' + detail };
+    }
+
     show('sm', pct, cat);
   });
 
   document.getElementById('gs-form').addEventListener('submit', event => {
     event.preventDefault();
-    const age = number('gs-age'), sex = value('gs-sex'), grip = number('gs-grip');
+
+    const age = number('gs-age');
+    const sex = value('gs-sex');
+    const grip = number('gs-grip');
+
     if (!validNumber(age,18,100) || sex === '' || !Number.isFinite(grip)) return fail('gs');
+
     const kg = value('gs-unit') === 'lb' ? grip / LB_PER_KG : grip;
     if (!validNumber(kg,1,120)) return fail('gs');
+
     const cutoff = sex === 'm' ? 27 : 16;
-    const low = kg < cutoff;
-    const cat = low ? { label:'Below EWGSOP2 low-strength threshold', cls:'cat-low', text:`This result is below the ${cutoff} kg threshold. It can support identification of probable sarcopenia in the appropriate population, but it is not a stand-alone diagnosis. Confirm technique and discuss clinical context.` } : { label:'Above EWGSOP2 low-strength threshold', cls:'cat-strong', text:`This result is above the ${cutoff} kg low-strength threshold. It does not describe your percentile or eliminate other causes of weakness; use consistent repeat testing to monitor change.` };
+
+    const cat = kg < cutoff
+      ? { label:'Below EWGSOP2 low-strength threshold', cls:'cat-low', text:`This result is below the ${cutoff} kg threshold. It can support identification of probable sarcopenia in the appropriate population, but it is not a stand-alone diagnosis. Confirm technique and discuss clinical context.` }
+      : { label:'Above EWGSOP2 low-strength threshold', cls:'cat-strong', text:`This result is above the ${cutoff} kg low-strength threshold. It does not describe your percentile or eliminate other causes of weakness; use consistent repeat testing to monitor change.` };
+
     show('gs', kg.toFixed(1), cat);
   });
 
   document.getElementById('cs-form').addEventListener('submit', event => {
     event.preventDefault();
-    const age = number('cs-age'), sex = value('cs-sex'), stands = number('cs-stands');
+
+    const age = number('cs-age');
+    const sex = value('cs-sex');
+    const stands = number('cs-stands');
+
     if (!validNumber(age,60,94) || sex === '' || !validNumber(stands,0,40) || !Number.isInteger(stands)) return fail('cs');
+
     const thresholds = [[64,14,12],[69,12,11],[74,12,10],[79,11,10],[84,10,9],[89,8,8],[94,7,4]];
     const row = thresholds.find(r => age <= r[0]);
     const threshold = sex === 'm' ? row[1] : row[2];
-    const cat = stands < threshold ? { label:'Below age- and sex-specific threshold', cls:'cat-low', text:`The CDC STEADI threshold for this group is ${threshold} stands. A lower score can indicate reduced leg strength or endurance and should be interpreted as part of a broader fall-risk assessment.` } : { label:'At or above threshold', cls:'cat-strong', text:`The CDC STEADI threshold for this group is ${threshold} stands. Your score meets or exceeds it; continue strength and balance work and monitor change over time.` };
+
+    const cat = stands < threshold
+      ? { label:'Below age- and sex-specific threshold', cls:'cat-low', text:`The CDC STEADI threshold for this group is ${threshold} stands. A lower score can indicate reduced leg strength or endurance and should be interpreted as part of a broader fall-risk assessment.` }
+      : { label:'At or above threshold', cls:'cat-strong', text:`The CDC STEADI threshold for this group is ${threshold} stands. Your score meets or exceeds it; continue strength and balance work and monitor change over time.` };
+
     show('cs', stands, cat);
+  });
+
+  document.querySelectorAll('.newsletter-form-shared').forEach(form => {
+    form.addEventListener('submit', event => {
+      event.preventDefault();
+
+      const emailInput = form.querySelector('input[type="email"]');
+      const error = form.querySelector('.error-msg');
+      const result = form.querySelector('.result');
+
+      if (!emailInput.checkValidity()) {
+        error.classList.add('show');
+        result.classList.remove('show');
+        emailInput.focus();
+        return;
+      }
+
+      error.classList.remove('show');
+      result.classList.add('show');
+      form.reset();
+    });
   });
 })();
 </script>
